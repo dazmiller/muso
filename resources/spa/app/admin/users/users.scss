@@ -1,0 +1,37 @@
+@import '../../common/styles/colors.scss';
+
+.admin-users{
+    
+    .admin-actions-sidebar .md-button:first-child{
+        margin-bottom:0;
+    }
+    .admin-users-title-bar{
+        padding: 20px 10px 15px;
+        h2{
+            margin:0;
+        }
+        p{
+            margin:0;
+            margin-top: 8px;
+            color:$text-color-alt;
+        }
+    }
+
+    .admin-users-search{
+        md-input-container{
+            margin-bottom: 0;
+        }
+    }
+    
+    .admin-users-dob-gender{
+        md-datepicker{
+            width: 100%;
+            .md-datepicker-input-container{
+                padding-bottom: 2px;
+            }
+        }
+        md-input-container{
+            margin:0;
+        }
+    }
+}

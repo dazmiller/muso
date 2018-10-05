@@ -1,0 +1,52 @@
+
+let EN = ($translateProvider) => {
+  $translateProvider.translations('en', {
+    CONFIG_APPLY: 'Apply',
+    CONFIG_CLEAR: 'Clear Theme',
+    CONFIG_GLOBAL: 'Global Config',
+    CONFIG_TITLE: 'App title',
+    CONFIG_GA: 'Google Analytics',
+    CONFIG_GA_ENABLE: 'Enable Google Analytics',
+    CONFIG_GA_TRACK_ID: 'GA Track Code',
+    CONFIG_FACEBOOK: 'Facebook login',
+    CONFIG_FACEBOOK_ENABLE: 'Enable facebook login',
+    CONFIG_FACEBOOK_APP_ID: 'App ID',
+    CONFIG_UPLOAD_LOGO: 'Upload your logo',
+    CONFIG_UPDATE_LOGO: 'Click here to upload a new logo',
+    CONFIG_LOGO: 'Main logo',
+    CONFIG_APP_AUTHORS: 'Allow new users to create albums and songs',
+    CONFIG_APP_DOWNLOAD_SONGS: 'Allow users to download song files',
+    CONFIG_SURE: 'Double check that every value you have entered is correct. Otherwise things might not work as you\'d expect it.',
+    CONFIG_INSTRUCTIONS: 'Instructions',
+    CONFIG_INSTRUCTIONS_DESC: 'After saving the new preferences, make sure to refresh the browser in order to see the new changes. New visitors will have the new configurations applied.',
+    CONFIG_LEGAL: 'Legal Pages',
+    CONFIG_LEGAL_TERMS: 'Terms & Conditions',
+    CONFIG_LEGAL_PRIVACY: 'Privacy Policy',
+    CONFIG_THEME: 'Theming',
+    CONFIG_THEME_BG: 'Background Color',
+    CONFIG_THEME_TEXT_COLOR: 'Text Color',
+    CONFIG_THEME_LINK_COLOR: 'Link Color',
+    CONFIG_THEME_LINK_SELECTED_COLOR: 'Link Selection Color',
+    CONFIG_THEME_LINK_HOVER_COLOR: 'Link Over Color',
+    CONFIG_THEME_ICON_COLOR: 'Icon Color',
+    CONFIG_THEME_UNSAVED: 'Styles applied for preview only.',
+    CONFIG_THEME_MAIN_SIDEBAR_BG: 'Background color for sidebar in content area',
+    CONFIG_THEME_MAIN_BG: 'Background color for main content area',
+    CONFIG_THEME_CONTAINERS_BG: 'Background color for blog post and admin forms containers',
+    CONFIG_THEME_BORDER_COLOR: 'Border color',
+    CONFIG_THEME_PLACEHOLDER_COLOR: 'Placeholder color',
+    CONFIG_THEME_PRIMARY_BG: 'Primary button: background color',
+    CONFIG_THEME_PRIMARY_BG_OVER: 'Primary button: over background color',
+    CONFIG_THEME_ACTION_BG: 'Call to action button: background color',
+    CONFIG_THEME_ACTION_BG_OVER: 'Call to action button: over background color',
+    CONFIG_THEME_DEFAULT_BG: 'Default button: background color',
+    CONFIG_THEME_DEFAULT_BG_OVER: 'Default button: background color over',
+    CONFIG_THEME_CUSTOM: 'Custom CSS Styles',
+    CONFIG_APPLY_THEME_DESC: 'By clicking the `apply` button you will apply the colors and stylesin this form to the app. All users will be able to see your new theme.',
+    CONFIG_CLEAR_THEME: 'By clearing the theme, all users will see the default theme and all the values in the forms will be removed. Do you want to proceed?',
+  });
+}
+
+EN.$inject = ['$translateProvider'];
+
+export default EN;

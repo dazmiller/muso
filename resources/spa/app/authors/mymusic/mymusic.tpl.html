@@ -1,0 +1,34 @@
+<div flex layout="row" layout-xs="column" layout-fill class="my-music">
+    <div ng-include="'mymusic/mymusic.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div flex class="admin-content">
+        <h2 translate="ALL_ALBUMS"></h2>
+
+        <div ng-if="mymusic.albums.length > 0" class="admin-grid-panel">
+            <md-list>
+                  <md-list-item ng-repeat="album in mymusic.albums" ui-sref="authors.mymusic.show({id:album.id})" class="md-3-line">
+                    <img ng-if="album.image" ng-src="{{album.image}}" class="md-avatar" alt="{{album.name}}" />
+                    <i ng-if="!album.image" class="md-avatar flaticon-computer139"></i>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ album.title }}</h3>
+                        <p>{{ album.description | ellipsis:true:80 }}</p>
+                    </div>
+                    <div class="actions">
+                        <i ui-sref="authors.mymusic.show({id:album.id})" class="flaticon-pencil125"></i>
+                        <i ng-click="mymusic.deleteAlbum(album,$event)" class="flaticon-garbage21"></i>
+                        <!-- <i class="flaticon-two123"></i> -->
+                    </div>
+                  </md-list-item>
+            </md-list>
+        </div>
+
+        <div class="admin-panel">
+            <div ng-if="!mymusic.albums.length" class="admin-empty-data">
+                <i class="flaticon-music170"></i>
+                <p translate="ALBUMS_EMPTY"></p>
+                <md-button ui-sref="authors.mymusic.add" class="md-raised">{{'CREATE_ALBUM' | translate}}</md-button>
+            </div>
+        </div>  
+    </div>
+    
+</div>

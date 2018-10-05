@@ -1,0 +1,31 @@
+<div class="auth-full">
+    <div class="auth-container">
+        <h1 ng-bind="app.TITLE"></h1>
+        <p translate="AUTH_LOGIN_DESCRIPTION"></p>
+        <form ng-submit="auth.login()" role="form">
+            <div class="form-container white-panel">
+                <error-messages errors="auth.errors"></error-messages>
+                <md-input-container>
+                    <label translate="AUTH_EMAIL"></label>
+                    <input type="email" name="email" ng-model="auth.loginForm.email" required="required" autocomplete="off" />
+                    <div ng-messages="auth.loginForm.email.$error">
+                        <div ng-message="required" translate="AUTH_EMAIL_REQUIRED"></div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label translate="AUTH_PASSWORD"></label>
+                    <input type="password" name="password" ng-model="auth.loginForm.password" required="required" />
+                    <div ng-messages="auth.loginForm.password.$error">
+                        <div ng-message="required" translate="AUTH_PASSWORD_REQUIRED"></div>
+                    </div>
+                </md-input-container>
+            </div>
+
+          <md-button type="submit" ng-disabled="app.isLoading" class="md-raised md-primary md-btn-large">{{ 'AUTH_LOGIN' | translate }}</md-button>
+        </form>
+        <md-button ng-if="auth.facebookEnabled" ng-click="auth.loginFacebook()" class="md-raised md-btn-large"><i class="fa fa-facebook"></i> {{ 'AUTH_LOGIN_FACEBOOK' | translate }}</md-button>
+        <md-button ui-sref="public.auth.signup" class="md-raised md-btn-large">{{ 'AUTH_CREATE_ACCOUNT' | translate}}</md-button>
+        <p class="forgot-password"><a ui-sref="public.auth.forgot" translate="AUTH_FORGOT_PASSWORD"></a></p>
+    </div>
+</div>

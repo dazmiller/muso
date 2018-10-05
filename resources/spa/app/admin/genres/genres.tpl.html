@@ -1,0 +1,59 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-genres">
+    <div ng-include="'genres/genres.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div infinite-scroll="genresCtr.nextPage($page)" flex class="admin-content">
+        <div layout="row" class="admin-genres-title-bar">
+            <h2 flex translate="GENRES_ALL"></h2>
+            <p> Displaying <strong ng-bind="genresCtr.total"></strong> genres</p>
+        </div>
+
+        <div ng-if="genresCtr.genres.length > 0" class="admin-grid-panel">
+            <md-list>
+                  <md-list-item ng-repeat="genre in genresCtr.genres" ng-click="genresCtr.toggleForm(genre)" class="md-3-line">
+                    <i class="md-avatar flaticon-playlist"></i>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ genre.name }}</h3>
+                        <p>
+                            {{'GENRES_ALBUMS' | translate}}: <strong>{{genre.count}}</strong>
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <i ng-click="genresCtr.toggleForm(genre, $event)" class="flaticon-pencil125"></i>
+                        <i ng-click="genresCtr.deleteGenre(genre, $event)" class="flaticon-garbage21"></i>
+                    </div>
+                  </md-list-item>
+            </md-list>
+        </div>
+
+        <div ng-if="!genresCtr.genres.length" class="admin-panel comments-empty-message">
+            <div class="admin-empty-data">
+                <i class="flaticon-playlist"></i>
+                <p translate="GENRES_EMPTY"></p>
+                <md-button ng-click="genresCtr.toggleForm()" class="md-raised">{{'GENRES_NEW' | translate}}</md-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<md-sidenav class="admin-form-sidenav md-sidenav-right md-whiteframe-z2" md-component-id="genre-form" layout="column" layout-fill>
+    <md-toolbar class="admin-form-toolbar-title">
+        <h1 ng-if="!genresCtr.genre.id" translate="GENRES_ADD" class="md-toolbar-tools"></h1>
+        <h1 ng-if="genresCtr.genre.id" translate="GENRES_EDIT" class="md-toolbar-tools"></h1>
+    </md-toolbar>
+    <div flex layout-padding class="admin-sidebar-form-content">
+
+        <md-input-container>
+            <label for="genre-name" translate="GENRES_NAME"></label>
+            <input type="text" id="genre-name" ng-model="genresCtr.genre.name" md-autofocus></input>
+        </md-input-container>
+
+    </div>
+    <div>
+        <md-button ng-click="genresCtr.save(genresCtr.genre)" ng-disabled="app.isLoading" class="md-primary md-raised">
+            {{ 'SAVE' | translate}}
+        </md-button>
+        <md-button ng-click="genresCtr.toggleForm()" class="md-raised">
+            {{ 'CANCEL' | translate}}
+        </md-button>
+    </div>
+</md-sidenav>

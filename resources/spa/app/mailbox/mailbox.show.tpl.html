@@ -1,0 +1,54 @@
+<div flex layout="row" layout-xs="column" layout-fill class="mailbox-show">
+    <div ng-include="'mailbox/mailbox.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+    <div flex class="admin-content">
+        <h2 ng-bind="mailboxCtl.thread.title"></h2>
+
+        <div class="admin-panel">
+            <md-card
+                ng-repeat="message in mailboxCtl.thread.messages"
+                class="mailbox-message"
+                ng-class="{'message-collapsed': message.read && ($index < (mailboxCtl.thread.messages.length - 1))}"
+                ng-click="mailboxCtl.expand(message)">
+                <md-card-header>
+                    <md-card-avatar>
+                        <img class="md-user-avatar" ng-src="{{message.author.image}}" ui-sref="members.profiles({id:message.author.id})" />
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <div>
+                            <span class="md-title" ng-bind="message.author.name" ui-sref="members.profiles({id:message.author.id})"></span>
+                        </div>
+                        <span class="md-subhead" ng-bind="message.time.date | timeAgo"></span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-content ng-if="!message.read || ($index == (mailboxCtl.thread.messages.length - 1))">
+                    <p ng-bind="message.content"></p>
+                </md-card-content>
+            </md-card>
+            <md-card class="mailbox-message">
+                <md-card-header>
+                    <md-card-avatar>
+                        <img class="md-user-avatar" ng-src="{{app.user.image}}" />
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title" ng-bind="app.user.name"></span>
+                        <span class="md-subhead" ng-bind="app.user.occupation"></span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-content class="mailbox-reply">
+                    <form name="mailboxCtl.compose" ng-submit="mailboxCtl.reply(mailboxCtl.compose)" role="form" novalidate>
+                        <md-input-container>
+                            <label for="mailbox-content" translate="MAILBOX_CONTENT"></label>
+                            <textarea id="mailbox-content" ng-model="mailboxCtl.compose.content" columns="1" rows="20" class="mailbox-content" required></textarea>
+                            <div ng-messages="mailboxCtl.compose.content.$error">
+                                <div ng-message="required" ng-show="mailboxCtl.compose.$$controls[2].$invalid" translate="AUTH_EMAIL_REQUIRED"></div>
+                            </div>
+                        </md-input-container>
+                        <md-button type="submit" ng-disabled="app.isLoading" class="md-primary md-raised">
+                            {{ 'SEND' | translate}}
+                        </md-button>
+                    </form>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div flex layout="row" class="songs">
+
+    <div flex="70" flex-xs="100" class="album-details song-details">
+        <div class="white-panel songs-panel">
+            <div layout="row" class="songs-info">
+                <div flex="30">
+                    <img ng-src="{{albumsPublicCtl.album.image}}" class="album-art" />
+                </div>
+                <div class="songs-data" flex="70">
+                    <h2 ng-bind="albumsPublicCtl.album.title"></h2>
+                    <div layout="row" class="song-author">
+                        <img ui-sref="members.profiles({id:albumsPublicCtl.album.author.id})" ng-src="{{albumsPublicCtl.album.author.image}}" alt="{{albumsPublicCtl.album.author.name}}">
+                        <div flex>
+                            <h3 ui-sref="members.profiles({id:albumsPublicCtl.album.author.id})" ng-bind="albumsPublicCtl.album.author.name"></h3>
+                            <p>{{'SONG_PUBLISHED' | translate}} {{albumsPublicCtl.album.released}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-actions">
+                        <md-button ng-click="albumsPublicCtl.playAll()" class="md-raised md-primary"><i class="flaticon-media23"></i> {{'ALBUM_PLAY_ALL' | translate}}</md-button>
+                    </div>
+
+                    <div class="tags" ng-if="albumsPublicCtl.album.tags.length">
+                        <p>Tags: <a ng-repeat="tag in albumsPublicCtl.album.tags" ui-sref="public.explore.tag({tag:tag.name})">{{tag.name}}</a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="song-lyric">
+                <h3 ng-if="albumsPublicCtl.album.description" translate="SONG_DESCRIPTION"></h3>
+                <p ng-if="albumsPublicCtl.album.description" ng-bind="albumsPublicCtl.album.description"></p>
+            </div>
+
+            <md-list class="album-song-list">
+                <md-list-item ng-repeat="track in albumsPublicCtl.album.songs" ui-sref="public.songs({id: track.id})" class="md-3-line">
+                    <div class="action-play md-avatar" ng-click="albumsPublicCtl.playSongFromAlbum(track, $event)">
+                        <i ng-if="app.currentSong.id != track.id" class="flaticon-media23"></i>
+                        <i ng-if="app.currentSong.id == track.id && app.PlayerAPI.currentState != 'play'" class="flaticon-media23"></i>
+                        <music-waves ng-if="app.currentSong.id == track.id && app.PlayerAPI.currentState == 'play'" />
+                    </div>
+                    <div class="md-list-item-text">
+                        <h3>{{ track.title }}</h3>
+                    </div>
+                    <div ng-bind="track.duration | duration"></div>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        
+
+        <div class="comments">
+            
+            <comment-list 
+                comments="songs.song.comments"
+                current="songs.currentUser"
+                comentable-model="'song'"
+                comentable-id="songs.song.id">
+            </comment-list>
+
+            <comment-form 
+                loading="app.isLoading"
+                ng-if="songs.currentUser"
+                current="songs.currentUser"
+                comentable-model="'song'"
+                comentable-id="songs.song.id">
+            </comment-form>
+        </div>
+    </div>
+    
+    <div flex="30" class="song-sidebar" hide-xs>
+        <!-- <div class="white-panel album-detail">
+            <div style="background-image: url({{songs.album.image}})" class="header">
+                <h2 ng-bind="songs.album.title"></h2>
+            </div>
+            <md-list class="album-songs">
+                <md-list-item ng-repeat="track in songs.album.songs" class="md-3-line">
+                    <div class="action-play">
+                        <i ng-if="app.currentSong.id != track.id" ng-click="songs.playSongFromAlbum(track)" class="flaticon-media23"></i>
+                        <i ng-if="app.currentSong.id == track.id && app.PlayerAPI.currentState != 'play'" ng-click="songs.playSongFromAlbum(track)" class="flaticon-media23"></i>
+                        <music-waves ng-if="app.currentSong.id == track.id && app.PlayerAPI.currentState == 'play'" />
+                    </div>
+                    <h3 ui-sref="public.songs({id: track.id})" flex>{{ track.title }}</h3>
+                    <div ng-bind="track.duration | duration"></div>
+                </md-list-item>
+            </md-list>
+        </div> -->
+    </div>
+
+</div>

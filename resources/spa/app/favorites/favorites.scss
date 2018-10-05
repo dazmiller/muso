@@ -1,0 +1,73 @@
+.favorites{
+
+    .favorites-content{
+        overflow: auto;
+        padding: 0 20px;
+        h2{
+            margin: 20px 10px 15px;
+        }
+
+        .song-details{
+            padding:0;
+        }
+        .admin-content{
+            padding:0;
+            margin:30px 0;
+        }
+    }
+
+    .favorites-sidebar{
+        overflow: auto;
+        width:360px;
+        background-color: #dde6e9;
+
+        h4{
+            margin:15px 10px;
+            font-weight: normal;
+        }
+
+        md-list{
+            padding:0;
+        
+            md-list-item{
+                &.md-3-line:first-child{
+                    border-top: 1px solid #f0f3f4;
+                }
+
+                &.md-3-line{
+                    min-height: 20px;
+                    padding: 0;
+                    border-bottom: 1px solid #f0f3f4;
+                }
+
+                .md-button{
+                    min-height: 20px;
+                }
+
+                i{
+                    color:#58666e
+                }
+
+                .playlist-song-title{
+                    padding: 0 10px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color:#58666e;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width : 700px) {
+    .favorites {
+        .favorites-sidebar {
+            overflow: auto;
+            width: auto;
+            height: 200px;
+        }
+    }   
+}

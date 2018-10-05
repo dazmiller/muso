@@ -1,0 +1,54 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-posts">
+    <div ng-include="'posts/posts.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div infinite-scroll="postsCtr.nextPage($page)" flex class="admin-content">
+        <div ng-if="postsCtr.posts.length" layout="row" class="admin-users-title-bar">
+            <h2 flex translate="POSTS_ALL"></h2>
+            <p>
+                Showing <strong ng-bind="postsCtr.current"></strong> 
+                of <strong ng-bind="postsCtr.total"></strong>
+                <md-button ng-click="postsCtr.toggleSearch()" class="icon-button" aria-label="Toggle Search">
+                    <i class="flaticon-magnifier13"></i>
+                </md-button>
+            </p>
+        </div>
+
+        <div ng-if="postsCtr.searching && postsCtr.posts.length" class="admin-panel admin-users-search">
+            <md-input-container>
+                <label translate="USERS_SEARCH"></label>
+                <input ng-model="postsCtr.query">
+            </md-input-container>
+            <md-button ng-click="postsCtr.search()" class="md-raised md-primary" aria-label="Search">
+                <i class="flaticon-magnifier13"></i> {{'SEARCH'|translate}}
+            </md-button>
+            <md-button ng-click="postsCtr.toggleSearch()" aria-label="Cancel">
+                {{'CANCEL'|translate}}
+            </md-button>
+        </div>
+
+        <div ng-if="postsCtr.posts.length" class="admin-grid-panel">
+            <md-list>
+                  <md-list-item ng-repeat="post in postsCtr.posts" ui-sref="admin.posts.show({id:post.id})" class="md-3-line">
+                    <img ng-if="post.author.image" ng-src="{{post.author.image}}" class="md-avatar" alt="{{post.name}}" />
+                    <i ng-if="!post.author.image" class="md-avatar flaticon-man42"></i>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.content | ellipsis:true:80 }}</p>
+                    </div>
+                    <div class="actions">
+                        <i ui-sref="admin.posts.show({id:post.id})" class="flaticon-pencil125"></i>
+                        <i ng-click="postsCtr.deletePost(post,$event)" class="flaticon-garbage21"></i>
+                    </div>
+                  </md-list-item>
+            </md-list>
+        </div>
+
+        <div ng-if="!postsCtr.posts.length" class="admin-panel posts-empty-message">
+            <div class="admin-empty-data">
+                <i class="flaticon-books71"></i>
+                <p translate="POSTS_EMPTY"></p>
+                <md-button ui-sref="admin.posts.add" class="md-raised">{{'POSTS_NEW' | translate}}</md-button>
+            </div>
+        </div>
+    </div>
+</div>

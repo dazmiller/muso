@@ -1,0 +1,46 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-users">
+    <div ng-include="'users/users.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div infinite-scroll="usersCtr.nextPage($page)" flex class="admin-content">
+        <div layout="row" class="admin-users-title-bar">
+            <h2 flex translate="USERS_ALL"></h2>
+            <p>
+                Showing <strong ng-bind="usersCtr.current"></strong> 
+                of <strong ng-bind="usersCtr.total"></strong>
+                <md-button ng-click="usersCtr.toggleSearch()" class="icon-button" aria-label="Toggle Search">
+                    <i class="flaticon-magnifier13"></i>
+                </md-button>
+            </p>
+        </div>
+
+        <div ng-if="usersCtr.searching" class="admin-panel admin-users-search">
+            <md-input-container>
+                <label translate="USERS_SEARCH"></label>
+                <input ng-model="usersCtr.query">
+            </md-input-container>
+            <md-button ng-click="usersCtr.search()" class="md-raised md-primary" aria-label="Search">
+                <i class="flaticon-magnifier13"></i> {{'SEARCH'|translate}}
+            </md-button>
+            <md-button ng-click="usersCtr.toggleSearch()" aria-label="Cancel">
+                {{'CANCEL'|translate}}
+            </md-button>
+        </div>
+
+        <div class="admin-grid-panel">
+            <md-list>
+                  <md-list-item ng-repeat="user in usersCtr.users" ui-sref="admin.users.show({id:user.id})" class="md-3-line">
+                    <img ng-if="user.image" ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+                    <i ng-if="!user.image" class="md-avatar flaticon-man42"></i>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ user.name }}</h3>
+                        <p>{{ user.about | ellipsis:true:80 }}</p>
+                    </div>
+                    <div class="actions">
+                        <i ui-sref="admin.users.show({id:user.id})" class="flaticon-pencil125"></i>
+                        <i ng-click="usersCtr.deleteUser(user, $event)" class="flaticon-garbage21"></i>
+                    </div>
+                  </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</div>

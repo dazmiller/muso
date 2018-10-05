@@ -1,0 +1,82 @@
+<div flex layout-xs="column" layout="row" layout-fill class="favorites">
+    <div infinite-scroll="favoritesCtr.nextPage($page)" class="common-sidebar favorites-sidebar">
+        <h4 translate="FAVORITES"></h4>
+        <md-list class="playlist">
+            <md-list-item ng-repeat="favorite in favoritesCtr.favorites" ng-click="favoritesCtr.show(favorite)" aria-label="favorite.title" class="md-3-line" ng-class='{}'>
+                <i ng-click="favoritesCtr.play(favorite, $event)" class="flaticon-media23"></i>
+                <div flex class="playlist-song-title" ng-bind="favorite.title"></div>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <div flex class="favorites-content songs">
+        
+        <div ng-if="favoritesCtr.song" class="song-details">
+            <div class="white-panel songs-panel">
+                <div layout="row" class="songs-info">
+                    <div flex="30">
+                        <img ng-src="{{favoritesCtr.song.album.image}}" class="album-art" />
+                    </div>
+                    <div class="songs-data" flex="70">
+                        <h2 ng-bind="favoritesCtr.song.title"></h2>
+                        <div layout="row" class="song-author">
+                            <img ui-sref="members.profiles({id:favoritesCtr.song.author.id})" ng-src="{{favoritesCtr.song.author.image}}" alt="{{favoritesCtr.song.author.name}}">
+                            <div flex>
+                                <h3 ui-sref="members.profiles({id:favoritesCtr.song.author.id})" ng-bind="favoritesCtr.song.author.name"></h3>
+                                <p>{{'SONG_PUBLISHED' | translate}} {{favoritesCtr.song.album.released}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="song-actions">
+                            <md-button ng-click="favoritesCtr.play(favoritesCtr.song, $event)" class="md-raised md-primary"><i class="flaticon-media23"></i> {{'SONG_PLAY' | translate}}</md-button>
+                            <md-button ng-click="favoritesCtr.like(favoritesCtr.song)" class="md-raised"><i class="flaticon-favorite21" ng-class="{'favorite-selected':favoritesCtr.song.isFavorite}"></i> {{'SONG_FAVORITES' | translate}}</md-button>
+                            <md-button ng-disabled="app.isLoading" ng-if="app.downloable" ng-click="app.download(favoritesCtr.song)" class="md-raised" ><i class="flaticon-cloud107"></i> {{'SONG_DOWNLOAD' | translate}}</md-button>
+                        </div>
+
+                        <div class="tags" ng-if="favoritesCtr.song.tags.length">
+                            <p>Tags: <a ng-repeat="tag in favoritesCtr.song.tags" ui-sref="public.explore.tag({tag:tag.name})">{{tag.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="song-lyric">
+                    <h3 ng-if="favoritesCtr.song.description" translate="SONG_DESCRIPTION"></h3>
+                    <p ng-if="favoritesCtr.song.description" ng-bind="favoritesCtr.song.description"></p>
+                    <h3 ng-if="favoritesCtr.song.lyric" translate="SONG_LYRIC"></h3>
+                    <p ng-if="favoritesCtr.song.lyric" ng-bind="favoritesCtr.song.lyric"></p>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="!favoritesCtr.song" class="admin-content">
+            <div class="admin-panel">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="FAVORITES_EMPTY"></p>
+                    <md-button ui-sref="public.discover" class="md-raised">{{'DISCOVER' | translate}}</md-button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="favoritesCtr.song" class="comments">
+            
+            <comment-list 
+                comments="favoritesCtr.song.comments"
+                current="favoritesCtr.currentUser"
+                comentable-model="'song'"
+                comentable-id="favoritesCtr.song.id">
+            </comment-list>
+
+            <comment-form 
+                ng-if="favoritesCtr.currentUser"
+                loading="app.isLoading"
+                current="favoritesCtr.currentUser"
+                comentable-model="'song'"
+                comentable-id="favoritesCtr.song.id">
+            </comment-form>
+        </div>
+        
+    </div>
+
+</div>

@@ -1,0 +1,93 @@
+
+/******************************
+ *  Palette colors
+ ******************************/
+$primary-color: #1ABC9C;
+$action-color: #fe8a71;
+$cool-color: #2c3e50;
+$contrast-color: #F6CD61;
+$light-color: #fff;
+
+ /******************************
+ *  Text colors
+ ******************************/
+$text-color:rgba(0,0,0,0.87);
+$title-color:rgba(0,0,0,0.87);
+$text-color-alt:#545a5f;
+$text-color-light: #aaa;
+$text-color-lighter: $light-color;
+$favorite-icon-color: $action-color;
+
+/******************************
+ *  Links
+ ******************************/
+$link-color:#0E9AA7;
+$link-hover-color:#16A085;
+
+
+ /******************************
+ *  Buttons
+ ******************************/
+$button-border-color: #f1f1f1;
+$button-over-background-color: $light-color;
+$button-primary-color:$light-color;
+$button-primary-background-color: #1ABC9C;
+$button-primary-hover-background-color: $link-hover-color;
+$button-warn-color:$light-color;
+$button-warn-background-color: $action-color;
+$button-warn-hover-background-color: #e47b65;
+
+/******************************
+ *  Input Forms
+ ******************************/
+$input-color:#555;
+$input-border-color:#cfdadd;
+$input-background-color:$light-color;
+$input-focus-border-color: #aaa;
+$input-shadow:rgb(224,224,224);
+
+
+/******************************
+ *  Tabs
+ ******************************/
+ $tabs-tab-background-color:$light-color;
+ $tabs-body-background-color:$tabs-tab-background-color;
+ $tabs-tabbar-background-color:#d8dbde;
+
+/******************************
+ *  Main navigation bar
+ ******************************/
+$navbar-title-background-color: #e91e63;
+$navbar-title-color: $light-color;
+$navbar-background-color: #2c3e50;
+$navbar-secundary-background-color: #34495e;
+$navbar-header-color: #8ca1af;
+$navbar-text-color: #8ca1af;
+$navbar-selected-color: $light-color;
+$navbar-selected-icon-color: #1ABC9C;
+$navbar-over-background-color:rgba(255,255,255,0.1);
+$navbar-collapsed-selected-color:#3DA4AB;
+
+/******************************
+ *  Player component
+ ******************************/
+$player-background-color: $action-color;
+$player-timeline-background-color: $action-color;
+$player-timeline-current-background-color: #E47B65;
+
+/******************************
+ *  Mini Player
+ ******************************/
+$mini-player-current-color: $action-color;
+$mini-player-progress-timeline: #d8dbde;
+$mini-player-progress: $player-background-color;
+
+/******************************
+ *  Toast notifycations
+ ******************************/
+$toast-error-background-color:#e47b65;
+
+/******************************
+ *  Modal window
+ ******************************/
+$modal-header-background-color:#2c3e50;

@@ -1,0 +1,75 @@
+<md-list>
+    <md-list-item class="md-3-line no-clickeable" ng-repeat="activity in profiles.activities">
+        <img ng-src="{{activity.author.image}}" ng-click="app.showProfile(activity.author.id)" class="md-avatar" alt="{{activity.author.name}}" />
+        <div class="md-list-item-text" layout="column">
+            <h3 ng-bind="activity.author.name" ng-click="app.showProfile(activity.author.id)"></h3>
+            <h4 ng-bind="activity.time.date | timeAgo"></h4>
+            <div ng-if="activity.action == 'avatar'" class="activity-image">
+                <p translate="ACTIVITY_AVATAR"></p>
+                <img ng-src="{{activity.model.url}}" />
+            </div>
+            <p ng-if="activity.action == 'user-info'" translate="ACTIVITY_GENERAL_INFO"></p>
+            <p ng-if="activity.action == 'signup'" translate="ACTIVITY_WELCOME"></p>
+            <div ng-if="activity.action == 'comment' && activity.model.type == 'post'" class="activity-image">
+                <p>
+                    <span translate="ACTIVITY_COMMENT_BLOG"></span>
+                    <a ui-sref="public.blog.show({id: activity.model.id})">{{activity.model.title}}</a>
+                </p>
+                <a ui-sref="public.blog.show({id: activity.model.id})" ng-if="activity.model.image">
+                    <img ng-src="{{activity.model.image}}" />
+                </a>
+            </div>
+            <p ng-if="activity.action == 'published-post' && activity.model.type == 'post'">
+                <span translate="ACTIVITY_PUBLISHED_BLOG"></span>
+                <a ui-sref="public.blog.show({id: activity.model.id})">{{activity.model.title}}</a>
+            </p>
+            <p ng-if="activity.action == 'followed'">
+                {{'ACTIVITY_FOLLOWED' | translate}}
+                <a ui-sref="members.profiles({ id: activity.model.id })">{{activity.model.name}}</a>
+            </p>
+            <p ng-if="activity.action == 'follow'">
+                {{'ACTIVITY_FOLLOW' | translate}}
+                <a ui-sref="members.profiles({ id: activity.model.id })">{{activity.model.name}}</a>
+            </p>
+            <p ng-if="activity.action == 'unfollow'">
+                {{'ACTIVITY_UNFOLLOW' | translate}}
+                <a ui-sref="members.profiles({ id: activity.model.id })">{{activity.model.name}}</a>
+            </p>
+            <div ng-if="activity.action == 'published-album'" class="activity-image">
+                <p>
+                    <span translate="ACTIVITY_ALBUM_BLOG"></span>
+                    <a ui-sref="public.albums({ id: activity.model.id })">{{activity.model.title}}</a>
+                </p>
+                <img ng-src="{{activity.model.image}}" ui-sref="public.albums({ id: activity.model.id })" />
+            </div>
+            <p ng-if="activity.action == 'comment' && activity.model.type == 'song'">
+                <span translate="ACTIVITY_COMMENT_SONG"></span>
+                <a ui-sref="public.songs({id: activity.model.id})">{{activity.model.title}}</a>
+            </p>
+            <p ng-if="activity.action == 'like' && activity.model.type == 'song'">
+                <span translate="ACTIVITY_LIKE_SONG"></span>
+                <a ui-sref="public.songs({id: activity.model.id})">{{activity.model.title}}</a>
+            </p>
+            <p ng-if="activity.action == 'download' && activity.model.type == 'song'">
+                <span translate="ACTIVITY_DOWNLOAD_SONG"></span>
+                <a ui-sref="public.songs({id: activity.model.id})">{{activity.model.title}}</a>
+            </p>
+            <p ng-if="activity.action == 'unlike' && activity.model.type == 'song'">
+                <span translate="ACTIVITY_UNLIKE_SONG"></span>
+                <a ui-sref="public.songs({id: activity.model.id})">{{activity.model.title}}</a>
+            </p>
+            <p ng-if="activity.action == 'play' && activity.model.type == 'song'">
+                <span translate="ACTIVITY_PLAY_SONG"></span>
+                <a ui-sref="public.songs({id: activity.model.id})">{{activity.model.title}}</a>
+            </p>
+        </div>
+    </md-list-item>
+</div>
+
+</md-list>
+
+<div ng-if="profiles.showLoadMore" class="profile-feed-more">
+    <md-button ng-click="profiles.loadNextPage()">
+        {{ 'ACTIVITIES_LOAD_MORE' | translate }}
+    </md-button>
+</div>

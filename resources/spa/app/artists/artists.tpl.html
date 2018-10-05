@@ -1,0 +1,61 @@
+<div flex layout="row" layout-fill class="artists">
+    <div infinite-scroll="artists.loadAuthors()" flex class="artists-content">
+        <h2 translate="ARTISTS"></h2>
+        
+        <div ng-if="artists.latests.length == 0" class="admin-content">
+            <div class="admin-panel comments-empty-message">
+                <div class="admin-empty-data">
+                    <i class="flaticon-microphone52"></i>
+                    <p translate="AUTHORS_EMPTY"></p>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" layout-wrap>
+
+            <div ng-repeat="artist in artists.latests" class="song" flex-sm="33" flex-gt-sm="33" flex-md="20" flex-gt-md="20">
+                <div class="song-poster">
+                    <img ui-sref="members.profiles({id:artist.id})" ng-src="{{artist.image}}">
+                </div>
+                <div class="song-details">
+                    <a ui-sref="members.profiles({id:artist.id})">{{artist.name}}</a>
+                    <!-- <p><i class="flaticon-pulse2"></i> {{artist.plays | number}}  <span><i class="flaticon-music34"></i> {{artist.songs | number}} <span></p> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="common-sidebar artists-filters" layout="column" hide-sm hide-xs>
+        <div class="gender-list">
+            <md-list>
+                <md-subheader>Gender</md-subheader>
+                <md-list-item class="md-3-line" ng-class="{active:artists.gender == 'any'}">
+                    <a ng-click="artists.setGender('any')">Any</a>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{active:artists.gender == 'Female'}">
+                    <a ng-click="artists.setGender('Female')">Female</a>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{active:artists.gender == 'Male'}">
+                    <a ng-click="artists.setGender('Male')">Male</a>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{active:artists.gender == 'Other'}">
+                    <a ng-click="artists.setGender('Other')">Not Specified</a>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        <div flex class="countries-list">
+            <md-list>
+                <md-subheader>Countries</md-subheader>
+                <md-list-item class="md-3-line" ng-class="{active: artists.country == 'all'}">
+                    <a ng-click="artists.setCountry('all')">All</a>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-repeat="country in artists.countries" ng-class="{active:artists.country == country.name}">
+                    <a ng-click="artists.setCountry(country.name)">{{country.name}} ({{country.total}})</a>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+
+</div>

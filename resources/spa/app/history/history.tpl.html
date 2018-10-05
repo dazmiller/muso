@@ -1,0 +1,97 @@
+<div flex layout-xs="column" layout="row" layout-fill class="favorites history">
+    <div ng-if="historyCtr.history.length > 0" infinite-scroll="historyCtr.nextPage($page)" class="common-sidebar favorites-sidebar">
+        <h4 translate="HISTORY"></h4>
+        <md-list class="playlist">
+            <md-list-item ng-repeat="track in historyCtr.history" ng-click="historyCtr.show(track)" aria-label="track.title" class="md-3-line" ng-class='{}'>
+                <i ng-click="historyCtr.play(track, $event)" class="flaticon-media23"></i>
+                <div flex class="playlist-song-title">
+                    <span ng-bind="track.title"></span>
+                    <span ng-bind="track.time.date | timeAgo" class="history-time-ago"></span>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <div flex class="favorites-content songs">
+        
+        <div ng-if="historyCtr.song" class="song-details">
+            <div class="white-panel songs-panel">
+                <div layout="row" class="songs-info">
+                    <div flex="30">
+                        <img ng-src="{{historyCtr.song.album.image}}" class="album-art" />
+                    </div>
+                    <div class="songs-data" flex="70">
+                        <h2 ng-bind="historyCtr.song.title"></h2>
+                        <div layout="row" class="song-author">
+                            <img ui-sref="members.profiles({id:historyCtr.song.author.id})" ng-src="{{historyCtr.song.author.image}}" alt="{{historyCtr.song.author.name}}">
+                            <div flex>
+                                <h3 ui-sref="members.profiles({id:historyCtr.song.author.id})" ng-bind="historyCtr.song.author.name"></h3>
+                                <p>{{'SONG_PUBLISHED' | translate}} {{historyCtr.song.album.released}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="song-actions">
+                            <md-button ng-click="historyCtr.play(historyCtr.song, $event)" class="md-raised md-primary"><i class="flaticon-media23"></i> {{'SONG_PLAY' | translate}}</md-button>
+                            <md-button ng-click="historyCtr.like(historyCtr.song)" class="md-raised"><i class="flaticon-favorite21" ng-class="{'favorite-selected':historyCtr.song.isFavorite}"></i> {{'SONG_FAVORITES' | translate}}</md-button>
+                            <md-button ng-disabled="app.isLoading" ng-if="app.downloable" ng-click="app.download(historyCtr.song)" class="md-raised" ><i class="flaticon-cloud107"></i> {{'SONG_DOWNLOAD' | translate}}</md-button>
+                        </div>
+
+                        <div class="tags" ng-if="historyCtr.song.tags.length">
+                            <p>Tags: <a ng-repeat="tag in historyCtr.song.tags" ui-sref="public.explore.tag({tag:tag.name})">{{tag.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="song-lyric">
+                    <h3 ng-if="historyCtr.song.description" translate="SONG_DESCRIPTION"></h3>
+                    <p ng-if="historyCtr.song.description" ng-bind="historyCtr.song.description"></p>
+                    <h3 ng-if="historyCtr.song.lyric" translate="SONG_LYRIC"></h3>
+                    <p ng-if="historyCtr.song.lyric" ng-bind="historyCtr.song.lyric"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Render if the history is empty -->
+        <div ng-if="historyCtr.history.length == 0" class="admin-content">
+            <div class="admin-panel">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="HISTORY_EMPTY"></p>
+                    <md-button ui-sref="public.discover" class="md-raised">{{'DISCOVER' | translate}}</md-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- If the song from the left panel is not selected -->
+        <div ng-if="historyCtr.history.length > 0 && !historyCtr.song" class="admin-content">
+            <div class="admin-panel">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="FAVORITES_EMPTY"></p>
+                    <md-button ui-sref="public.discover" class="md-raised">{{'DISCOVER' | translate}}</md-button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="historyCtr.song" class="comments">
+            
+            <comment-list 
+                comments="historyCtr.song.comments"
+                current="app.user"
+                comentable-model="'song'"
+                comentable-id="historyCtr.song.id">
+            </comment-list>
+
+            <comment-form 
+                ng-if="app.user"
+                loading="app.isLoading"
+                current="app.user"
+                comentable-model="'song'"
+                comentable-id="historyCtr.song.id">
+            </comment-form>
+        </div>
+        
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div layout="row" layout-xs="column" layout-sm="column" class="blog-show">
+  
+  <!-- CONTENT -->
+  <div flex="70" flex-xs="100" flex-sm="100">
+    <div class="blog-show-post white-panel">
+      <img src="{{blogCtr.post.asset.url}}" class="blog-show-image" />
+      <h2 ng-bind="blogCtr.post.title"></h2>
+      <p class="post-meta">
+        <!-- <span><i class="flaticon-favorite21"></i> {{blogCtr.post.meta.likes}} Likes</span> -->
+        <span><i class="flaticon-comments16"></i> {{blogCtr.post.meta.comments}} Comments</span>
+        <span><i class="flaticon-clock14"></i> {{blogCtr.post.time.date | timeAgo}}</span>
+      </p>
+      <div ng-bind-html="blogCtr.post.content" class="blog-show-content"></div>
+    </div>
+
+    <div class="post-comments">
+      <comment-list
+        comments="blogCtr.post.comments"
+        current="blogCtr.currentUser"
+        comentable-model="'post'"
+        comentable-id="blogCtr.post.id">
+      </comment-list>
+
+      <comment-form
+        ng-if="blogCtr.post.allowComments && blogCtr.currentUser"
+        loading="app.isLoading"
+        current="blogCtr.currentUser"
+        comentable-model="'post'"
+        comentable-id="blogCtr.post.id">
+      </comment-form>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div flex="30" flex-xs="100" flex-sm="100">
+    <div class="white-panel blog-show-side">
+      <h4>Author</h4>
+      <img ui-sref="members.profiles({id:blogCtr.post.author.id})" src="{{blogCtr.post.author.image}}" class="blog-show-author" />
+      <p><strong ui-sref="members.profiles({id:blogCtr.post.author.id})">{{blogCtr.post.author.name}}</strong>: {{blogCtr.post.author.about}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+h1 {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  flex-wrap: nowrap;
+}
+
+.main-menu .navbar > ul{
+  margin-top: 40px;
+}
+
+  .main-menu .navbar {
+  align-items: flex-start;
+  height: 100%;
+  overflow: auto;
+}
+
+.main-menu .nav-children {
+  padding-left: 20px;
+}
+
+.main-menu .nav-children a {
+  font-size: 1rem;
+  padding-top: 0;
+}
+
+.main-content {
+  overflow: auto;
+  flex: 1;
+}
+
+.terminal {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  margin-bottom: 20px;
+  min-height: 300px;
+}
+
+.terminal pre {
+  color: #fff;
+}
+
+.feature {
+  margin-bottom: 40px;
+}
+
+.feature img {
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-layout {
+    flex-direction: column;
+    height: auto;
+    flex-wrap: nowrap;
+  }
+}

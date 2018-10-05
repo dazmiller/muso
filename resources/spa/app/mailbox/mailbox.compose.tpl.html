@@ -1,0 +1,69 @@
+<div flex layout="row" layout-xs="column" layout-fill class="mailbox">
+    <div ng-include="'mailbox/mailbox.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div flex class="admin-content">
+        <h2 flex translate="MAILBOX_COMPOSE"></h2>
+
+        <div class="admin-panel mailbox-compose">
+            <form name="mailboxCtl.compose" ng-submit="mailboxCtl.send(mailboxCtl.compose)" role="form" novalidate>
+
+                <md-input-container class="mailbox-to-field" ng-if="!mailboxCtl.to">
+                    <label for="mailbox-title" translate="MAILBOX_TO"></label>
+                    <md-autocomplete
+                        class="mailbox-to-search"
+                        md-search-text="mailboxCtl.searchText"
+                        md-selected-item-change="mailboxCtl.selectedUserChange(user)"
+                        md-items="user in mailboxCtl.searchUser(mailboxCtl.searchText)"
+                        md-item-text="user.name"
+                        md-min-length="2"
+                        md-clear-button="false">
+                            <md-item-template>
+                                <div class="mailbox-user-to" layout="row">
+                                    <img ng-src="{{user.image}}" />
+                                    <div flex class="mailbox-user-to-info">
+                                        <h4 md-highlight-text="mailboxCtl.searchText" md-highlight-flags="^i">{{user.name}}</h4>
+                                        <p ng-bind="user.occupation"></p>
+                                    </div>
+                                </div>
+                            </md-item-template>
+                            <md-not-found>
+                                User not found
+                            </md-not-found>
+                    </md-autocomplete>
+                </md-input-container>
+
+                <div class="mailbox-user-to" layout="row" ng-if="mailboxCtl.to">
+                    <img ng-src="{{mailboxCtl.to.image}}" />
+                    <div flex class="mailbox-user-to-info">
+                        <h4>{{mailboxCtl.to.name}}</h4>
+                        <p ng-bind="mailboxCtl.to.occupation"></p>
+                    </div>
+                    <i ng-click="mailboxCtl.editTo()" class="flaticon-pencil125 mailbox-edit-icon"></i>
+                </div>
+
+                <md-input-container class="mailbox-title-field">
+                    <label for="mailbox-title" translate="MAILBOX_SUBJECT"></label>
+                    <input type="text" id="mailbox-title" ng-model="mailboxCtl.compose.title" required></input>
+                    <div ng-messages="mailboxCtl.compose.title.$error">
+                        <div ng-message="required" ng-show="mailboxCtl.compose.$$controls[1].$invalid" translate="AUTH_EMAIL_REQUIRED"></div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label for="mailbox-content" translate="MAILBOX_CONTENT"></label>
+                    <textarea id="mailbox-content" ng-model="mailboxCtl.compose.content" columns="1" rows="20" class="mailbox-content" required></textarea>
+                    <div ng-messages="mailboxCtl.compose.content.$error">
+                        <div ng-message="required" ng-show="mailboxCtl.compose.$$controls[2].$invalid" translate="AUTH_EMAIL_REQUIRED"></div>
+                    </div>
+                </md-input-container>
+
+                <md-button type="submit" ng-disabled="app.isLoading" class="md-primary md-raised">
+                    {{ 'SEND' | translate}}
+                </md-button>
+                <md-button ng-click="mailboxCtl.cancel()" class="md-raised">
+                    {{ 'CANCEL' | translate}}
+                </md-button>
+            </form>
+        </div>
+    </div>
+</div>

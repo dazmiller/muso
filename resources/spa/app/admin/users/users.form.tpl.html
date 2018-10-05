@@ -1,0 +1,101 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-users">
+    <div ng-include="'users/users.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div flex class="admin-content">
+        <h2 ng-if="!usersCtr.user.id" translate="USERS_NEW"></h2>
+        <h2 ng-if="usersCtr.user.id" translate="USERS_EDIT"></h2>
+
+        <div layout="row" layout-xs="column" layout-sm="column">
+            <div flex="70" flex-xs="100" flex-sm="100">
+                <div class="admin-panel">
+
+                    <md-input-container>
+                        <label translate="USERS_NAME"></label>
+                        <input ng-model="usersCtr.user.name">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label translate="USERS_EMAIL"></label>
+                        <input ng-model="usersCtr.user.email">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label translate="USERS_OCCUPATION"></label>
+                        <input ng-model="usersCtr.user.occupation">
+                    </md-input-container>
+
+                    <div layout="row">
+                        <div flex>
+                            <md-input-container>
+                                <label translate="USERS_COUNTRY"></label>
+                                <input ng-model="usersCtr.user.country">
+                            </md-input-container>
+                        </div>
+                        <div flex>
+                            <md-input-container>
+                                <label translate="USERS_POSTCODE"></label>
+                                <input ng-model="usersCtr.user.postcode">
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div layout="row" class="admin-users-dob-gender">
+                        <div flex>
+                            <md-datepicker ng-model="usersCtr.user.dob" md-placeholder="{{'PROFILE_DOB' | translate}}">
+                            </md-datepicker>
+                        </div>
+                        <div flex>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label translate="USERS_GENDER"></label>
+                                <md-select ng-model="usersCtr.user.gender">
+                                    <md-option ng-repeat="gender in usersCtr.genders" value="{{gender}}">
+                                    {{gender}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <md-input-container class="md-block">
+                        <label translate="USERS_ABOUT"></label>
+                        <textarea ng-model="usersCtr.user.about" columns="1" md-maxlength="350" rows="7"></textarea>
+                    </md-input-container>
+
+                </div>
+
+            </div>
+            <div flex="30" flex-xs="100" flex-sm="100" class="admin-options">
+                <div class="admin-panel">
+                    <h4 translate="USERS_OPTIONS"></h4>
+
+                    <md-checkbox ng-model="usersCtr.user.author" aria-label="Author">
+                        {{'USERS_AUTHOR' | translate}}
+                    </md-checkbox>
+
+                    <md-checkbox ng-model="usersCtr.user.admin" aria-label="Admin">
+                        {{'USERS_ADMIN' | translate}}
+                    </md-checkbox>
+
+                    <md-button ng-click="usersCtr.save(usersCtr.user)" ng-disabled="app.isLoading" class="md-raised md-primary">
+                        <i class="flaticon-save2"></i>
+                        {{'SAVE'|translate}}
+                    </md-button>
+                </div>
+
+                <div class="admin-panel">
+                    <h4 translate="USERS_IMAGE"></h4>
+                    <div ng-class="{'admin-update-image':usersCtr.user.avatar}" class="admin-upload-image">
+                        <i ng-if="!usersCtr.user.avatar" class="flaticon-cloud-storage3"></i>
+                        <p ng-if="!usersCtr.user.avatar" translate="USERS_UPLOAD_IMAGE"></p>
+                        
+                        <img ng-if="usersCtr.user.avatar" ng-src="{{usersCtr.user.avatar}}" id="user-image">
+                        <p ng-if="usersCtr.user.avatar" translate="USERS_UPDATE_IMAGE"></p>
+
+                        <input type="file" accept="image/*" file-model="usersCtr.user.image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

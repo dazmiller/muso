@@ -1,0 +1,36 @@
+<ul class="comments-list">
+    <li ng-repeat="comment in comments" layout="row" class="comments-item">
+        <img ng-src="{{comment.author.image}}" class="comments-item-avatar" alt="{{comment.author.name}}" />
+        <div flex class="comments-item-text">
+            <h3 ui-sref="members.profiles({id:comment.author.id})">{{ comment.author.name }} <span>- {{comment.time.date | timeAgo}}</span></h3>
+            <h4 ng-if="comment.title">{{ comment.title }}</h4>
+            <p>{{ comment.body }}</p>
+            <p ng-if="current" class="comment-actions"><a ng-click="reply(comment,$event)"><i class="flaticon-reply8"></i> Reply</a></p>        
+
+            <ul ng-if="comment.children" class="comments-list comments-children">
+                <li ng-repeat="response in comment.children" layout="row" class="comments-item">
+                    <img ng-src="{{response.author.image}}" class="comments-item-avatar" alt="{{response.author.name}}" />
+                    <div flex class="comments-item-text">
+                        <h3 ui-sref="members.profiles({id:response.author.id})">{{ response.author.name }} <span>- {{response.time.date | timeAgo}}</span></h3>
+                        <h4 ng-if="response.title">{{ response.title }}</h4>
+                        <p>{{ response.body }}</p>
+                        <p ng-if="current" class="comment-actions"><a ng-click="reply(comment,$event)"><i class="flaticon-reply8"></i> Reply</a></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>
+
+<form id="messages-reply-form" style="display:none">
+    <md-input-container class="md-block">
+        <textarea name="body" columns="1" rows="7" aria-label="Comment"></textarea>
+    </md-input-container>
+
+    <md-button class="md-raised md-primary comments-send-button">
+        {{'COMMENT_SEND'|translate}}
+    </md-button>
+    <md-button class="md-raised comments-cancel-button">
+        {{'CANCEL'|translate}}
+    </md-button>
+</form>

@@ -1,0 +1,14 @@
+
+.icons-page {
+    width: 800px;
+    margin: 0 auto;
+
+    i {
+        width: 100px;
+        height: 100px;
+
+        &:before {
+            font-size: 30px;
+        }
+    }
+}

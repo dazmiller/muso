@@ -1,0 +1,121 @@
+<div flex layout="row" layout-xs="column" layout-fill class="my-music">
+    <div ng-include="'mymusic/mymusic.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div flex class="admin-content">
+        <h2 ng-if="!mymusic.album.id" translate="CREATE_ALBUM"></h2>
+        <h2 ng-if="mymusic.album.id" translate="EDIT_ALBUM"></h2>
+
+        <div layout="row" layout-xs="column" layout-sm="column">
+            <div flex="70" flex-xs="100" flex-sm="100">
+                <div class="admin-panel">
+
+                    <md-input-container>
+                        <label translate="ALBUM_TITLE"></label>
+                        <input ng-model="mymusic.album.title">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label translate="ALBUM_DESCRIPTION"></label>
+                        <textarea ng-model="mymusic.album.description" columns="1" md-maxlength="350" rows="7"></textarea>
+                    </md-input-container>
+
+                </div>
+
+                <div ng-if="mymusic.album.id" layout="row" class="album-tracks-header">
+                    <div flex>
+                        <h2 translate="ALBUM_TRACKS"></h2>
+                    </div>
+                    <div>
+                        <md-button ng-click="mymusic.toggleTrackForm()" class="md-raised md-warn">
+                            <i class="flaticon-musical176"></i> {{'ALBUM_UPLOAD_TRACK' | translate}}
+                        </md-button>
+                    </div>
+                </div>
+
+                <div ng-if="mymusic.album.id" class="admin-grid-panel">
+                    <md-list ng-if="mymusic.album.songs">
+                          <md-list-item ng-repeat="track in mymusic.album.songs" ng-click="mymusic.editTrack(track, $event)" class="md-3-line">
+                            <div class="action-play">
+                                <i ng-click="mymusic.play(track, $event)" class="flaticon-media23"></i>
+                            </div>
+                            <div class="md-list-item-text" layout="column">
+                                <h3>{{ track.title }}</h3>
+                                <p>{{ track.description | ellipsis:true:80 }}</p>
+                            </div>
+                            <div class="actions">
+                                <i ng-click="mymusic.editTrack(track, $event)" class="flaticon-pencil125"></i>
+                                <i ng-click="mymusic.removeTrack(track,$event)" class="flaticon-garbage21"></i>
+                                <!-- <i class="flaticon-two123"></i> -->
+                            </div>
+                          </md-list-item>
+                    </md-list>
+
+                    <div ng-if="!mymusic.album.songs.length" class="admin-empty-data">
+                        <i class="flaticon-computer139"></i>
+                        <p translate="ALBUM_EMPTY_TRACKS"></p>
+                        <md-button ng-click="mymusic.toggleTrackForm()" class="md-raised">{{'ALBUM_UPLOAD_TRACK' | translate}}</md-button>
+                    </div>
+                </div>
+            </div>
+            <div flex="30" flex-xs="100" flex-sm="100" class="admin-options">
+                <div class="admin-panel">
+                    <h4 translate="ALBUM_OPTIONS"></h4>
+
+                    <md-datepicker ng-model="mymusic.album.release_date" md-placeholder="Released date">
+                    </md-datepicker>
+
+                    <md-input-container>
+                        <label translate="GENRE"></label>
+                        <md-select ng-model="mymusic.album.genre_id">
+                            <md-option ng-repeat="genre in mymusic.genres" value="{{genre.id}}">
+                                {{genre.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-checkbox
+                        ng-model="mymusic.album.published"
+                        aria-label="Published"
+                        ng-disabled="!mymusic.isPublishedEnabled()"
+                        class="album-published"
+                    >
+                        {{'ALBUM_PUBLISHED' | translate}}
+                    </md-checkbox>
+
+                    <md-button ng-click="mymusic.save(mymusic.album)" ng-disabled="app.isLoading" class="md-raised md-primary">
+                        <i class="flaticon-save2"></i>
+                        {{'SAVE'|translate}}
+                    </md-button>
+                </div>
+
+                <div class="admin-panel album-image">
+                    <h4 translate="ALBUM_IMAGE"></h4>
+                    <div ng-class="{'admin-update-image':mymusic.album.art}" class="admin-upload-image">
+                        <i ng-if="!mymusic.album.art" class="flaticon-cloud-storage3"></i>
+                        <p ng-if="!mymusic.album.art" translate="ALBUM_UPLOAD_IMAGE"></p>
+                        
+                        <img ng-if="mymusic.album.art" ng-src="{{mymusic.album.art}}" id="album-image">
+                        <p ng-if="mymusic.album.art" translate="ALBUM_UPDATE_IMAGE"></p>
+
+                        <input type="file" accept="image/*" file-model="mymusic.album.image">
+                    </div>
+                </div>
+
+                <div class="admin-panel">
+                    <h4 translate="ALBUM_INSTRUCTIONS"></h4>
+                    <ul>
+                        <li translate="ALBUM_IMAGE_REQUIRED"></li>
+                        <li translate="ALBUM_SONG_REQUIRED"></li>
+                        <li translate="ALBUM_FILE_REQUIRED"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<md-sidenav ng-if="mymusic.track" class="admin-form-sidenav admin-album-song md-sidenav-right md-whiteframe-z2" md-component-id="track-form" layout="row" layout-fill>
+    <div ng-include="'mymusic/mymusic.song.tpl.html'" flex layout="column">
+    </div>
+</md-sidenav>

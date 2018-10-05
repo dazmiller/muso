@@ -1,0 +1,26 @@
+<div class="auth-full">
+  <div class="auth-container">
+    <h1 ng-bind="app.TITLE"></h1>
+    <p translate="AUTH_FORGOT_DESCRIPTION"></p>
+    <form role="form">
+      <div class="form-container white-panel">
+        <error-messages errors="auth.errors"></error-messages>
+
+        <md-input-container>
+          <label translate="AUTH_EMAIL"></label>
+          <input type="email" name="email" ng-model="auth.loginForm.email" required="required" autocomplete="off" />
+          <div ng-messages="auth.loginForm.email.$error">
+            <div ng-message="required" translate="AUTH_EMAIL_REQUIRED"></div>
+          </div>
+        </md-input-container>
+
+      </div>
+
+      <md-button ng-click="auth.forgot()" ng-disabled="app.isLoading" class="md-raised md-primary md-btn-large">{{ 'AUTH_RECOVER' | translate }}</md-button>
+    </form>
+    <div class="signup-buttons">
+      <md-button ui-sref="public.auth" class="md-raised md-btn-large">{{ 'AUTH_RETURN_LOGIN' | translate }}</md-button>
+      <md-button ui-sref="public.discover" class="md-raised md-btn-large">{{ 'AUTH_RETURN_HOME' | translate }}</md-button>
+    </div>
+  </div>
+</div>

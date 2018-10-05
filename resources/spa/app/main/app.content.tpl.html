@@ -1,0 +1,161 @@
+<md-toolbar layout="row" class="main-content-toolbar">
+    <md-button ng-click="app.toggleMenu()" class="main-menu-toggle" hide-gt-sm aria-label="Toggle Menu"><i class="flaticon-list31"></i></md-button>
+
+    <div class="main-search">
+        <form ng-submit="app.search(app.searchText)">
+            <input type="text" name="search" ng-model="app.searchText" placeholder="{{'SEARCH_SONGS' | translate}}" />
+        </form>
+    </div>
+
+    <div flex></div>
+
+    <md-menu-bar ng-if="app.user" class="main-actions">
+        <md-menu>
+            <button class="icon-button" aria-label="Messages" ng-click="$mdOpenMenu()">
+                <em ng-if="app.threads.total" class="mailbox-unread-total" ng-bind="app.threads.total"></em>
+                <i class="flaticon-black218"></i>
+            </button>
+            <md-menu-content>
+                <md-menu-item ng-repeat="thread in app.threads.items">
+                    <md-button aria-label="{{thread.author.name}}" ui-sref="members.mailbox.show({id: thread.id})">
+                        <div layout="row" class="mailbox-message-unread">
+                            <img ng-src="{{thread.author.image}}" alt="{{thread.author.name}}" />
+                            <div flex>
+                                <p><strong ng-bind="thread.author.name"></strong></p>
+                                <p ng-bind="thread.excerpt"></p>
+                            </div>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ui-sref="members.mailbox.inbox" aria-label="'MENU_VIEW_MORE' | translate">
+                        <p>{{ 'MENU_VIEW_MORE' | translate }}</p>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        
+        <md-menu class="current-user">
+            <button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
+                <img ng-src="{{app.user.image}}" /> {{app.user.name}}
+            </button>
+            <md-menu-content width="4">
+        
+                <md-menu-item>
+                    <md-button ng-click="app.showProfile(app.user.id)" aria-label="'MENU_YOUR_PROFILE' | translate">
+                        <div layout="row">
+                            <p flex ng-bind="'MENU_YOUR_PROFILE' | translate"></p>
+                            <i md-menu-align-target class="flaticon-man42"></i>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+        
+                <md-menu-item>
+                    <md-button ng-click="app.showInbox()" aria-label="'MENU_INBOX' | translate">
+                        <div layout="row">
+                            <p flex ng-bind="'MENU_INBOX' | translate"></p>
+                            <i md-menu-align-target class="flaticon-black218"></i>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+        
+                <md-menu-item>
+                    <md-button ng-click="app.showSettings()" aria-label="'MENU_CHANGE_SETTINGS' | translate">
+                        <div layout="row">
+                            <p flex ng-bind="'MENU_CHANGE_SETTINGS' | translate"></p>
+                            <i md-menu-align-target class="flaticon-levels14"></i>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+        
+                <md-menu-item>
+                    <md-button ng-click="app.logout()" aria-label="'MENU_LOGOUT' | translate">
+                        <div layout="row">
+                            <p flex ng-bind="'MENU_LOGOUT' | translate"></p>
+                            <i md-menu-align-target class="flaticon-couple35"></i>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+        
+            </md-menu-content>
+        </md-menu>
+    </md-menu-bar>
+
+    <div ng-if="!app.user" class="main-actions">
+        <div class="main-action-button">
+            <md-button class="md-raised md-primary" ui-sref="public.auth">
+                <i class="flaticon-earphones1"></i>Login/Register
+            </md-button>
+        </div>
+    </div>
+</md-toolbar>
+
+<div class="main-progess-bar">
+    <md-progress-linear md-mode="{{app.mode}}" ng-if="!!app.mode"></md-progress-linear>
+</div>
+    
+<div flex layout="column" ui-view="main" class="main-view"></div>
+
+<!-- MAIN PLAYER -->
+<div layout="row" class="main-player" ng-hide="app.player.hidden">
+    <div class="main-content-player-info" layout="row" ui-sref="public.songs({id:app.currentSong.id})">
+        <img ng-src="{{app.currentSong.album.image}}" alt="{{app.currentSong.title}}" />
+        <div flex>
+            <p ng-bind="app.currentSong.title" class="song-title"></p>
+            <p ng-bind="app.currentSong.author.name" class="song-author"></p>
+        </div>
+    </div>
+    <div flex>
+        <md-toolbar class="main-content-player">
+            <videogular vg-player-ready="app.onPlayerReady($API)" vg-complete="app.playNextSong()" class="videogular-container">
+                <vg-media vg-src="app.player.sources" vg-type="audio">
+                </vg-media>
+                <vg-controls>
+                    <div class="control-button">
+                        <button ng-click="app.playPrevSong()" ng-disabled="app.getCurrentIndex() == 0" class="iconButton flaticon-rewind2"></button>
+                    </div>
+                    <vg-play-pause-button></vg-play-pause-button>
+                    <div class="control-button">
+                        <button ng-click="app.playNextSong()" ng-disabled="(app.getCurrentIndex() + 1) == app.playlist.length" class="iconButton flaticon-forward23"></button>
+                    </div>
+                    <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                    <vg-scrub-bar hide-xs>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    </vg-scrub-bar>
+                    <vg-time-display hide-xs>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                    <!-- <div class="control-button">
+                        <button class="iconButton flaticon-couple35"></button>
+                    </div> -->
+                    <div class="control-button">
+                        <md-menu md-position-mode="target-right target">
+                            <button ng-click="$mdOpenMenu($event)" class="iconButton flaticon-song" md-menu-origin></button>
+                            <md-menu-content width="4" class="player-playlist">
+                                <md-menu-item ng-repeat="item in app.playlist">
+                                    <md-button ng-click="app.playSong(item, app.playlist)">
+                                        <div layout="row" flex>
+                                            <div class="player-song-status">
+                                                <music-waves ng-if="app.currentSong.id == item.id && app.PlayerAPI.currentState == 'play'" />
+                                            </div>
+                                            <p flex>{{item.title}}</p>
+                                            <div ng-bind="item.duration | duration" class="player-playlist-duration"></div>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                    <div class="control-button" ng-class="{'selected': app.player.repeat }">
+                        <button ng-click="app.toggleRepeat()" class="iconButton flaticon-two123"></button>
+                    </div>
+                    <div ng-if="app.downloable" class="control-button">
+                        <button ng-disabled="app.isLoading" ng-click="app.download(app.currentSong)" class="iconButton flaticon-cloud107"></button>
+                    </div>
+                    <vg-volume flaticon-song hide-xs>
+                        <vg-mute-button></vg-mute-button>
+                        <vg-volume-bar></vg-volume-bar>
+                    </vg-volume>
+                </vg-controls>
+            </videogular>
+        </md-toolbar>
+    </div>
+</div>

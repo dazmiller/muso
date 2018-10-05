@@ -1,0 +1,56 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-albums">
+    <div ng-include="'albums/albums.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div infinite-scroll="albumsCtr.nextPage($page)" flex class="admin-content">
+        <div layout="row" class="admin-albums-title-bar">
+            <h2 flex translate="ALBUMS_ALL"></h2>
+            <p>
+                Showing <strong ng-bind="albumsCtr.current"></strong> 
+                of <strong ng-bind="albumsCtr.total"></strong>
+                <md-button ng-click="albumsCtr.toggleSearch()" class="icon-button" aria-label="Toggle Search">
+                    <i class="flaticon-magnifier13"></i>
+                </md-button>
+            </p>
+        </div>
+
+        <div ng-if="albumsCtr.searching" class="admin-panel admin-albums-search">
+            <md-input-container>
+                <label translate="ALBUMS_SEARCH"></label>
+                <input ng-model="albumsCtr.query">
+            </md-input-container>
+            <md-button ng-click="albumsCtr.search()" class="md-raised md-primary" aria-label="Search">
+                <i class="flaticon-magnifier13"></i> {{'SEARCH'|translate}}
+            </md-button>
+            <md-button ng-click="albumsCtr.toggleSearch()" aria-label="Cancel">
+                {{'CANCEL'|translate}}
+            </md-button>
+        </div>
+
+        <div ng-if="albumsCtr.albums.length > 0" class="admin-grid-panel">
+            <md-list>
+                  <md-list-item ng-repeat="album in albumsCtr.albums" ui-sref="authors.mymusic.show({id:album.id, toAdmin: 'admin'})" class="md-3-line">
+                    <img ng-if="album.image" ng-src="{{album.image}}" class="md-avatar" alt="{{album.title}}" />
+                    <i ng-if="!album.image" class="md-avatar flaticon-man42"></i>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ album.title }}</h3>
+                        <p>
+                            {{'ALBUMS_AUTHOR' | translate}}: <a ui-sref="admin.users.show({id:album.author.id})">{{ album.author.name }}</a>
+                            {{'ALBUMS_PUBLISHED' | translate}}: <strong>{{album.published?'Yes':'No'}}</strong>
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <i ui-sref="authors.mymusic.show({id:album.id, toAdmin: 'admin'})" class="flaticon-pencil125"></i>
+                        <i ng-click="albumsCtr.deleteAlbum(album,$event)" class="flaticon-garbage21"></i>
+                    </div>
+                  </md-list-item>
+            </md-list>
+        </div>
+
+        <div ng-if="!albumsCtr.albums.length" class="admin-panel comments-empty-message">
+            <div class="admin-empty-data">
+                <i class="flaticon-music170"></i>
+                <p translate="ALBUMS_ADMIN_EMPTY"></p>
+            </div>
+        </div>
+    </div>
+</div>

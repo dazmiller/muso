@@ -1,0 +1,130 @@
+@import '../../styles/colors.scss';
+
+.mini-player {
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 4px;
+    cursor: pointer;
+    transform: all 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .mini-player-content {
+    padding-left: 15px;
+  }
+
+  .mini-player-control {
+    cursor: pointer;
+    padding-right: 10px;
+
+    &:before {
+      box-sizing: border-box;
+      border: 1px solid $text-color;
+      border-radius: 50%;
+      display: block;
+      font-size: 20px;
+      height: 40px;
+      padding-top: 7px;
+      padding-left: 11px;
+      width: 40px;
+    }
+
+    &.flaticon-pause49:before {
+      padding-left: 9px;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .mini-player-current {
+    color: $mini-player-current-color;
+
+    &:before {
+      border-color: $mini-player-current-color;
+    }
+  }
+
+  .mini-player-author,
+  .mini-player-title, {
+    cursor: pointer;
+    margin: 0;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  .mini-player-author,
+  .mini-player-info {
+    color: $text-color-alt;
+  }
+
+  .mini-player-title {
+    color: $text-color;
+  }
+
+  .mini-player-info {
+    p {
+      font-size: 13px;
+      margin: 0;
+      text-align: right;
+    }
+
+    .tags a:last-child {
+      margin-right: 0;
+    }
+
+    .mini-player-date {
+      margin-bottom: 8px;
+    }
+  }
+
+  .mini-player-progress-wrapper {
+    background-color: $mini-player-progress-timeline;
+    height: 5px;
+    margin-top: 20px;
+  }
+
+  .mini-player-progress {
+    background-color: $mini-player-progress;
+    height: 5px;
+  }
+
+  .mini-player-stats {
+    margin-top: 15px;
+    color: $text-color-alt;
+    // text-align: right;
+
+    span {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    i:before {
+      font-size: 12px;
+    }
+  }
+
+  .mini-player-share {
+    margin-top: 5px;
+    i:before{
+      font-size: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width : 450px) { 
+  .mini-player {
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 4px;
+    }
+  }
+}

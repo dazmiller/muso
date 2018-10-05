@@ -1,0 +1,125 @@
+<div flex layout-fill class="admin-content admin-dashboard">
+  <h2 flex translate="DASHBOARD"></h2>
+  <div layout="row" layout-xs="column" class="dashboard-overview">
+    <stat-panel
+      flex
+      title="Users this month"
+      icon="flaticon-man42"
+      total="adminDashboardCtr.overview.users.month"
+      last-month="adminDashboardCtr.overview.users.last"
+      year="adminDashboardCtr.overview.users.year">
+    </stat-panel>
+    <stat-panel
+      flex
+      title="Comments this month"
+      icon="flaticon-comments16"
+      total="adminDashboardCtr.overview.comments.month"
+      last-month="adminDashboardCtr.overview.comments.last"
+      year="adminDashboardCtr.overview.comments.year"
+      theme="theme1">
+    </stat-panel>
+    <stat-panel
+      flex
+      title="Published albums this month"
+      icon="flaticon-music34"
+      total="adminDashboardCtr.overview.albums.month"
+      last-month="adminDashboardCtr.overview.albums.last"
+      year="adminDashboardCtr.overview.albums.year"
+      theme="theme2">
+    </stat-panel>
+    <stat-panel
+      flex
+      title="Published articles this month"
+      icon="flaticon-books71"
+      total="adminDashboardCtr.overview.articles.month"
+      last-month="adminDashboardCtr.overview.articles.last"
+      year="adminDashboardCtr.overview.articles.year"
+      theme="theme3">
+    </stat-panel>
+  </div>
+
+
+  <div class="admin-panel dashboard-statistics">
+    <h4>Song Statistics</h4>
+    <p>How people are engaging with the songs.</p>
+    <div layout="row" layout-xs="column">
+      <div flex="100" flex-gt-sm="80" class="dashboard-line-chart">
+        <chartist
+          class="ct-chart"
+          chartist-data="adminDashboardCtr.data"
+          chartist-chart-type="Line"
+          chartist-chart-options="adminDashboardCtr.options"
+          chartist-responsive-options="adminDashboardCtr.responsiveOptions"
+          chartist-events="adminDashboardCtr.events">
+        </chartist>
+        <div ng-if="adminDashboardCtr.tooltip" class="tooltip" ng-style="adminDashboardCtr.tooltip.position">{{adminDashboardCtr.tooltip.label}}</div>
+      </div>
+      <div flex="100" flex-gt-sm="20">
+        <md-list class="dashboard-stats-labels">
+          <md-list-item ng-repeat="item in adminDashboardCtr.totals" class="md-3-line">
+            <div class="md-avatar" alt="{{item.title}}">
+              <div class="dashboard-stat-label dashboard-stat-{{item.key}}"><span></span></div>
+            </div>
+            <div class="md-list-item-text" layout="column">
+              <h3 title="{{ item.title }}">{{ item.title }}</h3>
+              <p>
+                <strong ng-bind="item.total.toLocaleString()"></strong>
+              </p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
+    </div>
+  </div>
+
+  <div layout="row" layout-xs="column" class="dashboard-popular">
+    <div flex="100" flex-gt-sm="33" class="admin-panel">
+      <h4>Popular Artists</h4>
+      <p>Artists with most plays.</p>
+      <md-list>
+        <md-list-item ng-repeat="artist in adminDashboardCtr.topArtists" ui-sref="members.profiles({ id: artist.id })" class="md-3-line">
+          <img ng-src="{{artist.image}}" on-image-error class="md-avatar" alt="{{artist.name}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3 title="{{ artist.name }}">{{ artist.name }}</h3>
+            <p>
+              {{'DASHBOARD_PLAYS' | translate}}: <strong ng-bind="artist.plays.toLocaleString()"></strong>
+            </p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </div>
+
+    <div flex="100" flex-gt-sm="33" class="admin-panel">
+      <h4>Popular Albums</h4>
+      <p>Albums with most plays.</p>
+      <md-list>
+        <md-list-item ng-repeat="album in adminDashboardCtr.topAlbums" ui-sref="public.albums({ id: album.id })" class="md-3-line">
+          <img ng-src="{{album.image}}" on-image-error class="md-avatar" alt="{{album.title}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3 title="{{ album.title }}">{{ album.title }}</h3>
+            <p>
+              {{'DASHBOARD_PLAYS' | translate}}: <strong ng-bind="album.plays.toLocaleString()"></strong>
+            </p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </div>
+
+    <div flex="100" flex-gt-sm="33" class="admin-panel">
+      <h4>Popular Songs</h4>
+      <p>Songs with most plays.</p>
+      <md-list>
+        <md-list-item ng-repeat="song in adminDashboardCtr.topSongs" ui-sref="public.songs({id:song.id})" class="md-3-line">
+          <img ng-src="{{song.album.image}}" on-image-error class="md-avatar" alt="{{song.title}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3 title="{{ song.title }}">{{ song.title }}</h3>
+            <p>
+              {{'DASHBOARD_PLAYS' | translate}}: <strong ng-bind="song.plays.toLocaleString()"></strong>
+            </p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+
+</div>

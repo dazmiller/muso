@@ -1,0 +1,15 @@
+<div flex layout="row" layout-fill class="videos">
+    <h2 translate="VIDEOS"></h2>
+    
+    <div layout="row" layout-wrap>
+        <div ng-repeat="videos in videos.popular" class="song" flex-sm="33" flex-gt-sm="33">
+            <div class="song-poster">
+                <img ng-src="{{author.image}}">
+            </div>
+            <div class="song-details">
+                <a href="#">{{author.name}}</a>
+                <p><i class="flaticon-man42"></i> 10K  <span><i class="flaticon-music34"></i> 3 <span></p>
+            </div>
+        </div>
+    </div>
+</div>

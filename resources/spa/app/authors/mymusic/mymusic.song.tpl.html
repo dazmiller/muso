@@ -1,0 +1,53 @@
+<!-- THE SONG FORM -->
+<md-toolbar class="admin-form-toolbar-title">
+    <h1 ng-if="!mymusic.track.id" translate="ALBUM_ADD_TRACK" class="md-toolbar-tools"></h1>
+    <h1 ng-if="mymusic.track.id" translate="ALBUM_EDIT_TRACK" class="md-toolbar-tools"></h1>
+</md-toolbar>
+<div flex layout-padding class="admin-sidebar-form-content">
+    <form>
+        <div layout="row" class="song-data">
+            <div flex="65">
+                <md-input-container>
+                    <label for="track-title" translate="ALBUM_TRACK_TITLE"></label>
+                    <input type="text" id="track-title" ng-model="mymusic.track.title" md-autofocus></input>
+                </md-input-container>
+
+                <md-chips
+                    ng-model="mymusic.track.tags"
+                    placeholder="To add a tag press RETURN"
+                    secondary-placeholder="Add tags for this song (Press RETURN)">
+                </md-chips>
+            </div>
+            <div flex="35">
+                <div class="admin-upload-file">
+                    <i ng-if="!mymusic.track.sound" class="flaticon-cloud-storage3"></i>
+                    <i ng-if="mymusic.track.sound" class="flaticon-musical176"></i>
+                    
+                    <p ng-if="!mymusic.track.sound" translate="ALBUM_SELECT_TRACK"></p>
+                    <p ng-if="mymusic.track.sound" ng-bind="mymusic.track.sound"></p>
+                    
+                    <input type="file" accept="audio/mpeg" file-model="mymusic.track.audio">
+                </div>
+            </div>
+        </div>
+
+        <md-input-container>
+            <label for="track-description" translate="ALBUM_TRACK_DESCRIPTION"></label>
+            <textarea id="track-description" ng-model="mymusic.track.description" columns="1" md-maxlength="350" rows="5"></textarea>
+        </md-input-container>
+        
+        <md-input-container>
+            <label for="track-lyric" translate="ALBUM_TRACK_LYRIC"></label>
+            <textarea id="track-lyric" ng-model="mymusic.track.lyric" columns="2" md-maxlength="1500" rows="10"></textarea>
+        </md-input-container>
+
+    </form>
+</div>
+<div>
+    <md-button ng-click="mymusic.saveTrack(mymusic.track)" ng-disabled="app.isLoading" class="md-primary md-raised">
+        {{ 'SAVE' | translate}}
+    </md-button>
+    <md-button ng-click="mymusic.toggleTrackForm()" class="md-raised">
+        {{ 'CANCEL' | translate}}
+    </md-button>
+</div>

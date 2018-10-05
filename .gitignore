@@ -1,0 +1,12 @@
+/vendor
+node_modules
+Homestead.yaml
+Homestead.json
+.env
+.env.backup
+
+public/dist
+public/storage
+frontend/build
+frontend/dist
+.DS_Store

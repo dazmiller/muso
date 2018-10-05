@@ -1,0 +1,185 @@
+<div class="admin-panel">
+  <div layout="row" layout-xs="column">
+    <div flex class="configuration-column">
+      <Accordion title="Top Header" description="This is the main left-top header." expanded="false">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.title.bg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_ICON_COLOR"></label>
+          <input ng-model="configCtr.theme.title.iconColor" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_TEXT_COLOR"></label>
+          <input ng-model="configCtr.theme.title.color" />
+        </md-input-container>
+      </Accordion>
+
+      <Accordion title="Main Menu" description="The left sidebar menu">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.mainMenu.bg1" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.mainMenu.bg2" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_LINK_COLOR"></label>
+          <input ng-model="configCtr.theme.mainMenu.color" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_LINK_SELECTED_COLOR"></label>
+          <input ng-model="configCtr.theme.mainMenu.selected" />
+        </md-input-container>
+      </Accordion>
+
+      <Accordion title="Main Toolbar" description="The top main toolbar">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.mainToolbar.bg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_LINK_COLOR"></label>
+          <input ng-model="configCtr.theme.mainToolbar.color" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_ICON_COLOR"></label>
+          <input ng-model="configCtr.theme.mainToolbar.iconColor" />
+        </md-input-container>
+      </Accordion>
+      <Accordion title="Player" description="Main player at the bottom">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.player.bg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_TEXT_COLOR"></label>
+          <input ng-model="configCtr.theme.player.color" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_DEFAULT_BG_OVER"></label>
+          <input ng-model="configCtr.theme.player.buttonsOverBg" />
+        </md-input-container>
+      </Accordion>
+    </div>
+
+    <div flex class="configuration-column">
+      <Accordion title="Content Settings" description="Background, text color, links for content">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_MAIN_BG"></label>
+          <input ng-model="configCtr.theme.common.mainBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_CONTAINERS_BG"></label>
+          <input ng-model="configCtr.theme.common.containersBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_MAIN_SIDEBAR_BG"></label>
+          <input ng-model="configCtr.theme.common.sidebarBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_TEXT_COLOR"></label>
+          <input ng-model="configCtr.theme.common.color" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_LINK_COLOR"></label>
+          <input ng-model="configCtr.theme.common.linkColor" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_LINK_HOVER_COLOR"></label>
+          <input ng-model="configCtr.theme.common.linkHoverColor" />
+        </md-input-container>
+      </Accordion>
+      
+      <Accordion title="Forms" description="Texfield, Dropdowns and TextAreas">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.forms.bg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BORDER_COLOR"></label>
+          <input ng-model="configCtr.theme.forms.border" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_TEXT_COLOR"></label>
+          <input ng-model="configCtr.theme.forms.color" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_PLACEHOLDER_COLOR"></label>
+          <input ng-model="configCtr.theme.forms.placeholderColor" />
+        </md-input-container>
+      </Accordion>
+      <Accordion title="Buttons" description="Styles for all buttons">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_PRIMARY_BG"></label>
+          <input ng-model="configCtr.theme.buttons.primaryBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_PRIMARY_BG_OVER"></label>
+          <input ng-model="configCtr.theme.buttons.privaryOverBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_ACTION_BG"></label>
+          <input ng-model="configCtr.theme.buttons.actionBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_ACTION_BG_OVER"></label>
+          <input ng-model="configCtr.theme.buttons.actionOverBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_DEFAULT_BG"></label>
+          <input ng-model="configCtr.theme.buttons.defaultBg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_DEFAULT_BG_OVER"></label>
+          <input ng-model="configCtr.theme.buttons.defaultOverBg" />
+        </md-input-container>
+      </Accordion>
+      <Accordion title="Tags" description="The tags for songs and posts">
+        <div class="configurations-actions">
+          <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+        </div>
+        <md-input-container>
+          <label translate="CONFIG_THEME_BG"></label>
+          <input ng-model="configCtr.theme.tags.bg" />
+        </md-input-container>
+        <md-input-container>
+          <label translate="CONFIG_THEME_TEXT_COLOR"></label>
+          <input ng-model="configCtr.theme.tags.color" />
+        </md-input-container>
+      </Accordion>
+    </div>
+  </div>
+  <Accordion title="Custom Styles" description="You can write any custom css styles in here.">
+    <div class="configurations-actions">
+      <md-button ng-click="configCtr.previewTheme()">Preview</md-button>
+    </div>
+    <md-input-container class="md-block">
+      <label translate="CONFIG_THEME_CUSTOM"></label>
+      <textarea ng-model="configCtr.theme.custom" columns="1"></textarea>
+    </md-input-container>
+  </Accordion>
+</div>

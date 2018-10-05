@@ -1,0 +1,338 @@
+@import './colors.scss';
+
+/******************************
+ *  Buttons
+ ******************************/
+a.md-button,
+.md-button{
+
+    span{
+        margin: 0 5px;
+        text-transform: capitalize;
+    }
+
+    i{
+        &:before{
+            font-size:14px;
+        }
+    }
+    
+    &.md-raised:not([disabled]){
+        border: 1px solid $button-border-color;
+        box-shadow: none;
+        text-transform: capitalize;
+
+        i {
+            margin-right: 5px;
+        }
+
+        &:hover{
+            color: $text-color;
+            background-color: $button-over-background-color;
+        }
+    }
+
+    &.md-primary,
+    &.md-default-theme.md-primary {
+        color: $button-primary-color;
+        background-color: $button-primary-background-color;
+        border-color: $button-primary-background-color;
+        text-transform: capitalize;
+
+        i,span{
+            color:$button-primary-color;
+        }
+
+        &.md-raised:not([disabled]){
+            color: $button-primary-color;
+            background-color: $button-primary-background-color;
+            border-color: $button-primary-background-color;
+
+            &:hover{
+                background-color: $button-primary-hover-background-color;
+            }
+        }
+    }
+
+    &.md-default-theme:not([disabled]).md-focused.md-primary {
+        color: $button-primary-background-color;
+        border-color: $button-primary-background-color;
+    }
+
+    &.md-warn{
+        i,span{
+            color:$button-warn-color;
+        }
+
+        &.md-raised:not([disabled]){
+            color: $button-warn-color;
+            background-color: $button-warn-background-color;
+            border-color: $button-warn-background-color;
+
+            &:hover{
+                background-color: $button-warn-hover-background-color;
+            }
+        }
+    }
+
+    &.icon-button{
+        min-width: 30px;
+        i{
+            margin:0;
+        }
+    }
+
+    &.file-button{
+        position:relative;
+        input{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background-color: transparent;
+            color: transparent;
+            text-indent: -99999px;
+            border:0;
+            cursor: pointer;
+        }
+    }
+}
+
+/******************************
+ *  Tabs
+ ******************************/
+md-tabs-canvas{
+    background-color: $tabs-tabbar-background-color;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+md-tab-item.md-tab{
+    &.md-active{
+        background-color: $tabs-tab-background-color;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+md-tabs-content-wrapper{
+    background-color: $tabs-body-background-color;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:20px;
+}
+
+/******************************
+ *  Toast notifycations
+ ******************************/
+md-toast{
+    z-index: 100;
+    .md-toast-content{
+        i{
+            margin-right: 10px;
+        }
+        i:before{
+            font-size: 30px;
+        }
+    }
+
+    &.error .md-toast-content{
+        background-color:$toast-error-background-color;
+    }
+
+}
+
+/******************************
+ *  Calendar
+ ******************************/
+ md-datepicker {
+    background-color: transparent;
+    padding: 0;
+
+    .md-button.md-icon-button{
+        margin: 0;
+    }
+
+    .md-datepicker-input-container{
+        margin-left: 0;
+    }
+ }
+
+/******************************
+ *  List
+ ******************************/
+ md-list-item {
+    border-bottom: 1px solid #f1f1f1;
+
+    &:last-child {
+        border: none;
+    }
+    
+    &.md-3-line {
+        min-height: 70px;
+
+        .md-list-item-text {
+            overflow: hidden;
+        }
+        
+        .md-no-style {
+            margin: 0;
+            min-height: 70px;
+
+            &:hover {
+                color: $text-color;
+            }
+        }
+
+        .md-list-item-inner {
+            min-height: 70px;
+        }
+
+        .md-button {
+            .md-list-item-text {
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+/******************************
+ *  Input Forms
+ ******************************/
+ md-input-container,
+md-checkbox{
+    display: block;
+}
+
+ md-input-container{
+    margin: 18px 0 0 0;
+
+    label:not(.md-no-float):not(.md-container-ignore){
+        padding-left: 10px;
+        font-size: 14px;
+    }
+
+    input.md-input,
+    textarea.md-input{
+        border:1px solid $input-border-color;
+        border-radius:3px;
+        background-color: $input-background-color;
+        padding:5px;
+        height: 34px;
+        color:$input-color;
+        box-shadow: 0 1px 0 0 $input-shadow;
+    }
+
+    textarea.md-input{
+        min-height: 87px;
+        height: auto;
+    }
+
+    &.md-input-focused{
+        .md-input{
+            border-width:1px;   
+            border-color:$input-focus-border-color;    
+            padding-bottom: 5px;
+            box-shadow: 0 1px $input-focus-border-color;
+        }
+
+        &:not(.md-input-invalid){
+            label{
+                color:$input-focus-border-color;
+            }
+
+            .md-input{
+                border-color:$input-focus-border-color;
+                box-shadow: 0 1px $input-focus-border-color;
+            }
+        }
+    }
+
+    .md-input[disabled]{
+        border-bottom-color:$input-border-color;
+        background-image:none;
+    }
+ }
+
+md-input-container.md-input-focused label:not(.md-no-float),
+md-input-container.md-input-has-value label:not(.md-no-float),
+md-input-container:not(.md-input-invalid).md-input-focused .md-input label {
+    transform: translate3d(-5px, -3px, 0) scale(0.98);
+}
+
+md-input-container .md-input.ng-invalid.ng-dirty {
+    border-width: 1px;
+}
+
+
+/******************************
+ *  Favorite icon
+ ******************************/
+.favorite-selected{
+    color:$favorite-icon-color !important;
+}
+
+/******************************
+ *  White panel container
+ ******************************/
+.white-panel {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 0 rgba(12,12,12,0.03);
+}
+
+/******************************
+ *  Toolbars
+ ******************************/
+md-toolbar:not(.md-menu-toolbar) {
+    background-color: $modal-header-background-color;
+}
+
+md-toolbar:not(.md-menu-toolbar) .md-button:not(.md-raised) {
+    color: $text-color;
+    text-transform: capitalize;
+}
+
+/******************************
+ *  Chip component
+ ******************************/
+md-chips .md-chips {
+    border: 1px solid $input-border-color;
+    border-radius: 3px;
+    min-height: 82px;
+
+    &.md-chips.md-focused {
+        border-color:$input-focus-border-color;    
+        box-shadow: 0 1px $input-focus-border-color;
+    }
+
+    input {
+        width: 250px;
+    }
+
+    input::placeholder {
+        color: rgba(0,0,0,0.26);
+        font-size: 14px;
+        padding-left: 5px;
+    }
+}
+
+/******************************
+ *  A simple form error message
+ ******************************/
+.error-message {
+    background-color: #FE8A71;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 35px;
+
+    p {
+        color: #fff !important;
+        margin: 0;
+        text-align: left !important;
+    }
+}
+
+.layout-fill {
+    box-sizing: border-box;
+}

@@ -1,0 +1,20 @@
+<div class="admin-panel">
+
+  <md-input-container>
+    <label translate="CONFIG_TITLE"></label>
+    <input ng-model="configCtr.configs.APP_TITLE">
+  </md-input-container>
+
+  <!-- <md-switch class="md-primary" name="APP_IS_NEW_USER_AUTHOR" ng-model="configCtr.configs.APP_IS_NEW_USER_AUTHOR" ng-true-value="true" ng-false-value="false" required>
+    {{'CONFIG_APP_AUTHORS' | translate}}
+  </md-switch> -->
+  
+  <md-switch class="md-primary" name="APP_DOWNLOAD_SONG_FILE" ng-model="configCtr.configs.APP_DOWNLOAD_SONG_FILE" ng-true-value="true" ng-false-value="false" required>
+    {{'CONFIG_APP_DOWNLOAD_SONGS' | translate}}
+  </md-switch>
+
+  <!-- <md-switch class="md-primary" name="APP_REQUIRE_LOGIN" ng-model="configCtr.configs.APP_REQUIRE_LOGIN" required>
+    Require login to access the app
+  </md-switch> -->
+
+</div>

@@ -1,0 +1,9 @@
+
+<div ng-repeat="song in profiles.songs" class="profile-song">
+  <mini-player
+    song="song" 
+    api="app.PlayerAPI"
+    current="app.currentSong"
+    playlist="profiles.songs">
+  </mini-player>
+</div>

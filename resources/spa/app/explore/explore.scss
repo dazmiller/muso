@@ -1,0 +1,68 @@
+@import '../common/styles/colors.scss';
+
+.explore{
+    .explore-sidebar {
+        width:200px;
+        background-color: #dde6e9;
+    }
+    .explore-list{
+        overflow: auto;
+
+        md-list{
+            padding:0;
+        }
+
+        .md-subheader {
+            background-color: #dde6e9;
+            font-weight: bold;
+        }
+
+        md-list-item{
+            min-height: 20px;
+            padding: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            a{
+                display:block;
+                text-align: left;
+                width:100%;
+                padding:10px 15px;
+                text-decoration: none;
+                transition: background-color 0.2s ease-in-out 0s;
+                font-size: 14px;
+                color:$text-color-alt;
+                text-transform: capitalize;
+
+                &:hover{
+                    color:$button-primary-color;
+                    background-color: $button-primary-background-color;
+                }
+            }
+
+        }
+
+        md-list-item.active{
+            background-color:$button-primary-background-color;
+            a{
+                color:$button-primary-color;
+            }
+        }
+    }
+    .explore-content{
+        padding:0 20px;
+        overflow: auto;
+        h2{
+            margin-top:0;
+            margin: 20px 10px 15px;
+            text-transform: capitalize;
+        }
+
+        .explore-song {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+    }
+    .admin-content {
+        padding: 0;
+        margin-top: 20px;
+    }
+}

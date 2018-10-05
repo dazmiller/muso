@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Music App</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+    $(function() {
+      $('.main-content').scrollspy({ target: '#main-navbar' });
+    });
+    </script>
+  </head>
+  <body>
+    <div class="main-layout">
+      <div class="main-menu">
+        <nav id="main-navbar" class="navbar navbar-dark bg-primary">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#about">About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#requirements">Requirements</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#installing-wizard">Installation</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#installing-api">Manually Installing the API</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-database">Creating the database</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-dependencies">Installing dependencies</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-geoip">Downloading geoip database</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-storage-link">Setting up storage link</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-config">Configurations</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-seed">Setting up the database</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-dev">Setting up the development server</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="#installing-client">Installing Client</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-client-config">Configurations</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-client-packages">Installing npm packages</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#installing-client-dev">Running development</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#customizing-client">Customizing Client</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#customizing-client-colors">Changing colors</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#customizing-client-page">Adding a new page</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#features-guests">Guests</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#features-members">Members</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#features-authors">Authors</a>
+            </li>
+            <li class="nav-item nav-children">
+              <a class="nav-link" href="#features-admin">Administrators</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="#errors">Common Errors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#faqs">FAQs</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main-content">
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h1>Music Community App</h1>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h2 id="about">About</h2>
+                  <p>Thank you for buying! My name is <a href="https://www.linkedin.com/in/crysfel">Crysfel Villa</a>, I'm a professional Software Developer, if you have any questions or run into
+                    troubles while installing the app feel free to reach out through the <a href="https://codecanyon.net/user/crysfel">contact form</a> on my codecanyon profile.</p>
+                  <p>This app is build with Laravel 5.6. Laravel is responsible to store data, deal with privilages and authentication as well
+                    as serving all the clients. It doesn't return any HTML page because is a REST API. Any client can connect to the server
+                    and send/request data in a JSON format.</p>
+                  <p>In this case, the client is an AngularJS app, but the client might be a native mobile app, another laravel app, a node client
+                    or anything else.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/app.png" alt="Music App">
+                </div>
+              </div>
+
+              
+              <h2 id="requirements">Requirements</h2>
+              <p>Laravel 5.6 requires the following dependencies installed in your system.</p>
+              <ul>
+                <li>PHP >= 7.1.3</li>
+                <li>OpenSSL PHP Extension</li>
+                <li>PDO PHP Extension</li>
+                <li>Mbstring PHP Extension</li>
+                <li>Tokenizer PHP Extension</li>
+                <li>XML PHP Extension</li>
+                <li>Ctype PHP Extension</li>
+                <li>JSON PHP Extension</li>
+                <li>MySQL 5.7.21</li>
+                <li>Composer 1.5.2</li>
+              </ul>
+              
+              <p>In order to install the client you need node and npm installed in your system</p>
+              <ul>
+                <li>Node 8.x</li>
+                <li>NPM 5.x</li>
+              </ul>
+              
+              <h2 id="installing-wizard">Installation</h2>
+              <p>
+                For your convenience, I've included an installer that will help you setup everything you need to run this app. The installer
+                will check your php version and the required extensions, make sure you have all those ready before proceeding to the next steps.
+              </p>
+              <p>Before running the installer, you will need a couple things. First and most importantly the mysql database created, you need the credentials and the name of the database you will
+                be using. You will also need to have the details for the SMTP server, this information is required to send emails to your users, the installer will allows you to use other services
+                such as Mailgun or Amazon SES, but make sure you have this information at hand.
+              </p>
+
+              <p>Upload the <strong>musicapp-1.2.0.zip</strong> file to your server, I'd recommend uploading it to `/var/www/yourdomain.com`, but thats completly
+                up to you. Unzip the file and make sure the content is not accessible through the internet yet.</p>
+
+              <p>Finally, your HTTP server <strong>must be</strong> resolving the root to `/var/www/yourdomain.com/<strong>musicapp/public</strong>`, this is very important because the way Laravel works, if you don't set the root correctly, the app won't work.
+              If you are using cpanel or pdesk, it should be quite easy, if you are using the terminal just update your <a href="#installing-prod">http server configurations</a> accordingly. Also make sure your http server can write into the file system, otherwise the installer won't be able to setup the needed configurations for you.</p>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  Once you have all requirements ready, open your browser and go to http://yourdomain.com<strong>/installer</strong>. Then follow the steps in the installer.
+                </div>
+                <div class="col-sm">
+                  <img class="card-img-top" src="images/installer-welcome.png" alt="Welcome step">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  Make sure you have installed all the required extensions, if any of the extensions is in red, it means is not installed and <strong>you should not</strong> continue the installation until everything is green.
+                </div>
+                <div class="col-sm">
+                  <img class="card-img-top" src="images/installer-requirements.png" alt="Welcome step">
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  Follow all the steps and enter the information, each step provide information for the data you need to enter. On the final step click the <strong>Run Installer!</strong> button, seat back and relax! It might take some time, but once everything is green an alert message will appear telling you the app is ready to use! Make sure to click the `Go to home` button, as it will remove the isntaller and lock the system from other people to run it again.
+                </div>
+                <div class="col-sm">
+                  <img class="card-img-top" src="images/installer-final.png" alt="Welcome step">
+                </div>
+              </div>
+
+
+              <div class="alert alert-primary" role="alert">
+                After the installer is done, just double check that the folder <strong>public/installer</strong> is removed! You don't want anyone else to get into these pages. But <strong>most importantly</strong>, make sure the `<strong>storage/app/installed.lock</strong>` file exist. This file is the one that locks the installer, this file will be created automatically for you, but just make sure it's there, if not... just create it, you can put anything as the content.
+              </div>
+
+              <h2 id="installing-api">Manually Installing the REST API</h2>
+              <p>Before proceeding to manually installating the REST API, make sure you have all the system requirements installed, such as php, mysql,
+                <a href="https://getcomposer.org/">composer</a>,
+                <a href="https://nodejs.org/en/download/">node</a>, npm.</p>
+        
+              <div class="alert alert-danger" role="alert">
+                Make sure to remove the installer and lock the system. To do that just remove the folder at `<strong>public/installer</strong>` and create a file under `
+                <strong>storage/app/installed.lock</strong>`, you can add any content.
+              </div>
+
+              <h4 id="installing-database">Creating the database</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>First thing we need to do is to create a database to store the data. This application is using MySQL 5.7 or above.
+                    Go ahead and create an empty database with your favorite mysql client, or if you are like me open your terminal
+                    and run the following commands.
+                  </p>
+                  <p>The first command is opening a connection to the MySQL server, it will ask you for your password. In this case
+                    I'm using root as the user, but you can use any user that is able to create dabases.</p>
+                  <p>The second command is executed inside the mysql server, and is creating an empty database called
+                    <strong>music</strong>, feel free to use any name here, just keep in mind that value because we are going to use it later.</p>
+                  <p>The third command is just closing the connection with the database.</p>
+                  <p>If you are installing in production, I'd recommend you to create a different user to connect from Laravel, also
+                    you might want to use a
+                    <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-remote-database-to-optimize-site-performance-with-mysql-on-ubuntu-16-04">dedicated server</a> for your database.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ mysql -u root -p</p>
+                      <p>> create database music; </p>
+                      <p>> exit;</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h4 id="installing-dependencies">Installing dependencies</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Now that our database is created, let's proceed to install the Laravel App. Unzip the
+                    <strong>musicapp-1.1.0.zip</strong> file into your workspace or anywhere else. Open your terminal, navigate to the unziped
+                    folder and run the following commands.</p>
+                  <p>The first command is just opening the app folder. If you are installing in production, I'd recommend you to extract
+                    the project under
+                    <strong>/var/www/yoursite.com/current</strong>. If installing for development, make sure to remove the flags
+                    <strong>--no-dev --optimize-autoloader</strong>, these flags are only for production.</p>
+                  <p>The second command installs all the dependencies for this project. It will automatically download all packages
+                    for you.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ cd the/path/to/music</p>
+                      <p>$ composer install --no-dev --optimize-autoloader</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <h4 id="installing-geoip">Downloading geoip database</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>
+                    <a href="https://github.com/Torann/laravel-geoip">Laravel-geoip</a> is used to get the location of new users based on their IP, to do this Geo IP uses a database
+                    that needs to be
+                    <a href="http://dev.maxmind.com/geoip/geoip2/geolite2/">downloaded from the internet</a>.</p>
+                  <p>This project already have an artisan task to download the database automatically for you. Just run the following
+                    artisan task:</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan geoip:update</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+        
+              <h4 id="installing-storage-link">Setting up storage link</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Laravel keeps all uploaded files in the
+                    <strong>storage/app/public</strong> folder, in order to access these file through the HTTP Server, we need to create
+                    a symbolic link in the
+                    <strong>public</strong> folder. We can easily do this by running the following artisan task:</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan storage:link</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 id="installing-storage-link">Setting the writing permissions</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Laravel requires write access to certain folders, if we are deploying to a linux environment, we can set this by running the following commands.</p>
+                  <p>If you are running your application in local, in most cases this is not required.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ sudo chgrp -R www-data storage bootstrap/cache</p>
+                      <p>$ sudo chmod -R ug+rwx storage bootstrap/cache</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <h4 id="installing-config">Configurations</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>In order to connect to the database, send emails, use facebook login, etc. We need to setup the configuration,
+                    this project contains an example you can use to define all configurations. Just run the following commans in
+                    the terminal:</p>
+                  <p>The first command duplicates the environment example and create a
+                    <strong>.env</strong> file. In this file we will define all configurations that we need.</p>
+                  <p>The second command opens the file in the vim editor. Feel free to use your favorite editor to update the value
+                    of the current configurations. We will see each config in detail.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ cp .env.example .env</p>
+                      <p>$ vim .env</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <h5>General configurations</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Inside the
+                    <strong>.env</strong> file you will find a couple groups of configuration, the ones at the top are general configuration.</p>
+                  <p>
+                    <strong>APP_NAME</strong> Set the name of the app.</p>
+                  <p>
+                    <strong>APP_ENV</strong> Set the environment we are running the app, if in development set the value to `
+                    <strong>local</strong>`, for production set it to `
+                    <strong>production</strong>`.</p>
+                  <p>
+                    <strong>APP_KEY</strong> The app key to generate passwords, in order to generate a new key run:
+                    <strong>`php artisan key:generate`</strong> in your terminal and it will set a new one for you.</p>
+                  <p>
+                    <strong>APP_DEBUG</strong> When running in production set this to `
+                    <strong>false</strong>` in development set it to `
+                    <strong>true</strong>`.</p>
+                  <p>
+                    <strong>APP_URL</strong> The API url, if you are running in a different subdomain, make sure to set the correct value
+                    here. If runing in development set it to `
+                    <strong>http://localhost</strong>`</p>
+                  <p>
+                    <strong>APP_FRONTEND_URL</strong> The front end URL, this is used for the emails. If running in develop set it to `
+                    <strong>http://localhost:8080</strong>`</p>
+                  <p>
+                    <strong>APP_IS_NEW_USER_AUTHOR</strong> Whether or not new user will be able to create albums and upload images. If set
+                    it to `
+                    <strong>false</strong>`, the admin needs to grant access to the author role manually for every user.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+APP_NAME=MusicApp
+APP_ENV=production
+APP_KEY=someSecureKeyHereGeneratedByArtisan
+APP_DEBUG=false
+APP_URL=https://api.example.com
+APP_FRONTEND_URL=https://example.com
+APP_IS_NEW_USER_AUTHOR=true
+                          </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>File system configurations</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Laravel allows to upload files to the local file system of our server or to a cloud server such as amazon s3. The
+                    following configurations set where we are going to keep our uploaded files.</p>
+                  <p>
+                    <strong>FILESYSTEM_DRIVER</strong> Set the driver to store the uploaded files. We can use amazon s3 by setting the value
+                    `s3`, but we are using the local file system for this setup.</p>
+                  <p>
+                    <strong>FILESYSTEM_CLOUD</strong> The default cloud system, we can use `rackspace` or `s3`.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+FILESYSTEM_DRIVER=local
+FILESYSTEM_CLOUD=s3
+                          </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <h5>Database configuration</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>This project uses MySQL as a database server, make sure to set the credentials and specific configurations here.</p>
+                  <p>
+                    <strong>DB_CONNECTION</strong> The database driver.</p>
+                  <p>
+                    <strong>DB_PORT</strong> The port of our database server.</p>
+                  <p>
+                    <strong>DB_HOST</strong> The host, if you are running a different server, make sure to set the corrent IP here.</p>
+                  <p>
+                    <strong>DB_DATABASE</strong> The database name, the one we created at the begining of the tutorial.</p>
+                  <p>
+                    <strong>DB_DATABASE_TEST</strong> Additionally we can define a test database, make sure to create it.</p>
+                  <p>
+                    <strong>DB_USERNAME</strong> The user to get connected to the mysel server</p>
+                  <p>
+                    <strong>DB_PASSWORD</strong> The password to use, make sure to set the correct password for your user</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+DB_CONNECTION=mysql
+DB_PORT=3306
+DB_HOST=127.0.0.1
+DB_DATABASE=music
+DB_DATABASE_TEST=music_test
+DB_USERNAME=root
+DB_PASSWORD=
+                          </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>Email configurations</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>In order to send email, we need to setup the smtp credentials. I'd recommend using mailgun, but feel free to use
+                    any other service or even your own smtp server.</p>
+                  <p>For development I'd recommend using
+                    <a href="https://mailcatcher.me/">MailCatcher</a>, a ruby smtp server that catch all outgoing emails and gives you a web interface to view every
+                    email. Ideal for development!</p>
+                  <p>
+                    <strong>MAIL_DEFAULT_DOMAIN</strong> When login with facebook, some users don't have email address, for that case we
+                    create a fake email, in here you need to define the domain.</p>
+                  <p>
+                    <strong>MAIL_FROM_ADDRESS</strong> All outgoing email will be send by this address</p>
+                  <p>
+                    <strong>MAIL_FROM_NAME</strong> The name who's sending the email</p>
+                  <p>
+                    <strong>MAIL_DRIVER, MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD, MAIL_ENCRYPTION</strong> SMTP configurations,
+                    if using mailgun you can get those values there. Make sure the values are correct otherwise sending emails will
+                    fail.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+MAIL_DEFAULT_DOMAIN=example.com
+MAIL_FROM_ADDRESS="contact@example.com"
+MAIL_FROM_NAME="Crysfel Villa"
+MAIL_DRIVER=smtp
+MAIL_HOST=127.0.0.1
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+                          </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>Login with email and facebook</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>In order to generate JWT tokens, we need to setup the secret key. To login with facebook we need to set the private
+                    key.</p>
+                  <p>
+                    <strong>JWT_SECRET</strong> Generate a new key using a tool such as
+                    <a href="https://randomkeygen.com/">this one</a>.</p>
+                  <p>
+                    <strong>JWT_FACEBOOK_SECRET</strong> You can get this value from the facebook developer portal.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+JWT_SECRET=secretKeyHere
+JWT_FACEBOOK_SECRET=appIdHere
+                          </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>Amazon S3</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>If you want to integrate your installation with Amazon S3, you need to set your credentials here.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+# Get these values from Amazon S3
+S3_KEY=
+S3_SECRET=
+S3_BUCKET=
+S3_REGION=us-east-1
+                          </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>Caching configurations for production</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>If you are installing in production, you should create a cache for all your configurations. Laravel defines all
+                    configurations in different files which is great for development, but for production it takes longer to load
+                    every file. Instead we can create a cache with all the values ww have set, we can do this by running the following
+                    artisan task in the terminal.</p>
+                  <p>Make sure to run this command only in production and
+                    <strong>only after</strong> you have set the correct values in
+                    <strong>.env</strong> file.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan config:cache</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <h4 id="installing-seed">Setting up the database</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>With all dependencies ready, and the configurations in place, we can now run the migrations! This will create all
+                    the tables in the database.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan migrate</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>Seeding production</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>In order to start using the application, you need to create the
+                    <strong>admin</strong> user. To do that we can run the production seed as follow.</p>
+                  <p>This script will only create an admin user, it doesn't remove any data. It only adds a new record to the users
+                    table and to the activities table. Once you run this script you will be able to login into the app using the
+                    following credentials:
+                    <strong>user: admin@admin.com pass: admin123</strong>.</p>
+                  <p>We can only run this seed once, if we try again it will fail because the user already exist.
+                    <strong>Make sure to change the email/password from the users module on the administration section.</strong>
+                  </p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan db:seed --class=ProductionSeeder</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h5>Seeding development</h5>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>When running the app in
+                    <strong>development</strong> it's useful to have some data preloaded into the database, this way we can use it to develop
+                    new features. To run the seeds just execute the following command in the terminal.</p>
+                  <div class="alert alert-primary">
+                    <strong>Warning!</strong>
+                    <p>You should
+                      <strong>only run</strong> this command in development, because it drop all tables and files and create everything again.</p>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan db:seed</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        
+              <h4 id="installing-dev">Setting up the development server</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>We are now ready to run the app in development mode. With Laravel, that's very easy, all we have to do is run the
+                    following artisan task.</p>
+                  <p>We will have our app running on port 8000. Open
+                    <a href="http://localhost:8000">http://localhost:8000</a> and you will see the app running.</p>
+                  <p>When deploying to production you need to build the SPA again with your own configurations, such as different title, api endpoing, etc. We will cover the steps to build the client in the next section.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ php artisan serve</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 id="installing-prod">Setting up the production server</h4>
+              <p>You can use apache2 or <a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-laravel-application-with-nginx-on-ubuntu-16-04">nginx</a> as a webserver to deploy this project. The only thing you need to make sure when deploying the
+                project is to point the
+                <strong>root</strong> of the server to the
+                <strong>public</strong> directory in the laravel project.</p>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>NGINX</h5>
+                  <p>For example, if we want to install our project under <strong>/var/www/musicapp.example.com</strong>, the Nginx configuration file will look something like this</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+server {
+  # Listening on port 80
+  listen 80;
+  listen [::]:80;
+
+  # Root folder pointing to the `public`
+  # folder in the project
+  root /var/www/musicapp.example.com/public;
+
+  # Make sure to add index.php to the list
+  index index.php index.html index.htm;
+
+  server_name musicapp.example.com;
+
+  location / {
+    # First attempt to serve request as file, then
+    # as directory, then laravel entry point.
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  # pass PHP scripts to FastCGI server
+  #
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+
+    # With php-fpm (or other unix sockets):
+    fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
+  }
+}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Apache2</h5>
+                  <p>If we want to install our project under <strong>/var/www/musicapp.example.com</strong>, the Apache2 configuration file will look something like this.</p>
+                  <p>When using Apache, make sure to install the <strong>rewrite</strong> module.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+&lt;VirtualHost *:80&gt;
+  ServerName musicapp.example.com
+  DocumentRoot "/var/www/musicapp.example.com/public"
+  &lt;Directory "/var/www/musicapp.example.com/public"&gt;
+    AllowOverride all
+  &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h2 id="installing-client">Installing the client</h2>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>This project already comes with a production build for the client SPA, these files are located under <strong>public/dist</strong>. If you want to make any change (You should), you will need to create the build using webpack.</p>
+                  <p>In order to install the client for development, you need node and npm installed in your system, make sure to have it before proceeding to
+                    the following instructions.</p>
+                  <p>The project runs with webpack, a JavaScript bundler to automate the build process for deployment. The source code is inside the
+                    <strong>resources/spa</strong>. Everything related to the UI is here.</p>
+                  <p>To run the client in development, we use webpack dev server. The client will run in the port 8080 while the laravel server runs by default on port 8000.</p>
+                </div>
+                <div class="col-sm" class="card">
+
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h4 id="installing-client-config">Configurations</h4>
+                  <p>All available configurations for the client are inside the file <strong>.env.example</strong>, At this point you should have ranamed this file to <strong>.env</strong>, but if not go ahead and rename it. The build script will look for this file to get some values such as the title to display, the API url to request data, etc. Open your terminal an run the following command.</p>
+                  <p>In this case we are using vim, but feel free to use your favorite editor.</p>
+                  <p>All frontend configurations are at the bottom of the file.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ vim .env</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5 id="installing-client-config">Environment</h5>
+                  <p><strong>APP_TITLE</strong> set the title of the app, there are several places where the name of the app is being rendered. Set your very unique name in here.</p>
+                  <p><strong>SERVER_API_URL</strong> set the URL for the REST API, For production just set the value to <strong>/api</strong>, for development set the value to <strong>http://localhost:8000</strong>.</p>
+                  <p><strong>API_VERSION</strong> The version of the API to request. Leave it as v1, or the version of the API you want to request, it's unlikely you will need to change this value.</p>
+                  <p><strong>DEFAULT_LOCALE</strong> This application supports different locales, however for now only english is being translated. In next releases I will include more translations.</p>
+                  <p><strong>DEFAULT_ROUTE</strong> This is the route the user will see when entering the app for the first time. Chances are you don't need to update this value.</p>
+                  <p><strong>FACEBOOK_APP_ID</strong> Get the app id from the Facebook developer platform, this is needed to login with Facebook.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <pre>
+APP_TITLE=Music App
+SERVER_API_URL=/api
+API_VERSION=v1
+DEFAULT_LOCALE=en
+DEFAULT_ROUTE=/public/discover
+FACEBOOK_APP_ID=YOUR_FACEBOOK_APP_ID
+                        </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h4 id="installing-client-packages">Installing npm packages</h4>
+                  <p>To install all dependencies all you need to do is run the following command.</p>
+                  <p>This will download from the internet all dependencies, including webpack, the bundler tool this project uses to automate builds.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ npm install</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h4 id="installing-client-dev">Running development</h4>
+                  <p>To run the client in development all you have to do is run the following command.</p>
+                  <p>This is going to compile all the source files and create the develpoment bundle. Then it will start an http server on port 8080, you can acccess <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+                  <p>Webpack includes the Hot Reloading module, this means that you can update any of the source code files and the browser will automatically refresh to update the changes. This improves the development experience.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ npm run dev</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h4 id="installing-client-prod">Building for production</h4>
+                  <p>In order to prepare our client app for production, all we have to do is run the following command in the terminal.</p>
+                  <p>This script will compile all the javascript and sass code, then it will compress the resulting files for faster downloading on production environments. </p>
+                  <p>Finally it will create a <strong>public/dist</strong> folder. This is the folder we need to deploy to production, in here there's an HTML, JS and CSS files, along with the source maps.</p>
+                  <p>Once everything is completed you need to upload your project again to your production server.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>$ npm run build</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <h2 id="customizing-client">Customizing the Client</h2>
+              <p>The client application is written in Angular JS, an SPA that gets the data from the Laravel App and present it to the user in a nice user interface</p>
+              <p>All JavaScript files and CSS styles are located inside <strong>resources/spa</strong>, this is where you will have to write all the custom code and styles you might need to customize the app.</p>
+              <p>In order to make changes, you will need node and npm installed in your system, this is a requirement to handle the dependencies and automate the builds. Before moving forward, make sure to go through all the steps in the <a href="#installing-client">client installation</a> section.</p>
+
+              <h4 id="customizing-client-colors">Changing the colors</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>The first thing we need to do is to run the development server, in your terminal, go to the project and start the laravel server as well as the webpack server for the client.</p>
+                  <p>In two different terminals, run the laravel server and the node server in the other one.</p>
+                </div>
+                <div class="col-sm card terminal">
+                  <pre>
+$ cd path/to/musicapp
+$ php artisan serve
+$ npm run dev
+                  </pre>
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>After running the webpack server, open your favorite browser and go to http://localhost:8080/</p>
+                  <p>You should be able to see the app running in your local, after this it's time to start updating the colors!</p>
+                  <p>This project uses SASS to define the CSS styles which allow us to declara variables to generate the CSS.</p>
+                  <p>This project contains several color variables for different component, open the file <strong>resources/spa/common/styles/colors.scss</strong> and you will find all the available variables in there.</p>
+                  <p>Just update the value of the variables in this file and you will see the changes in the app applied immediately.</p>
+                </div>
+                <div class="col-sm">
+                  <img src="images/color-styles.png" alt="Setting up the colors" class="card-img-top" />
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Once you are done with your changes, please follow the steps <a href="#installing-client-prod">building for production</a> to deploy your new changes.</p>
+                </div>
+                <div class="col-sm">
+                  <img src="images/color-styles-values.png" alt="Setting up the colors" class="card-img-top" />
+                </div>
+              </div>
+
+              <h4 id="customizing-client-page">Adding a new page</h4>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>In order to add a new page you will need to create a new <a href="https://docs.angularjs.org/api/ng/function/angular.module">AngularJS module</a>.</p>
+                  <p>For this example, we will create an "About" page, this would be fairly simple.</p>
+                  <p>The first step is to create an empty folder under <strong>resources/spa/app/about</strong>, inside this folder we will place all the JS, HTML, CSS and i18n files, every module should contain what it needs.</p>
+                  <p>Inside the new folder we are going to create a couple files, for now they will be empty.</p>
+                  <ul>
+                    <li><strong>about.config.js</strong> - Will contain the module's configurations.</li>
+                    <li><strong>about.controller.js</strong> - The controller for this module to handle the data to present.</li>
+                    <li><strong>about.scss</strong> -  Custom styles.</li>
+                    <li><strong>about.tpl.html</strong> - The html to use as a template.</li>
+                    <li><strong>index.js</strong> - The main index file that creates the module.</li>
+                  </ul>
+                </div>
+                <div class="col-sm">
+                  <img src="images/about-module.png" alt="New module" class="card-img-top" />
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Let's start by defining the controller, in this case it will be something very simple as we don't need to do anything special in this page, we are going to display only text, therefore no interaction is needed, therefore the controller will be and empty class.</p>
+                  <p>Open the <strong>resources/spa/app/about/about.controller.js</strong> file and add the following code.</p>
+                </div>
+                <div class="col-sm card terminal">
+                  <pre>
+class AboutController {
+  // If some interaction is neded, it would be
+  // defined here.
+}
+
+// No need of dependencies, but in here we would inject
+// any service that we need.
+AboutController.$inject = [];
+
+// Export the class to be used somewhere else
+export default AboutController;
+                  </pre>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Now let's define the template for this module, something very simple! Just some text for this example, but you could use any of the available directives.</p>
+                  <p>Open the <strong>resources/spa/app/about/about.tpl.html</strong> file and add the following code.</p>
+                </div>
+                <div class="col-sm card terminal">
+                  <pre>
+&lt;h1&gt;About page&lt;/h1&gt;
+&lt;p&gt;This is the about page, you can define any template here!&lt;/p&gt;
+                  </pre>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>It's time to define the configurations for this module, in here we will define the path for this page, the controller and template it will use.</p>
+                  <p>Open the <strong>resources/spa/app/about/about.config.js</strong> file and add the following code.</p>
+                  <p>If you are creating another module, make sure to replace the values with your own value, basically replacing those `about` with the name of your module.</p>
+                  <p>I've left some comments in the code for your convenience, you might want to remove it from your actual module, that's up to you.</p>
+                </div>
+                <div class="col-sm card terminal">
+                  <pre>
+// Import the template for this module
+import './about.tpl.html';
+
+let Config = ($stateProvider) => {
+
+  $stateProvider
+    // If the page is going to be available to any visitor,
+    // we need to use the `public` namespace, then the name
+    // of our new module, in this case `public.about`
+    .state('public.about', {
+      // Then we need to define the PATH for this module
+      url: "/about",
+      views: {
+        'main@': {
+          // The template to use for this module, this
+          // will point to the new template file we have created
+          templateUrl: 'about/about.tpl.html',
+          // The controller's name to use for this module
+          controller: 'AboutController',
+          // We can create an alias for this controller,
+          // using this name is how we are going to 
+          // access the controller from the template
+          controllerAs: 'aboutCtl'
+        }
+      }
+    });
+}
+
+// Inject the dependencies for the configurations
+Config.$inject = ['$stateProvider'];
+
+// And finally export it!
+export default Config;
+                  </pre>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>We are now ready to create our new module, let's open the <strong>resources/spa/app/about/index.js</strong> file and add the following code.</p>
+                </div>
+                <div class="col-sm card terminal">
+                  <pre>
+// Make sure to import the styles for this module
+import './about.scss';
+
+import angular from 'angular';
+// You might want to use common services and directives
+// at some point, make sure to add it as a dependencies.
+import MusicCommon from '../common';
+
+// Import the config and controller.
+import Config from './about.config';
+import AboutController from './about.controller';
+
+// Create the new module
+let module = angular.module('Music.about', [
+  // Add the common module as a dependency
+  MusicCommon
+])
+  // Setup the controller
+  .controller('AboutController', AboutController)
+  // Setup the configurations
+  .config(Config)
+  // We need this name to export it
+  .name;
+
+// Export the module so we can use it
+// somewhere else.
+export default module;
+                  </pre>
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>Finally, we need to register the new module into our application. That's fairly simple, all we need to do is import the module and add it as a dependency.</p>
+                  <p>Open the <strong>resources/spa/app/app.js</strong> file, and add the following code.</p>
+                </div>
+                <div class="col-sm card terminal">
+                  <pre>
+// Import the module around line 42
+import MusicAbout from './about';
+
+Angular.module('Music', [
+    Material,
+    UIRouter,
+    SocialShare,
+    I18N,
+
+    // ...
+    // many other dependencies here,
+    // please don't touch them.
+    // ...
+
+    MusicBlog,
+    MusicSearch,
+    MusicAbout, // &lt;--- Add new dependency here
+])
+.config(MusicConfig)
+.run(MusicRun);
+                  </pre>
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>And we are done! Open the browser and navigate to: http://localhost:8080/#!/public/about</p>
+                  <p>We haven't added any styles yet, to do that you will need to open the <strong>resources/spa/app/about/about.scss</strong> file and start adding your own css styles.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/about-page.png" alt="About page">
+                </div>
+              </div>
+
+              <h2 id="features">Features</h2>
+              <p>This application allows users to create albums and upload mp3 files to the platform. The administrator can either allow
+                new users to be authors by default or manually set each user.</p>
+              
+              <h4 id="features-guests">Guests</h4>
+              <p>A guest is a visitor, they are not registered in the platform. They still can look around and play songs, but some features are disabled.</p>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Tending music</h5>
+                  <p>In this page guests can see recommendations, top ten song, latest uploads and popular artist.</p>
+                  <p>This is a great place to discover popular songs.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/trending.png" alt="Trending music">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Explore</h5>
+                  <p>In this page users can explore music filtering by genre or tag. There's a list of available genre and tags at the right side of the screen.</p>
+                  <p>From here users can play each song, go to the detail or author profile.</p>
+                  <p>When scrolling down, new songs will be loaded from the API.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/explore.png" alt="Explore music">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Song detail</h5>
+                  <p>In this page users can read the description or the lyric of the song. There's a list of the other songs in the current album on the right side, users can play other songs directly from this list.</p>
+                  <p>Users can play the song, add to favorites or to a playlist. Users can also leave a comment at the bottom.</p>
+                  <p>For visitors, many of the features are disabled and can't be used until they login.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/song.png" alt="Song detail">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Blog list</h5>
+                  <p>Guests users can read the blog with the published posts.</p>
+                  <p>When scrolling down, new posts will be loaded from the API.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/blog-public-list.png" alt="Blog list">
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Blog detail</h5>
+                  <p>Guests can read published posts as well as comments left by members. Guests are not allow to see author's profile page, if they click the link the login page will appear.</p>
+                  <p>When scrolling down, new posts will be loaded from the API.</p>
+                  <p>Members can leave comments to the post.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/blog-public-detail.png" alt="Blog detail">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Artist</h5>
+                  <p>In this page users can find authors, this is a great way to connect and meet new people.</p>
+                  <p>When scrolling down, new artists will be loaded from the API.</p>
+                  <p>Members can follow links to the profile page, visitors will see the login page.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/artists.png" alt="Artists">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Authentication pages</h5>
+                  <p>The are several authentication pages included in this platform, such as login, registration with email/password, forgot password, recover password and login with Facebook.</p>
+                  <p>If the user is already logged in, then it will be redirected back to the trending page.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/login.png" alt="Login">
+                </div>
+              </div>
+
+
+              <h4 id="features-members">Members</h4>
+              <p>A member is a registered user, either by email/password or using facebook login.</p>
+              <p>As a member of the platform you can do several things that guests are not allowed. However, members can't create albums, only listen and explore existing songs.</p>
+              <p>As mentioned in the installation steps, you can decide whether a new member will be an author by default or not.</p>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Profile page</h5>
+                  <p>Every member has a profile page, other users can visit the page and see the public activity feed.</p>
+                  <p>From here the user can update the avatar and see the latest activity with links to the content.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/user-profile-feed.png" alt="User activity feed">
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Profile settings</h5>
+                  <p>As a member, you can update your profile page. You can update your name, description, location, gender and any of the existing fields.</p>
+                  <p>You can also update your password from this page.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/user-profile-settings.png" alt="User settings">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Playlist</h5>
+                  <p>As a member, you can create playlists to add songs. The playlist will appear under the main menu for easy access.</p>
+                  <p>You can create a new playlist from the left menu. Whatever you are in the app, just click the add playlist button in the main menu and the for will show up as a modal window.</p>
+                  <p>You can also create a new playlist from the song detail page, the add to playlist menu contains an option to create a new playlist.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/playlist-create.png" alt="Playlists">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Playlist detail</h5>
+                  <p>You can access your playlists from the main menu, every new playlist will appear here.</p>
+                  <p>From the detail page, you will see a list of songs, if you select one you will see the details of that song in the right side.</p>
+                  <p>You can edit the name of the playlist, remove the entire playlist from here or a single song.</p>
+                  <p>You can also play any of the songs.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/playlist-detail.png" alt="Playlists detail">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Favorites</h5>
+                  <p>You can see all your favorites songs from this page. When you like a song, it will appear in this list.</p>
+                  <p>In order to remove the song, you can always unlike it and it will disappear from the list.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/favorites.png" alt="Favorites">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>History</h5>
+                  <p>As a member, you can see the history of the latest music you have played. If you select a song from the left, you will be able to see the detail of that particular song.</p>
+                  <p>You can also play gain the songs from here.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/history.png" alt="History">
+                </div>
+              </div>
+
+
+              <h4 id="features-authors">Authors</h4>
+              <p>An author is a registered user, but they can create albums and songs. There's an additional option in the main menu for authors only where they have access to manage their own music.</p>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Album list</h5>
+                  <p>As an author, you can see only your albums. You can filter the list by published and unpublished albums. From here you can remove any of your albums.</p>
+                  <p>If removing an album, all songs and files attached to the album will be completly removed from the platform, be careful when removing albums.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/author-album-list.png" alt="Author's album list">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Album detail</h5>
+                  <p>Inside of each album, the author can edit the details of the album, play the songs, remove, edit or
+                    create a new song</p>
+                  <p>Each album contains a list of songs, the admin can edit any given song.</p>
+                  <p>In order to publish a new album, it's required to assign an image to the album and there should be at least one song.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/author-album-detail.png" alt="Album detail">
+                </div>
+              </div>
+
+
+              <h4 id="features-admin">Administrators</h4>
+              <p>In addition to members and authors, administrators have full access to the platform. The admin can add, update and remove music, comments, blog posts, genres created
+                by other users.</p>
+        
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Album list</h5>
+                  <p>The admin can see a list of all albumns in the platform, from here the admin can see the detail of each album,
+                    update anything or completely remove the album and all songs.</p>
+                  <p>The admin can see a list of published and unpublished albumns by selecting the filters on the left sidebar.</p>
+                  <p>There's a search toolbar where the admin can search albums by title. By default is hidden, but it will show up
+                    once the user click the search icon at the top.</p>
+                  <p>When srolling down, new albums will appear if available.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/album-list.png" alt="Album list">
+                </div>
+              </div>
+        
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Album detail</h5>
+                  <p>Inside of each album, the admin (or the author) can edit the details of the album, play the songs, remove or edit
+                    them, create a new one</p>
+                  <p>Each album contains a list of songs, the admin can edit any given song as well as remove them.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/album-detail.png" alt="Album detail">
+                </div>
+              </div>
+        
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Blog list</h5>
+                  <p>Admins can see the list of blog post, from there it's possible to edit or remove an existing post.</p>
+                  <p>There's a search panel at the top, by default is hidden but shows up when the user clicks the search icon.</p>
+                  <p>The admins can see the current drafts if any.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/blog-list.png" alt="Blog list">
+                </div>
+              </div>
+        
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Blog detail</h5>
+                  <p>When adding or editing a post, the users can upload an image to attach to the post. User can disable comments and
+                    publish/unpublish.</p>
+                  <p>It comes with a WYSIWYG editor, selecting a text will show a tooltip with options to add to the selection.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/blog-detail.png" alt="Blog details">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Comment list</h5>
+                  <p>As an admin, you can see the list of comment accross all songs and blog posts. The latest comment are displayed first. When scrolling down new comments will be loaded from the server.</p>
+                  <p>From here the admin can remove or edit a giving comment.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/comment-list.png" alt="Comment list">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Comment detail</h5>
+                  <p>As an admin, you can edit all comments, if there's something you don't like you can edit the content or even unpublish the comment.</p>
+                  <p>If the comment is not published, then it will not appear on the post/song.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/comment-detail.png" alt="Comment detail">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Genres</h5>
+                  <p>As an admin, you can list all genres available in the platform. From here you can remove, edit or add new genres.</p>
+                  <p>If remove a genre, the songs and albums attached to that genre will not be removed.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/genres-list.png" alt="Genres list">
+                </div>
+              </div>
+
+              <div class="row feature">
+                <div class="col-sm">
+                  <h5>Users</h5>
+                  <p>As an admin, you can see all users register in the platform. From here, you can remove a user or edit their information as well as allow them to be authors or not.</p>
+                  <p>If an author is removed, all his albums and songs will deseapear from the paltform as well. Be careful when you decide to remove users.</p>
+                  <p>You can search users by name, clicking in the search icon will show a search field where you can type the name of the user.</p>
+                </div>
+                <div class="col-sm" class="card">
+                  <img class="card-img-top" src="images/users-list.png" alt="User list">
+                </div>
+              </div>
+        
+              <h2 id="errors">Common Errors</h2>
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>This error means there's something wrong with the database configurations. Open the <strong>.env</strong> file and make sure the host, port and credentials are correct.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>SQLSTATE[HY000] [2002] Connection refused</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>In order to fix this error you need to update your mysql database server to version 5.7.13 or above.</p>
+                  <p>If updagrading your mysql server is not possible, you will need to disable support for emojis. In order to do that, you need to open the <strong>config/database.php</strong> file and update the following values insde the mysql configuration:</p>
+                  <p>
+                    <pre>
+'charset' => 'utf8',
+'collation' => 'utf8_unicode_ci',
+                    </pre>
+                  </p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>This usually happens when the <strong>.env</strong> file contains an error, make sure there are not blank spaces in the strings, if that's the case use quotes.</p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>PHP Fatal error: Uncaught ReflectionException: Class config does not exist in /var/www/
+                        YOUR_APP/vendor/laravel/
+                        framework/src/Illuminate/
+                        Container/Container.php:767</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>This error will appear because you are trying to upload a larger file then the size allowed. In order to fix this, you need to update your <strong>php.ini</strong> with the following values:</p>
+                  <p>
+                    <pre>
+upload_max_filesize = 50M
+post_max_size = 50M
+                    </pre>
+                  </p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>413 Request Entity Too Large</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row feature">
+                <div class="col-sm">
+                  <p>This error will appear because you didn't set the `<strong>APP_KEY</strong>`, in order to fix this issue you need to run the following command in your terminal.</p>
+                  <p>
+                    <pre>
+$ php artisan key:generate
+                    </pre>
+                  </p>
+                </div>
+                <div class="col-sm">
+                  <div class="card terminal">
+                    <div class="card-body">
+                      <p>The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <h2 id="faqs">FAQs</h2>
+              <h4>Do you recommend a hosting provider?</h4>
+              <p>Yes, I'd recommend you to use <a href="https://m.do.co/c/3d94e54ec262">Digital Ocean</a>! For $5 a month you can have a server up and running in minutes, they have one click install LAMP or LEMP stacks. And if you use my link, they will give you (and also me) $10 dollars if you use <a href="https://m.do.co/c/3d94e54ec262">my referal link</a> :)</p>
+
+              <h4>Can you host my website in your servers?</h4>
+              <p>Yes I can! I can admin your website, create the virtual host, update it, backup your databases, do all the required maintenance and all what you need to keep your app running in the cloud. Please contact me through the evanto contact form and we can discuss your needs, then I can give you a quote.</p>
+
+              <h4>I'm getting an error when installing the app, can you help me?</h4>
+              <p>Yes, please contact me through the Envato contact form.</p>
+
+              <h4>Somethign is not working correctly, can you help?</h4>
+              <p>Yes, please contact me through the Envato contact form.</p>
+
+              <h4>I have a unique requirement, can you add it for me?</h4>
+              <p>Yes, please contact me through the Envato contact form. We can discuss the requirements and give you a quote. Or maybe that feature is already in the works and it might be included in the next release.</p>
+
+              <h4>Can you help me to deploy the project to my servers?</h4>
+              <p>Yes, please contact me through the Envato contact form to give you a quote.</p>
+
+              <h4>How can I change the title of the app?</h4>
+              <p>Open the <strong>.env</strong> file and set the new value to the variable <strong>APP_TITLE</strong>. Then build the SPA again by running <strong>$ npm run production</strong> in your terminal. After that you will have to upload the <strong>public/dist</strong> folder to your server.</p>
+
+              <h4>How can I change the colors of the app?</h4>
+              <p>I've used SASS to deal with the styles, there are several variables you can update in order to change the color of the text, the menu and so on.</p>
+
+              <h4>How can I customize the email template and content?</h4>
+              <p>You will need to update the views <strong>resources/views/emails</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+    
+  </body>
+</html>

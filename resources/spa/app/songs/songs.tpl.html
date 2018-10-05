@@ -1,0 +1,113 @@
+<div flex layout="row" class="songs">
+
+    <div flex="70" flex-xs="100" class="song-details">
+        <div class="white-panel songs-panel">
+            <div layout="row" class="songs-info">
+                <div flex="30">
+                    <img ng-src="{{songs.song.album.image}}" ui-sref="public.albums({ id: songs.album.id })" class="album-art" />
+                </div>
+                <div class="songs-data" flex="70">
+                    <h2 ng-bind="songs.song.title"></h2>
+                    <div layout="row" class="song-author">
+                        <img ui-sref="members.profiles({id:songs.song.author.id})" ng-src="{{songs.song.author.image}}" alt="{{songs.song.author.name}}">
+                        <div flex>
+                            <h3 ui-sref="members.profiles({id:songs.song.author.id})" ng-bind="songs.song.author.name"></h3>
+                            <p>{{'SONG_PUBLISHED' | translate}} {{songs.song.album.released}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="song-actions">
+                        <md-button ng-click="songs.play(songs.song)" class="md-raised md-primary"><i class="flaticon-media23"></i> {{'SONG_PLAY' | translate}}</md-button>
+                        <md-button ng-click="songs.like(songs.song)" class="md-raised" ><i class="flaticon-favorite21" ng-class="{'favorite-selected':songs.song.isFavorite}"></i> {{'SONG_FAVORITES' | translate}}</md-button>
+                        <md-button ng-disabled="app.isLoading" ng-if="songs.downloable" ng-click="songs.download(songs.song)" class="md-raised" ><i class="flaticon-cloud107"></i> {{'SONG_DOWNLOAD' | translate}}</md-button>
+                        <add-to-playlist 
+                            app="app"
+                            add="app.addPlaylist"
+                            playlists="app.user.playlists"
+                            song="songs.song">
+                        </add-to-playlist>
+                        <share-button
+                            label="'SONG_SHARE' | translate"
+                            url="songs.song.id | setFullSongUrl"
+                            text="songs.song.title"
+                            tags="songs.song.tagsText"
+                            image="songs.song.album.image"
+                        >
+                        </share-button>
+                    </div>
+
+                    <div class="tags" ng-if="songs.song.tags.length">
+                        <p>Tags: <a ng-repeat="tag in songs.song.tags" ui-sref="public.explore.tag({tag:tag.name})">{{tag.name}}</a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="song-lyric">
+                <h3 ng-if="songs.song.description" translate="SONG_DESCRIPTION"></h3>
+                <p ng-if="songs.song.description" ng-bind="songs.song.description"></p>
+                <h3 ng-if="songs.song.lyric" translate="SONG_LYRIC"></h3>
+                <p ng-if="songs.song.lyric" ng-bind="songs.song.lyric"></p>
+            </div>
+
+            <h3 class="songs-others">{{'ALBUM' | translate}}: {{songs.album.title}}</h3>
+            <md-list class="album-song-list">
+                <md-list-item ng-repeat="track in songs.album.songs" ui-sref="public.songs({id: track.id})" class="md-3-line">
+                    <div class="action-play md-avatar" ng-click="songs.playSongFromAlbum(track, $event)">
+                        <i ng-if="app.currentSong.id != track.id" class="flaticon-media23"></i>
+                        <i ng-if="app.currentSong.id == track.id && app.PlayerAPI.currentState != 'play'" class="flaticon-media23"></i>
+                        <music-waves ng-if="app.currentSong.id == track.id && app.PlayerAPI.currentState == 'play'" />
+                    </div>
+                    <div class="md-list-item-text">
+                        <h3>{{ track.title }}</h3>
+                    </div>
+                    <div ng-bind="track.duration | duration"></div>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        
+
+        <div class="comments">
+            
+            <comment-list 
+                comments="songs.song.comments"
+                current="songs.currentUser"
+                comentable-model="'song'"
+                comentable-id="songs.song.id">
+            </comment-list>
+
+            <comment-form 
+                loading="app.isLoading"
+                ng-if="songs.currentUser"
+                current="songs.currentUser"
+                comentable-model="'song'"
+                comentable-id="songs.song.id">
+            </comment-form>
+        </div>
+    </div>
+    
+    <div flex="30" class="song-sidebar" hide-xs>
+        <div class="white-panel songs-stats">
+            <h3 translate="SONGS_STATS"></h3>
+            <p><i class="flaticon-pulse2"></i> <strong ng-bind="songs.song.plays"></strong> Plays</p>
+            <p><i class="flaticon-favorite21"></i> <strong ng-bind="songs.song.favorites"></strong> Favorites</p>
+            <p><i class="flaticon-comments16"></i> <strong ng-bind="songs.song.comments.length"></strong> Comments</p>
+        </div>
+
+        <div ng-if="songs.similar" class="white-panel songs-similar">
+            <h3 translate="SONGS_SIMILAR"></h3>
+            <md-list>
+                <md-list-item ng-repeat="track in songs.similar" ui-sref="public.songs({id: track.id})" class="md-3-line">
+                    <img ng-src="{{track.album.image}}" alt="{{track.title}}" class="md-avatar" />
+                    <div class="md-list-item-text">
+                        <h3>{{ track.title }}</h3>
+                        <p>{{track.duration | duration}}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+        <users-widget title="'SONGS_LIKED_BY' | translate" users="songs.users" />
+    </div>
+
+</div>

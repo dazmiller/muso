@@ -1,0 +1,68 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-posts">
+    <div ng-include="'posts/posts.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div flex class="admin-content">
+        <h2 ng-if="!postsCtr.post.id" translate="POSTS_NEW"></h2>
+        <h2 ng-if="postsCtr.post.id" translate="POSTS_EDIT"></h2>
+
+        <div layout="row" layout-xs="column" layout-sm="column">
+            <div flex="70" flex-xs="100" flex-sm="100">
+                <div class="admin-panel">
+
+                    <md-input-container>
+                        <label translate="POSTS_TITLE"></label>
+                        <input ng-model="postsCtr.post.title">
+                    </md-input-container>
+
+                    <div class="posts-content-editor">
+                        <medium-editor ng-model="postsCtr.post.content">
+                        </medium-editor>
+                    </div>
+
+                </div>
+
+            </div>
+            <div flex="30" flex-xs="100" flex-sm="100" class="admin-options">
+                <div class="admin-panel">
+                    <h4 translate="POSTS_OPTIONS"></h4>
+
+                    <md-checkbox ng-model="postsCtr.post.allow_comments" aria-label="Allow commnets">
+                        {{'POSTS_ALLOW_COMMENTS' | translate}}
+                    </md-checkbox>
+
+                    <md-checkbox ng-model="postsCtr.post.published" aria-label="Published">
+                        {{'POSTS_PUBLISHED' | translate}}
+                    </md-checkbox>
+
+                    <md-button ng-click="postsCtr.save(postsCtr.post)" ng-disabled="app.isLoading" class="md-raised md-primary">
+                        <i class="flaticon-save2"></i>
+                        {{'SAVE'|translate}}
+                    </md-button>
+                </div>
+
+                <div class="admin-panel">
+                    <h4 translate="POSTS_IMAGE"></h4>
+                    <div ng-class="{'admin-update-image':postsCtr.post.file}" class="admin-upload-image">
+                        <i ng-if="!postsCtr.post.file" class="flaticon-cloud-storage3"></i>
+                        <p ng-if="!postsCtr.post.file" translate="POSTS_UPLOAD_IMAGE"></p>
+                        
+                        <img ng-if="postsCtr.post.image" ng-src="{{postsCtr.post.image}}" id="post-image">
+                        <p ng-if="postsCtr.post.image" translate="POSTS_UPDATE_IMAGE"></p>
+
+                        <input type="file" file-model="postsCtr.post.asset">
+                    </div>
+                </div>
+
+                <div class="admin-panel">
+                    <h4 translate="POSTS_AUTHOR"></h4>
+                    <div ui-sref="members.profiles({id:postsCtr.post.author.id})" class="admin-upload-image admin-update-image">
+                        <img ng-src="{{postsCtr.post.author.image}}" />
+                        <p ng-bind="postsCtr.post.author.name"></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

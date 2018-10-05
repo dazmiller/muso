@@ -1,0 +1,59 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-comments">
+    <div ng-include="'comments/comments.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div infinite-scroll="commentsCtr.nextPage($page)" flex class="admin-content">
+        <div ng-if="commentsCtr.comments.length" layout="row" class="admin-comments-title-bar">
+            <h2 flex translate="COMMENTS_ALL"></h2>
+            <p> Showing <strong ng-bind="commentsCtr.current"></strong> of <strong ng-bind="commentsCtr.total"></strong></p>
+        </div>
+
+        <div ng-if="commentsCtr.comments.length" class="admin-grid-panel">
+            <md-list>
+                  <md-list-item ng-repeat="comment in commentsCtr.comments" ui-sref="admin.comments.show({id:comment.id})" class="md-3-line">
+                    <img ng-src="{{comment.author.image}}" class="md-avatar" alt="{{comment.author.name}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{comment.author.name}}</h3>
+                        <p>
+                            <strong>{{comment.title}}</strong>
+                            {{ comment.body | ellipsis:true:80 }}
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <i ui-sref="admin.comments.show({id:comment.id})" class="flaticon-pencil125"></i>
+                        <i ng-click="commentsCtr.deleteComment(comment,$event)" class="flaticon-garbage21"></i>
+                    </div>
+                  </md-list-item>
+            </md-list>
+        </div>
+
+        <div ng-if="!commentsCtr.comments.length" class="admin-panel comments-empty-message">
+            <div class="admin-empty-data">
+                <i class="flaticon-comments16"></i>
+                <p translate="COMMENTS_EMPTY"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<md-sidenav class="admin-form-sidenav md-sidenav-right md-whiteframe-z2" md-component-id="comment-form" layout="column" layout-fill>
+    <md-toolbar class="admin-form-toolbar-title">
+        <h1 ng-if="!commentsCtr.comment.id" translate="GENRES_ADD" class="md-toolbar-tools"></h1>
+        <h1 ng-if="commentsCtr.comment.id" translate="GENRES_EDIT" class="md-toolbar-tools"></h1>
+    </md-toolbar>
+    <div flex layout-padding class="admin-sidebar-form-content">
+
+        <md-input-container>
+            <label for="comment-title" translate="GENRES_NAME"></label>
+            <input type="text" id="comment-title" ng-model="commentsCtr.comment.title" md-autofocus></input>
+        </md-input-container>
+
+    </div>
+    <div>
+        <md-button ng-click="commentsCtr.save(commentsCtr.comment)" class="md-primary md-raised">
+            {{ 'SAVE' | translate}}
+        </md-button>
+        <md-button ng-click="commentsCtr.toggleForm()" class="md-raised">
+            {{ 'CANCEL' | translate}}
+        </md-button>
+    </div>
+</md-sidenav>

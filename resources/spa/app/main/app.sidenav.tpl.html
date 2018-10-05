@@ -1,0 +1,88 @@
+
+<md-toolbar class="sidenav-menu-title">
+    <h1><i class="flaticon-ecg2"></i> <span>{{app.TITLE}}</span></h1>
+</md-toolbar>
+
+<md-content flex>
+    <ul ng-if="app.user.admin" class="main-menu menu-admin">
+        <li class="menu-title"><span translate="ADMIN"></span></li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.dashboard"><i class="flaticon-pulse2"></i> <span translate="DASHBOARD"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.albums.all"><i class="flaticon-music79"></i> <span translate="ALBUMS"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.posts.all"><i class="flaticon-books71"></i> <span translate="BLOG"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.comments"><i class="flaticon-comments16"></i> <span translate="COMMENTS"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.genres"><i class="flaticon-playlist"></i> <span translate="GENRES"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.users.all"><i class="flaticon-man42"></i> <span translate="USERS"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="admin.configurations"><i class="flaticon-levels14"></i> <span translate="CONFIGURATIONS"></span></a>
+        </li>
+    </ul>
+
+    <ul ng-if="app.user.author" class="main-menu menu-admin">
+        <li class="menu-title"><span translate="AUTHORS"></span></li>
+        <!-- <li ui-sref-active="active">
+            <a ui-sref="authors.dashboard"><i class="flaticon-pulse2"></i> <span translate="DASHBOARD"></span></a>
+        </li> -->
+        <li ui-sref-active="active">
+            <a ui-sref="authors.mymusic.all"><i class="flaticon-music34"></i> <span translate="MY_MUSIC"></span></a>
+        </li>
+    </ul>
+
+    <ul class="main-menu menu-discovery">
+        <li class="menu-title"><span translate="DISCOVER"></span></li>
+        <li ui-sref-active="active">
+            <a ui-sref="public.discover"><i class="flaticon-music170"></i> <span translate="TRENDING"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="public.explore.genre({genre:'all'})"><i class="flaticon-list31"></i> <span translate="EXPLORE"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="public.blog"><i class="flaticon-books71"></i> <span translate="BLOG"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="public.artists"><i class="flaticon-microphone52"></i> <span><span translate="ARTISTS"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="public.videos"><i class="flaticon-youtube28"></i> <span translate="VIDEOS"></span></a>
+        </li> 
+        <li ui-sref-active="active">
+            <a ui-sref="public.about"><i class="flaticon-letterx5"></i> <span translate="ABOUT"></span></a>
+        </li> 
+    </ul>
+
+    <ul class="main-menu playlists-menu">
+        <li class="menu-title"><span translate="YOUR_MUSIC"></span></li>
+        <li ui-sref-active="active">
+            <a ui-sref="members.favorites"><i class="flaticon-favorite21"></i> <span translate="FAVORITES"></span></a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="members.history"><i class="flaticon-clock14"></i> <span translate="HISTORY"></span></a>
+        </li>
+    </ul>
+
+    <ul ng-if="app.user" class="main-menu playlists-menu">
+        <li class="menu-title"><span translate="PLAYLISTS"></span> <i ng-click="app.addPlaylist($event)" class="flaticon-add200 add-playlist"></i></li>
+        <li ui-sref-active="active" ng-repeat="playlist in app.user.playlists" class="playlist-item">
+            <a ui-sref="members.playlists({id:playlist.id})"><i class="flaticon-song"></i> <span ng-bind="playlist.title"></span></a>
+        </li>
+    </ul>
+
+</md-content>
+
+<md-toolbar class="sidenav-menu-footer">
+<!--     <div class="md-toolbar-tools current-user">
+        <img ng-src="{{app.user.image}}?type=large" class="avatar" />
+        <span ng-bind="app.user.name"></span>
+    </div> -->
+</md-toolbar>

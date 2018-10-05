@@ -1,0 +1,12 @@
+<div class="admin-panel">
+
+  <md-switch class="md-primary" name="APP_FACEBOOK_ENABLED" ng-model="configCtr.configs.APP_FACEBOOK_ENABLED" ng-true-value="true" ng-false-value="false" required>
+    {{'CONFIG_FACEBOOK_ENABLE' | translate}}
+  </md-switch>
+
+  <md-input-container>
+    <label translate="CONFIG_FACEBOOK_APP_ID"></label>
+    <input ng-model="configCtr.configs.APP_FACEBOOK_APP_ID">
+  </md-input-container>
+
+</div>

@@ -1,0 +1,53 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-comments">
+    <div ng-include="'comments/comments.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <div flex class="admin-content">
+        <h2 translate="COMMENTS_EDIT"></h2>
+
+        <div layout="row" layout-xs="column" layout-sm="column">
+            <div flex="70" flex-xs="100" flex-sm="100">
+                <div class="admin-panel">
+
+                    <md-list>
+                      <md-list-item class="md-3-line">
+                        <img ng-src="{{commentsCtr.comment.author.image}}" class="md-avatar" alt="{{commentsCtr.comment.author.name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{commentsCtr.comment.author.name}}</h3>
+                            <p ng-bind="commentsCtr.comment.time.date | timeAgo"></p>
+                        </div>
+                      </md-list-item>
+                </md-list>
+
+                    <md-input-container>
+                        <label translate="COMMENTS_TITLE"></label>
+                        <input ng-model="commentsCtr.comment.title">
+                    </md-input-container>
+                    
+
+                    <md-input-container class="md-block">
+                        <label translate="COMMENTS_CONTENT"></label>
+                        <textarea ng-model="commentsCtr.comment.body" columns="1" rows="7"></textarea>
+                    </md-input-container>
+
+                </div>
+
+            </div>
+            <div flex="30" flex-xs="100" flex-sm="100" class="admin-options">
+                <div class="admin-panel">
+                    <h4 translate="USERS_OPTIONS"></h4>
+
+                    <md-checkbox ng-model="commentsCtr.comment.published" aria-label="Author">
+                        {{'COMMENTS_PUBLISHED' | translate}}
+                    </md-checkbox>
+
+
+                    <md-button ng-click="commentsCtr.save(commentsCtr.comment)" ng-disabled="app.isLoading" class="md-raised md-primary">
+                        <i class="flaticon-save2"></i>
+                        {{'SAVE'|translate}}
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

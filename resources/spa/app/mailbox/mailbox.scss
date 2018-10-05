@@ -1,0 +1,152 @@
+
+.mailbox-compose {
+    .mailbox-content {
+        height: 500px;
+    }
+
+    .mailbox-to-field {
+        md-autocomplete {
+            background: none;
+
+            .md-whiteframe-z1 {
+                box-shadow: none;
+            }
+
+            button {
+                display: none;
+            }
+        }
+    }
+
+    .mailbox-title-field {
+        margin-top: 40px;
+    }
+}
+
+.md-autocomplete-suggestions li {
+    height: 55px;
+}
+
+.mailbox-user-to {
+    padding: 5px 0;
+
+    img {
+        border-radius: 50%;
+        height:40px;
+        width: 40px;
+    }
+
+    .mailbox-user-to-info {
+        padding-left: 15px;
+    }
+
+    h4, p {
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    h4 {
+        font-size: 20px;
+        line-height: 25px;
+
+        .highlight {
+            color: #000;
+            font-weight: 400;
+        }
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 16px;
+        color: #aaa;
+    }
+
+    .mailbox-edit-icon {
+        color: #aaa;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            color: #000;
+        }
+    }
+}
+
+.mailbox-show {
+    .mailbox-message {
+        border-bottom: 1px solid #f1f1f1;
+        box-shadow: none;
+        margin: 0;
+        padding: 15px 0;
+
+        &.message-collapsed {
+            background-color: #fdfdfd;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: #fff;
+            }
+        }
+
+        md-card-header {
+            padding-left: 0;
+            padding-right: 0;
+
+            md-card-avatar {
+                margin: 0 12px;
+            }
+
+            .md-user-avatar, .md-title {
+                cursor: pointer;  
+                transition: all 0.3s; 
+            }
+
+            .md-user-avatar:hover, .md-title:hover {
+                color: rgba(0,0,0,1);
+                opacity: 0.7;
+            }
+        }
+
+        md-card-content {
+            padding-left: 50px;
+
+            p {
+                white-space: pre-line;
+            }
+        }
+
+        button {
+            margin: 0;
+        }
+    }
+
+    .mailbox-message:first-child {
+        padding-top: 0;
+    }
+    
+    .mailbox-message:last-child {
+        border: none;
+        padding-bottom: 0;
+    }
+
+    .mailbox-reply {
+        padding-top: 0;
+    }
+}
+
+.mailbox-thread-list {
+    .md-list-item-text {
+        align-items: center;
+        cursor: pointer;
+        padding: 5px 0;
+    }
+    .mailbox-tread-read {
+        background-color: #fdfdfd;
+    }
+}
+
+.mailbox-time {
+    font-size: 14px;
+    color: rgba(0,0,0,0.54);
+}

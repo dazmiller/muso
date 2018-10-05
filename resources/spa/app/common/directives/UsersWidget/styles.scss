@@ -1,0 +1,21 @@
+
+.users-widget {
+  padding: 10px;
+  margin-top: 20px;
+
+  h3 {
+    margin: 0;
+  }
+
+  .users-widget-user {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+    margin: 5px;
+    width: 40px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

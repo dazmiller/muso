@@ -1,0 +1,56 @@
+<div flex layout="row" layout-xs="column" layout-fill class="mailbox">
+    <div ng-include="'mailbox/mailbox.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+    <!-- <div infinite-scroll="mailboxCtl.nextPage($page)" flex class="admin-content"> -->
+    <div flex class="admin-content">
+        <div layout="row" class="admin-albums-title-bar">
+            <h2 flex translate="MAILBOX_INBOX"></h2>
+            <p>
+                Showing
+                <strong ng-bind="mailboxCtl.current"></strong>
+                of
+                <strong ng-bind="mailboxCtl.total"></strong>
+                <!-- <md-button ng-click="mailboxCtl.toggleSearch()" class="icon-button" aria-label="Toggle Search">
+                    <i class="flaticon-magnifier13"></i>
+                </md-button> -->
+            </p>
+        </div>
+
+        <!-- <div ng-if="mailboxCtl.searching" class="admin-panel admin-albums-search">
+            <md-input-container>
+                <label translate="ALBUMS_SEARCH"></label>
+                <input ng-model="mailboxCtl.query">
+            </md-input-container>
+            <md-button ng-click="mailboxCtl.search()" class="md-raised md-primary" aria-label="Search">
+                <i class="flaticon-magnifier13"></i> {{'SEARCH'|translate}}
+            </md-button>
+            <md-button ng-click="mailboxCtl.toggleSearch()" aria-label="Cancel">
+                {{'CANCEL'|translate}}
+            </md-button>
+        </div> -->
+
+        <div ng-if="mailboxCtl.threads.length > 0" class="admin-grid-panel mailbox-thread-list">
+            <md-list>
+                <md-list-item ng-repeat="thread in mailboxCtl.threads" class="md-3-line" ng-class="{'mailbox-tread-read': thread.read}">
+                    <div ui-sref="members.mailbox.show({id: thread.id})" class="md-list-item-text" layout="row">
+                        <img ng-if="thread.author.image" ng-src="{{thread.author.image}}" class="md-avatar" alt="{{thread.author.name}}" />
+                        <div layout="column">
+                            <h3><span ng-if="mailboxCtl.isSent">{{ 'MAILBOX_TO' | translate }}:</span> {{ thread.author.name }}</h3>
+                            <p><strong ng-bind="thread.title"></strong> {{ thread.excerpt | ellipsis:true:50 }}</p>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <span ng-bind="thread.time.date | timeAgo" class="mailbox-time"></span>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        <div ng-if="!mailboxCtl.threads.length" class="admin-panel comments-empty-message">
+            <div class="admin-empty-data">
+                <i class="flaticon-black218"></i>
+                <p translate="MAILBOX_EMPTY"></p>
+            </div>
+        </div>
+    </div>
+</div>

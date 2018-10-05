@@ -1,0 +1,12 @@
+<md-list ng-if="profiles.followers.length > 0">
+  <md-list-item class="md-3-line" ng-repeat="follower in profiles.followers" ng-click="app.showProfile(follower.id)" aria-label="Show profile">
+    <img ng-src="{{follower.image}}" class="md-avatar" alt="{{follower.name}}" />
+    <div class="md-list-item-text" layout="column">
+      <h3 ng-bind="follower.name"></h3>
+      <h4 ng-bind="follower.time.date | timeAgo"></h4>
+      <p ng-bind="follower.occupation"></p>
+    </div>
+  </md-list-item>
+</md-list>
+
+<p ng-if="profiles.followers.length == 0"><strong ng-bind="profiles.user.name"></strong> {{ 'PROFILE_FOLLOWERS_NONE' | translate}}</p>

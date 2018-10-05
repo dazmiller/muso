@@ -1,0 +1,40 @@
+
+.search-results {
+  overflow: auto;
+  padding: 0 20px;
+
+  h2 {
+    margin: 20px 10px 15px;
+  }
+
+  h3 {
+    margin-left: 10px;
+  }
+
+  .admin-content {
+    margin-top: 50px;
+  }
+
+  .search-result-songs {
+    margin: 0 10px;
+  }
+  .search-result-song {
+    padding: 20px 0;
+    border-bottom: 1px solid #fff;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .song {
+    .song-poster {
+      cursor: pointer;
+      transition: all ease 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

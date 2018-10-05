@@ -1,0 +1,53 @@
+<div flex layout="row" layout-fill class="explore">
+    
+    <div infinite-scroll="exploreCtr.nextPage($page)" flex class="explore-content">
+        <h2 ng-if="exploreCtr.genre.name">{{ 'GENRE' | translate }}: {{exploreCtr.genre.name}}</h2>
+        <h2 ng-if="exploreCtr.selectedTag">{{ 'TAG' | translate }}: {{exploreCtr.selectedTag}}</h2>
+        
+        <div ng-if="exploreCtr.songs.length == 0" class="admin-content">
+            <div class="admin-panel comments-empty-message">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="ALBUMS_ADMIN_EMPTY"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div ng-repeat="song in exploreCtr.songs" class="explore-song">
+            <mini-player song="song" api="app.PlayerAPI" current="app.currentSong" playlist="exploreCtr.songs"></mini-player>
+        </div>
+    </div>
+
+    <div class="common-sidebar explore-sidebar" layout="column" hide-xs>
+        <div class="explore-list">
+            <md-list>
+                <md-subheader>Most popular</md-subheader>
+                <md-list-item class="md-3-line" ng-class="{active:exploreCtr.popular == 'week'}">
+                    <a ng-click="exploreCtr.setPopularity('week')">This Week</a>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{active:exploreCtr.popular == 'month'}">
+                    <a ng-click="exploreCtr.setPopularity('month')">This Month</a>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{active:exploreCtr.popular == 'all'}">
+                    <a ng-click="exploreCtr.setPopularity('all')">All Time</a>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div flex class="explore-list">
+            <md-list>
+                <md-subheader>Genres</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="genre in exploreCtr.genres" ng-class="{active:exploreCtr.selectedGenre == genre.id}">
+                    <a ui-sref="public.explore.genre({genre: genre.id})" ng-bind="genre.name"></a>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div flex class="explore-list" ng-if="exploreCtr.tags.length > 0">
+            <md-list>
+                <md-subheader>Tags</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="tag in exploreCtr.tags" ng-class="{active: exploreCtr.selectedTag == tag.name}">
+                    <a ui-sref="public.explore.tag({tag:tag.name})" ng-bind="tag.name"></a>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</div>

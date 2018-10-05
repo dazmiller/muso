@@ -1,0 +1,91 @@
+<div flex layout-lg="row" layout-md="row" layout-gt-lg="row" layout-sm="column" layout-fill class="discover">
+    <div class="discover-trending" flex>
+        <h2 translate="FOR_YOU"></h2>
+        
+        <div ng-if="discover.latests.length == 0" class="admin-content">
+            <div class="admin-panel comments-empty-message">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="ALBUMS_ADMIN_EMPTY"></p>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" layout-wrap>
+            <div ng-repeat="song in discover.recommendations" class="song" flex-xs="100" flex-sm="50" flex-gt-sm="50" flex-md="25" flex-gt-md="25">
+                <div class="song-poster">
+                    <div layout="column" class="song-meta">
+                        <div flex class="song-play-button">
+                            <i ng-click="discover.play(song, discover.recommendations)" class="flaticon-media23"></i>
+                        </div>
+                        <div class="song-info">
+                            <div>
+                                <i ui-sref="public.songs({id:song.id})" class="flaticon-circular263"></i>
+                            </div>
+                            <div><i ng-click="discover.like(song)" class="flaticon-favorite21" ng-class="{'favorite-selected':song.isFavorite}"></i></div>
+                        </div>
+                    </div>
+                    <img ng-src="{{song.album.image}}">
+                </div>
+                <div class="song-details">
+                    <a ui-sref="public.songs({id:song.id})" ng-bind="song.title"></a>
+                    <a ng-click="app.showProfile(song.author.id)" class="song-author" ng-bind="song.author.name"></a>
+                </div>
+            </div>
+
+            <div layout-sm="column" layout-xs="column" layout="row" flex="100" class="new-top-songs" ng-if="discover.latests.length">
+                <div flex="65" flex-sm="100" flex-xs="100">
+                    <h3 translate="LATEST"></h3>
+                    <div layout="row" layout-wrap>
+                        <div ng-repeat="song in discover.latests" class="song" flex-xs="100" flex-sm="30" flex-gt-sm="30" flex-md="25" flex-gt-md="25" flex-lg="25" flex-gt-lg="25">
+                            <div class="song-poster">
+                                <div layout="column" class="song-meta">
+                                    <div flex class="song-play-button">
+                                        <i ng-click="discover.play(song, discover.latests)" class="flaticon-media23"></i>
+                                    </div>
+                                    <div class="song-info">
+
+                                    </div>
+                                </div>
+                                <img ng-src="{{song.album.image}}" />
+                            </div>
+                            <div class="song-details">
+                                <a ui-sref="public.songs({id:song.id})" ng-bind="song.title"></a>
+                                <a ng-click="app.showProfile(song.author.id)" class="song-author" ng-bind="song.author.name"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div flex="35" flex-sm="100" flex-xs="100" class="top-artists" ng-if="discover.artists.length">
+                    <h3 translate="TOP_ARTISTS"></h3>
+                    <md-content >
+                        <md-list>
+                          <md-list-item class="md-3-line" ng-repeat="artist in discover.artists">
+                            <img ng-click="app.showProfile(artist.id)" ng-src="{{artist.image}}" class="md-avatar" alt="{{artist.name}}" />
+                            <div class="md-list-item-text" layout="column">
+                                <h3 ng-click="app.showProfile(artist.id)">{{ artist.name }}</h3>
+                                <p>
+                                    <span><i class="flaticon-pulse2"></i> {{artist.plays | number}}</span> 
+                                    <span><i class="flaticon-favorite21"></i> {{artist.favorites | number}}</span>
+                                </p>
+                            </div>
+                          </md-list-item>
+                        </md-list>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="common-sidebar discover-top-plays" hide-sm ng-if="discover.topTen.length">
+        <h4 translate="TOP_PLAYS"></h4>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="song in discover.topTen">
+            <img ng-click="app.showProfile(song.author.id)" ng-src="{{song.author.image}}" class="md-avatar" alt="{{song.author.name}}" />
+            <div class="md-list-item-text" layout="column">
+              <h3 ui-sref="public.songs({id:song.id})" title="{{ song.name }}">{{ song.title }}</h3>
+              <p>By <a ng-click="app.showProfile(song.author.id)">{{song.author.name}}</a></p>
+            </div>
+          </md-list-item>
+        </md-list>
+    </div>
+</div>

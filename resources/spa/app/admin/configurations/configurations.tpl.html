@@ -1,0 +1,64 @@
+<div flex layout="row" layout-xs="column" layout-fill class="admin-posts configurations">
+  <div ng-include="'configurations/configurations.sidebar.tpl.html'" class="admin-actions-sidebar"></div>
+
+  <div flex class="admin-content">
+    <h2  ng-if="configCtr.tab == 'global'" translate="CONFIG_GLOBAL"></h2>
+    <h2  ng-if="configCtr.tab == 'ga'" translate="CONFIG_GA"></h2>
+    <h2  ng-if="configCtr.tab == 'facebook'" translate="CONFIG_FACEBOOK"></h2>
+    <h2  ng-if="configCtr.tab == 'legal'" translate="CONFIG_LEGAL"></h2>
+    <h2  ng-if="configCtr.tab == 'theme'" translate="CONFIG_THEME"></h2>
+
+    <div layout="row" layout-xs="column" layout-sm="column">
+      <div flex="70" flex-xs="100" flex-sm="100">
+
+        <div ng-if="configCtr.tab == 'global'" ng-include="'configurations/configurations.global.tpl.html'"></div>
+        <div ng-if="configCtr.tab == 'ga'" ng-include="'configurations/configurations.ga.tpl.html'"></div>
+        <div ng-if="configCtr.tab == 'facebook'" ng-include="'configurations/configurations.facebook.tpl.html'"></div>
+        <div ng-if="configCtr.tab == 'legal'" ng-include="'configurations/configurations.legal.tpl.html'"></div>
+        <div ng-if="configCtr.tab == 'theme'" ng-include="'configurations/configurations.theme.tpl.html'"></div>
+
+      </div>
+      <div flex="30" flex-xs="100" flex-sm="100" class="admin-options">
+
+        <div class="admin-panel">
+          <p translate="CONFIG_SURE"></p>
+          <p translate="CONFIG_INSTRUCTIONS_DESC"></p>
+
+          <md-button ng-click="configCtr.save()" ng-disabled="app.isLoading" class="md-raised md-primary">
+            <i class="flaticon-save2"></i>
+            {{'SAVE'|translate}}
+          </md-button>
+        </div>
+        
+        <div ng-if="configCtr.tab == 'theme'" class="admin-panel">
+          <p translate="CONFIG_APPLY_THEME_DESC"></p>
+
+          <md-button ng-click="configCtr.applyTheme()" ng-disabled="app.isLoading" class="md-raised md-primary">
+            <i class="flaticon-save2"></i>
+            {{'CONFIG_APPLY'|translate}}
+          </md-button>
+          <md-button ng-click="configCtr.clearTheme()" ng-disabled="app.isLoading">
+            <i class="flaticon-garbage21"></i>
+            {{'CONFIG_CLEAR'|translate}}
+          </md-button>
+        </div>
+
+        <!-- <div class="admin-panel">
+          <h4 translate="CONFIG_LOGO"></h4>
+          <div ng-class="{'admin-update-image':postsCtr.post.file}" class="admin-upload-image">
+            <i ng-if="!postsCtr.post.file" class="flaticon-cloud-storage3"></i>
+            <p ng-if="!postsCtr.post.file" translate="CONFIG_UPLOAD_LOGO"></p>
+          
+            <img ng-if="postsCtr.post.image" ng-src="{{postsCtr.post.image}}" id="post-image">
+            <p ng-if="postsCtr.post.image" translate="CONFIG_UPDATE_LOGO"></p>
+          
+            <input type="file" file-model="postsCtr.post.asset">
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

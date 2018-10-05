@@ -1,0 +1,69 @@
+<h3 translate="PROFILE_GENERAL_INFORMATION"></h3>
+<div layout-xs="column" layout="row">
+    <div flex class="profile-fields">
+        <md-input-container>
+            <label translate="PROFILE_NAME"></label>
+            <input ng-model="profiles.user.name" required />
+        </md-input-container>
+
+        <md-input-container>
+            <label translate="PROFILE_OCCUPATION"></label>
+            <input ng-model="profiles.user.occupation">
+        </md-input-container>
+
+        <div layout="row" class="profile-dob-gender">
+            <div flex>
+                <md-datepicker ng-model="profiles.user.dob" md-placeholder="{{'PROFILE_DOB' | translate}}">
+                </md-datepicker>
+            </div>
+            <div class="profile-space">
+            </div>
+            <div flex>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Gender</label>
+                    <md-select ng-model="profiles.user.gender">
+                        <md-option ng-repeat="gender in profiles.genders" value="{{gender}}">
+                        {{gender}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+    </div>
+    <div flex class="profile-fields">
+        <md-input-container>
+            <label translate="PROFILE_EMAIL"></label>
+            <input ng-model="profiles.user.email" required />
+        </md-input-container>
+
+        <md-input-container>
+            <label translate="PROFILE_WEBSITE"></label>
+            <input ng-model="profiles.user.website">
+        </md-input-container>
+
+        <md-input-container>
+            <label translate="PROFILE_RESIDENCY"></label>
+            <input ng-model="profiles.user.country">
+        </md-input-container>
+    </div>
+</div>
+<md-input-container class="md-block">
+    <label translate="PROFILE_ABOUT"></label>
+    <textarea ng-model="profiles.user.about" columns="1" md-maxlength="350" rows="7"></textarea>
+</md-input-container>
+<md-button ng-click="profiles.save(profiles.user)" class="md-raised md-primary"> <i class="flaticon-save2"></i> {{'SAVE' | translate}}</md-button>
+
+
+<h3 translate="PROFILE_CHANGE_PASSWORD"></h3>
+<p translate="PROFILE_CHANGE_FREQUENTLY"></p>
+<md-input-container>
+    <label translate="PROFILE_USER"></label>
+    <input ng-model="profiles.user.email" disabled>
+</md-input-container>
+<md-input-container>
+    <label translate="PROFILE_PASWD"></label>
+    <input ng-model="profiles.user.password" type="password" />
+</md-input-container>
+<md-button class="md-raised md-primary" ng-click="profiles.savePasswd(profiles.user)">
+    <i class="flaticon-save2"></i> {{'SAVE' | translate}}
+</md-button>

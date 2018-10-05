@@ -1,0 +1,98 @@
+<div flex layout="row" layout-fill class="favorites">
+    <div ng-if="playlistsCtr.playlist.songs.length" class="common-sidebar favorites-sidebar">
+        <div layout="row">
+            <h4 flex ng-bind="playlistsCtr.playlist.title"></h4>
+            <i ng-click="app.addPlaylist($event, playlistsCtr.playlist)" class="flaticon-pencil125 playlist-edit"></i>
+            <i ng-click="app.removePlaylist(playlistsCtr.playlist, $event)" class="flaticon-garbage21 playlist-remove"></i>
+        </div>
+        <md-list class="playlist">
+            <md-list-item ng-repeat="song in playlistsCtr.playlist.songs" ng-click="playlistsCtr.show(song)" aria-label="song.title" class="md-3-line" ng-class='{}'>
+                <i ng-click="playlistsCtr.play(song, $event)" class="flaticon-media23 playlist-song-play"></i>
+                <div flex class="playlist-song-title" ng-bind="song.title"></div>
+                <i ng-click="playlistsCtr.removeFromList(playlistsCtr.playlist, song, $event)" class="flaticon-garbage21 playlist-song-remove"></i>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <div flex class="favorites-content songs">
+        
+        <div ng-if="playlistsCtr.playlist.songs.length && playlistsCtr.song" class="song-details">
+            <div class="white-panel songs-panel">
+                <div layout="row" class="songs-info">
+                    <div flex="30">
+                        <img ng-src="{{playlistsCtr.song.album.image}}" class="album-art" />
+                    </div>
+                    <div class="songs-data" flex="70">
+                        <h2 ng-bind="playlistsCtr.song.title"></h2>
+                        <div layout="row" class="song-author">
+                            <img ui-sref="members.profiles({id:playlistsCtr.song.author.id})" ng-src="{{playlistsCtr.song.author.image}}" alt="{{playlistsCtr.song.author.name}}">
+                            <div flex>
+                                <h3 ui-sref="members.profiles({id:playlistsCtr.song.author.id})" ng-bind="playlistsCtr.song.author.name"></h3>
+                                <p>{{'SONG_PUBLISHED' | translate}} {{playlistsCtr.song.album.released}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="song-actions">
+                            <md-button ng-click="playlistsCtr.play(playlistsCtr.song, $event)" class="md-raised md-primary"><i class="flaticon-media23"></i> {{'SONG_PLAY' | translate}}</md-button>
+                            <md-button ng-disabled="app.isLoading" ng-click="playlistsCtr.like(playlistsCtr.song)" class="md-raised"><i class="flaticon-favorite21" ng-class="{'favorite-selected':playlistsCtr.song.isFavorite}"></i> {{'SONG_FAVORITES' | translate}}</md-button>
+                            <md-button ng-disabled="app.isLoading" ng-if="app.downloable" ng-click="app.download(playlistsCtr.song)" class="md-raised" ><i class="flaticon-cloud107"></i> {{'SONG_DOWNLOAD' | translate}}</md-button>
+                        </div>
+
+                        <div class="tags" ng-if="playlistsCtr.song.tags.length">
+                            <p>Tags: <a ng-repeat="tag in playlistsCtr.song.tags" ui-sref="public.explore.tag({tag:tag.name})">{{tag.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="song-lyric">
+                    <h3 ng-if="playlistsCtr.song.description" translate="SONG_DESCRIPTION"></h3>
+                    <p ng-if="playlistsCtr.song.description" ng-bind="playlistsCtr.song.description"></p>
+                    <h3 ng-if="playlistsCtr.song.lyric" translate="SONG_LYRIC"></h3>
+                    <p ng-if="playlistsCtr.song.lyric" ng-bind="playlistsCtr.song.lyric"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Render if the playlist is empty -->
+        <div ng-if="playlistsCtr.playlist.songs.length == 0" ng-if="!playlistsCtr.song" class="admin-content">
+            <div class="admin-panel">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="PLAYLIST_EMPTY"></p>
+                    <md-button ui-sref="public.discover" class="md-raised">{{'DISCOVER' | translate}}</md-button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="playlistsCtr.playlist.songs.length && !playlistsCtr.song" class="admin-content">
+            <div class="admin-panel">
+                <div class="admin-empty-data">
+                    <i class="flaticon-music170"></i>
+                    <p translate="FAVORITES_EMPTY"></p>
+                    <md-button ui-sref="public.discover" class="md-raised">{{'DISCOVER' | translate}}</md-button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="playlistsCtr.song" class="comments">
+            
+            <comment-list 
+                comments="playlistsCtr.song.comments"
+                current="app.user"
+                comentable-model="'song'"
+                comentable-id="playlistsCtr.song.id">
+            </comment-list>
+
+            <comment-form 
+                ng-if="app.user"
+                loading="app.isLoading"
+                current="app.user"
+                comentable-model="'song'"
+                comentable-id="playlistsCtr.song.id">
+            </comment-form>
+        </div>
+        
+    </div>
+
+</div>

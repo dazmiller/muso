@@ -1,0 +1,53 @@
+
+body {
+  background: url("../assets/background.jpg") no-repeat;
+  background-size: cover;
+}
+
+.main {
+  margin: 100px auto;
+  padding: 25px;
+  width: 500px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.1);
+  border:1px solid rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.main-content {
+  margin: 20px 0;
+  min-height: 300px;
+}
+
+.run-installer {
+  text-align: center;
+}
+
+.footer-bar {
+  text-align: right;
+}
+
+.footer-bar button {
+  margin-left: 20px;
+}
+
+.final-installer-step {
+  width: 100%;
+}
+
+.final-installer-status {
+  display: flex;
+  flex-direction: row;
+
+  p {
+    flex: 1;
+    margin: 0;
+  }
+
+  span {
+    padding-top: 7px;
+  }
+}
+
+.final-installer-response {
+  padding-top: 20px;
+}

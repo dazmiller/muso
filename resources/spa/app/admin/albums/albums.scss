@@ -1,0 +1,25 @@
+@import '../../common/styles/colors.scss';
+
+.admin-albums{
+    
+    .admin-actions-sidebar .md-button:first-child{
+        margin-bottom:0;
+    }
+    .admin-albums-title-bar{
+        padding: 20px 10px 15px;
+        h2{
+            margin:0;
+        }
+        p{
+            margin:0;
+            margin-top: 8px;
+            color:$text-color-alt;
+        }
+    }
+
+    .admin-albums-search{
+        md-input-container{
+            margin-bottom: 0;
+        }
+    }
+}

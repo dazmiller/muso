@@ -1,0 +1,28 @@
+@import '../../common/styles/colors.scss';
+
+.admin-comments{
+    .admin-actions-sidebar .md-button:first-child {
+        margin-bottom: 0px;
+    }
+    .admin-comments-title-bar{
+        padding: 20px 10px 15px;
+        h2{
+            margin:0;
+        }
+        p{
+            margin:0;
+            margin-top: 8px;
+            color:$text-color-alt;
+        }
+    }
+
+    md-list{
+        h3{
+            text-transform: capitalize;
+        }
+    }
+
+    .comments-empty-message {
+        margin-top: 30px;
+    }
+}

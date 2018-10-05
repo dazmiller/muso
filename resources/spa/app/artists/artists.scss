@@ -1,0 +1,76 @@
+.artists{
+
+    .artists-content{
+        padding: 0 20px;
+        overflow: auto;
+        h2{
+            margin: 20px 10px 15px;
+        }
+
+        .song-poster img{
+            cursor: pointer;
+        }
+            
+        .song-details{
+            p{
+                margin:0;
+                font-size: 14px;
+                color:#aaa;
+
+                span{
+                    float:right;
+                }
+                
+                i:before{
+                    font-size:14px;
+                }
+            }
+        }
+    }
+
+    .artists-filters{
+        width:200px;
+        padding:0px;
+        background-color: #dde6e9;
+        
+        .countries-list {
+            overflow: auto;
+        }
+        
+        .md-subheader {
+            background-color: #dde6e9;
+            font-weight: bold;
+        }
+
+        md-list-item {
+            min-height: 20px;
+            padding: 0;
+            border-bottom: 1px solid #f0f3f4;
+
+            a {
+                display: block;
+                text-align: left;
+                width: 100%;
+                padding: 10px 15px;
+                text-decoration: none;
+                transition: background-color 0.2s ease-in-out 0s;
+                font-size: 14px;
+                color: #545a5f;
+                text-transform: capitalize;
+            }
+        }
+
+        md-list-item.active {
+            background-color: #1ABC9C;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
+
+    .admin-content {
+        padding: 0;
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,10 @@
+
+<md-button ui-sref="authors.mymusic.add" class="md-raised md-warn"><i class="flaticon-add200"></i> New Album</md-button>
+
+<md-button ng-if="mymusic.isForm" ng-click="mymusic.redirectTo('all')" ui-sref-active="md-primary md-raised"><i class="flaticon-list36"></i> All Albums</md-button>
+<md-button ng-if="mymusic.isForm" hide-xs ng-click="mymusic.redirectTo('published')" ui-sref-active="md-primary md-raised"><i class="flaticon-list92"></i> Published</md-button>
+<md-button ng-if="mymusic.isForm" hide-xs ng-click="mymusic.redirectTo('unpublished')" ui-sref-active="md-primary md-raised"><i class="flaticon-list92"></i> Unpublished</md-button>
+
+<md-button ng-if="!mymusic.isForm" ui-sref="authors.mymusic.all" ui-sref-active="md-primary md-raised"><i class="flaticon-list36"></i> All Albums</md-button>
+<md-button ng-if="!mymusic.isForm" hide-xs ui-sref="authors.mymusic.published" ui-sref-active="md-primary md-raised"><i class="flaticon-list92"></i> Published</md-button>
+<md-button ng-if="!mymusic.isForm" hide-xs ui-sref="authors.mymusic.unpublished" ui-sref-active="md-primary md-raised"><i class="flaticon-list92"></i> Unpublished</md-button>

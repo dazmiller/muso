@@ -1,0 +1,52 @@
+<div layout-fill class="search-results">
+  <h2>{{'SEARCH_RESULTS_FOR' | translate}}: <strong ng-bind="searchCtl.query"></strong></h2>
+
+  <div ng-if="searchCtl.totals.songs">
+    <h3>{{searchCtl.totals.songs}} {{'SONGS' | translate}}</h3>
+    <div class="search-result-songs">
+      <div ng-repeat="song in searchCtl.songs" class="search-result-song">
+        <mini-player song="song" api="app.PlayerAPI" current="app.currentSong" playlist="searchCtl.songs"></mini-player>
+      </div>
+    </div>
+  </div>
+
+
+  <div ng-if="searchCtl.totals.albums">
+    <h3>{{searchCtl.totals.albums}} {{'ALBUMS' | translate}}</h3>
+    <div layout="row" layout-wrap>
+      <div ng-repeat="album in searchCtl.albums" class="song" flex-xs="100" flex-sm="50" flex-gt-sm="50" flex-md="20" flex-gt-md="20">
+        <div class="song-poster" ui-sref="public.albums({id:album.id})">
+          <img ng-src="{{album.image}}">
+        </div>
+        <div class="song-details">
+          <a ui-sref="public.albums({id:album.id})" ng-bind="album.title"></a>
+          <a ng-click="app.showProfile(album.author.id)" class="song-author" ng-bind="album.author.name"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div ng-if="searchCtl.totals.artists">
+    <h3>{{searchCtl.totals.artists}} {{'ARTISTS' | translate}}</h3>
+    <div layout="row" layout-wrap>
+      <div ng-repeat="artist in searchCtl.artists" class="song" flex-xs="100" flex-sm="50" flex-gt-sm="50" flex-md="20" flex-gt-md="20">
+        <div class="song-poster" ng-click="app.showProfile(artist.id)">
+          <img ng-src="{{artist.image}}">
+        </div>
+        <div class="song-details">
+          <a ng-click="app.showProfile(artist.id)" ng-bind="artist.name"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="searchCtl.totals.songs == 0 && searchCtl.totals.albums == 0 && searchCtl.totals.artists == 0" class="admin-content">
+    <div class="admin-panel comments-empty-message">
+      <div class="admin-empty-data">
+        <i class="flaticon-music170"></i>
+        <p translate="SEARCH_RESULTS_EMPTY"></p>
+      </div>
+    </div>
+  </div>
+</div>

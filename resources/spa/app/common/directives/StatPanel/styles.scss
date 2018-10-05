@@ -1,0 +1,45 @@
+@import '../../styles/colors.scss';
+
+.stat-panel {
+  background-color: $primary-color;
+  border-radius: 5px;
+  height: 130px;
+  padding: 10px;
+
+  i:before {
+    color: rgba($light-color, 0.5);
+    font-size: 60px;
+    margin-right: 20px;
+  }
+
+  span, h5 {
+    color: rgba($light-color, 0.7);
+    font-size: 16px;
+  }
+
+  h3, h5 {
+    color: $light-color;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .stat-panel-info {
+    height: 72px;
+  }
+
+  .stat-panel-footer {
+    margin-top: 20px;
+  }
+}
+
+.stat-panel.theme1 {
+  background-color: $action-color;
+}
+
+.stat-panel.theme2 {
+  background-color: $cool-color;
+}
+
+.stat-panel.theme3 {
+  background-color: $contrast-color;
+}

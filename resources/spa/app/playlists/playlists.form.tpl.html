@@ -1,0 +1,29 @@
+<md-dialog class="playlists-form" aria-label="Add new playlist"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="ADD_PLAYLIST"></h2>
+            </div>
+        </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            
+            <md-input-container>
+                <label translate="USERS_TITLE"></label>
+                <input ng-model="playlistFormCtrl.playlist.title" required>
+            </md-input-container>
+
+            <!-- For now all playlist will be private -->
+            <!--md-checkbox ng-model="playlist.public" aria-label="Author">
+                {{'PLAYLIST_PUBLIC' | translate}}
+            </md-checkbox-->
+
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">Cancel</md-button>
+        <md-button ng-click="save(playlistFormCtrl.playlist)" ng-disabled="app.isLoading" class="md-primary" md-autofocus>Save</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

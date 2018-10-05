@@ -1,0 +1,682 @@
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700);
+@import '../common/styles/colors.scss';
+@import './icons/flaticon.css';
+
+
+body{
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #788188;
+    background-color: #f0f3f4;
+    height: 100%;
+}
+
+*:focus {
+    outline: 0;
+}
+
+h2,h3,h4{
+    font-size: 30px;
+    font-weight: 300;
+}
+
+h3{
+    font-size: 25px;
+}
+
+h4{
+    font-size: 20px;
+}
+
+a{
+    color:$link-color;
+    text-decoration: none;
+}
+a:hover{
+    color:$link-hover-color;
+    text-decoration: underline;
+}
+
+textarea:focus, input:focus, button:focus, div:focus{
+    outline: 0;
+}
+
+.app-main-container {
+    height: 100%;
+}
+
+md-dialog.md-default-theme{
+    max-width: 400px;
+}
+
+.main-sidenav{
+    .sidenav-menu-title{
+        background-color:$navbar-title-background-color;
+        
+
+        h1{
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 50px;
+            color: $navbar-title-color;
+            text-transform: uppercase;
+        }
+    }
+
+    md-content{
+        background-color:$navbar-background-color;
+        
+
+        .main-menu{
+            list-style: none;
+
+            li.menu-title{
+                span{
+                    font-size: 12px;
+                    color: $navbar-header-color;
+                    text-transform: uppercase;
+                }
+            }
+
+            li{
+                a{
+                    font-weight: normal;
+                    color: $navbar-text-color;
+                    transition: background-color 0.2s ease-in-out 0s;
+                    text-decoration: none;
+                    font-size: 14px;
+                    cursor: pointer;
+                }
+                a:hover{
+                    background-color: $navbar-over-background-color;
+                    color:$navbar-selected-color;
+                }
+            }
+
+            li.active{
+                position:relative;
+
+                a{
+                    color:$navbar-selected-color;
+                    i{
+                        color:$navbar-selected-icon-color;
+                    }
+                }
+
+                &:after{
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-top: 6px solid transparent;
+                    border-bottom: 6px solid transparent;
+                    border-right: 6px solid #34495e;
+                    position: absolute;
+                    top: 50%;
+                    margin-top:-5px;
+                    right: 0;
+                }
+            }
+
+            &.menu-admin{
+                background-color: $navbar-secundary-background-color;
+                
+                li.active:after{
+                    border-right: 6px solid #dde6e9;
+                }
+            }
+        }
+
+        .playlists-menu{
+            li{
+
+                .add-playlist{
+                    float:right;
+                    color: $navbar-header-color;
+                    transition: color 0.2s ease-in-out 0s;
+
+                    &:before{
+                        font-size: 13px;
+                        cursor: pointer;
+                    }
+
+                    &:hover{
+                        color:#fff;
+                    }
+                }
+            }
+        }
+
+        .menu-discovery{
+            background-color: $navbar-secundary-background-color;
+        }
+    }
+
+    &.md-locked-open {
+        md-content {
+            .main-menu li.active:after{
+                border-right: 6px solid #f0f3f4;
+            }
+        }   
+    }
+
+    .sidenav-menu-footer{
+        background-color: $navbar-secundary-background-color;
+    }
+}
+
+.main-viewport{
+    .main-content-toolbar{
+        background-color:#fff;
+
+        .main-search {
+            width: 280px;
+            margin: 10px 0;
+            height: 30px;
+            
+            input{
+                color: #58666e;
+                background-color: #edf1f2;
+                border-radius: 2px;
+                border: none;
+                height: 30px;
+                line-height: 30px;
+                box-sizing: border-box;
+                border: none;
+                box-shadow: none;
+                font-size: 14px;
+                outline: none;
+                width: 100%;
+                padding: 0 15px;
+            }
+        }
+
+        .main-actions {
+            display: flex;
+            flex-direction: row;
+            padding:0 10px;
+            height: 40px;
+            margin-top: 5px;
+
+            .md-button {
+                margin: 0;
+            }
+
+            .md-menu {
+                display: block;
+                margin-left: 10px;
+                color: $text-color-alt;
+
+                i:before {
+                    font-size: 16px;
+                    color: $text-color-alt;
+                }
+            }
+        }
+
+        .md-button{
+            max-width:200px;
+            height: 36px;
+            padding:0 10px;
+            margin: 6px 0;
+
+            img{
+                margin-right: 5px;
+                margin-top: -3px;
+                vertical-align: middle;
+            }
+            span{
+                text-transform: capitalize;
+                color: rgba(0,0,0,0.87);
+            }
+            i{
+                color: rgba(0,0,0,0.87);
+                margin-right: 10px;
+            }
+        }
+
+    }
+
+    .main-view{
+        background-color:#f0f3f4;
+    }
+
+    .main-content-player{
+        background-color:$player-background-color;
+    }
+}
+
+md-menu-content.md-menu-bar-menu.md-dense md-menu-item > .md-button,
+md-menu-content.md-menu-bar-menu.md-dense .md-menu > .md-button {
+    height: 48px;
+}
+
+md-menu-content.md-dense md-menu-item {
+    height: 48px;
+}
+
+md-menu-content.md-menu-bar-menu.md-dense md-menu-item > .md-button > div {
+    width: 100%;
+}
+
+md-menu-content.md-menu-bar-menu.md-dense md-menu-item > .md-button > div.mailbox-message-unread {
+    align-items: center;
+    height: 48px;
+    width: 250px;
+
+    &:hover {
+        color: #788188;
+    }
+}
+
+md-menu-content.md-menu-bar-menu.md-dense md-menu-item > .md-button {
+    &:hover {
+        color: #788188;
+    }
+}
+
+.mailbox-message-unread {
+    img {
+        border-radius: 50%;
+        height: 30px;
+        margin-right: 15px;
+        width: 30px;
+    }
+    p {
+        display: block !important;
+        margin: 0 !important;
+        font-size: 14px;
+        line-height: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 220px;
+    }
+}
+
+.mailbox-unread-total {
+    display: block;
+    border-radius: 8px;
+    font-size: 12px;
+    background-color: $player-background-color;
+    color: $text-color-lighter;
+    position: absolute;
+    padding: 2px 5px;
+    margin-left: 11px;
+    margin-top: -10px;
+}
+
+md-menu-content.md-menu-bar-menu.md-dense md-menu-item.mailbox-unread-empty{
+    height: auto;
+    width: 320px;
+
+    > .md-button {
+        height: auto;
+
+        p {
+            display: block;
+            margin: 30px 0;
+            text-align: center;
+        }
+    }
+}
+
+md-sidenav.main-sidenav{
+    width:200px;
+    min-width: 200px;
+    max-width: 200px;
+
+
+    .sidenav-menu-title{
+        min-height: 50px;
+        h1{
+            margin: 0;
+            padding:0 20px;
+            i{
+                margin-right: 5px;
+            }
+        }
+    }
+
+    md-content{
+        .main-menu{
+            margin:0;
+            padding: 0;
+
+            li{
+                display: block;
+                padding:0;
+                a{
+                    display: block;
+                    padding: 10px 20px;
+                    i{
+                        margin-right: 15px;
+
+                        &:before{
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+
+            li.menu-title{
+                padding: 15px 15px 10px 15px;
+            }
+        }
+
+        .playlists-menu{
+            li.playlist-item{
+                i{
+                    float: left;
+                }
+                span{
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            li.active:after {
+                border-right: 6px solid #2c3e50;
+            }
+        }
+    }
+
+    &.md-locked-open {
+        md-content {
+            .playlists-menu {
+                li.active:after {
+                    border-right: 6px solid #dde6e9;
+                }
+            }
+        }
+    }
+
+    .sidenav-menu-footer{
+        min-height: 50px;
+        max-height: 50px;
+    }
+}
+
+
+.main-viewport{
+    .main-content-toolbar{
+        height:45px;
+        min-height:45px;
+        padding-left:15px;
+    }
+    .main-progess-bar{
+        height: 5px;
+    }
+    .main-view{
+        overflow: hidden;
+    }
+    .main-player {
+        background-color: $player-background-color;
+        height: 50px;
+
+        .main-content-player-info {
+            cursor: pointer;
+            width: 200px;
+
+            &:hover {
+                background-color: $player-timeline-current-background-color;
+            }
+
+            img {
+                border-radius: 3px;
+                height: 35px;
+                margin: 8px 10px;
+                width: 35px;
+            }
+
+            p {
+                margin: 0;
+                color: #fff;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 14px;
+                width: 145px;
+            }
+
+            .song-title {
+                margin-top: 7px;
+            }
+
+            .song-author {
+                font-size: 12px;
+            }
+        }
+    }
+    .main-content-player{
+        min-height: 50px;
+
+        videogular vg-controls, [videogular] vg-controls {
+            width: 100%;
+            height: 50px;
+            display: block;
+        }
+
+        videogular vg-scrub-bar, [videogular] vg-scrub-bar {
+            width: auto;
+            display: table-cell;
+            cursor: pointer;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        videogular vg-scrub-bar [role=slider], [videogular] vg-scrub-bar [role=slider] {
+            margin-top: 24px;
+            margin-bottom: 24px;
+            height: 2px;
+            background-color: $player-timeline-current-background-color;
+            position: relative;
+        }
+
+        videogular vg-scrub-bar .container, [videogular] vg-scrub-bar .container {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: 24px;
+            padding-left: 0;
+        }
+        videogular vg-scrub-bar-current-time, [videogular] vg-scrub-bar-current-time {
+            position: absolute;
+            background-color: #FFFFFF;
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: pointer;
+        }
+
+        .player-song-title {
+            position: absolute;
+            margin: 15px 10px;
+            font-size: 16px;
+        }
+
+        .videogular-container {
+            width: 100%;
+            height: 50px;
+            margin: auto;
+            overflow: hidden;
+
+            .controls-container{
+                width: 100%;
+                height: 50px;
+                position: absolute;
+                display: table;
+                zoom: 1;
+
+                .iconButton{
+                    height:50px;
+                    width: 50px;
+                    border:none;
+                    background-color: transparent;
+                    transition: background-color 0.3s ease;
+
+                    &:before{
+                        font-family: Flaticon;
+                        font-size: 20px;
+                        font-style: normal;
+                        color: #fff;
+                    }
+
+                    &:hover:enabled {
+                        background-color: #E47B65;
+                    }
+                }
+
+                .iconButton:disabled:before {
+                    color: #E47B65;
+                }
+
+                .iconButton.play:before{
+                    content: "\E023";
+                }
+                .iconButton.pause:before{
+                    content: "\e030";
+                }
+                .iconButton.level3:before{
+                    content: "\e001";
+                }
+                .iconButton.mute:before{
+                    content: "\e02e";
+                }
+
+                .control-button.selected {
+                    background-color: $player-timeline-current-background-color;
+                }
+
+                vg-play-pause-button, [videogular] vg-play-pause-button, .control-button {
+                    display: table-cell;
+                    width: 50px;
+                    vertical-align: middle;
+                    text-align: center;
+                    cursor: pointer;
+                }
+
+                vg-time-display, vg-time-display {
+                    color: #FFFFFF;
+                    display: table-cell;
+                    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+                    font-size: 16px;
+                    width: 75px;
+                    vertical-align: middle;
+                    text-align: center;
+                    cursor: default;
+                }
+
+                vg-volume, vg-volume {
+                    display: table-cell;
+                    width: 50px;
+                    vertical-align: middle;
+                    text-align: center;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.player-playlist {
+    .player-song-status {
+        width: 37px;
+        padding-top: 5px;
+    }
+
+    .player-playlist-duration {
+        padding-left: 15px;
+    }
+}
+
+.current-user{
+    img{
+        width:30px;
+        height:30px;
+        margin-right: 5px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+    span{
+        font-size: 14px;
+    }
+}
+
+.auth-view{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 99999;
+    background-color:#f0f3f4;
+}
+
+// Phone
+@media (max-width: 599px) {
+    .main-content-player {
+        .hide-xs:not(.show-xs):not(.show),
+        .hide:not(.show-xs):not(.show) {
+            display: none !important;
+        }
+    }
+
+    .main-viewport{
+        .main-player {
+            .main-content-player-info {
+                width: 50px;
+            }
+        }
+    }
+}
+
+//ipad
+@media only screen and (max-width : 1024px) { 
+    md-sidenav.md-locked-open.main-sidenav{
+        width: 60px;
+        min-width: 60px;
+
+        h1 span,md-content .main-menu li.menu-title{
+            display:none;
+        }
+        h1{ 
+            padding:0 10px;
+            text-align: center;
+
+            i{
+                margin: 0;
+                &:before{
+                    margin:0;
+                    font-size: 21px;
+                }
+            }
+        }
+
+        md-content .main-menu{ 
+            li a{
+                padding: 15px 0px;
+                text-align: center;
+                i{
+                    margin:0;
+                }
+                i:before{
+                    padding: 0 5px;
+                    margin: 0;
+                    font-size: 18px;
+                }
+                span{
+                    display:none;
+                }
+            }
+            li.active a{
+                color:$navbar-collapsed-selected-color;
+            }
+        }
+    }
+}
+
+.main-menu-toggle {
+    min-width: 29px;
+}

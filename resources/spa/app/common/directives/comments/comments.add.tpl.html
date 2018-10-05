@@ -1,0 +1,26 @@
+<form class="comments-form">
+    <h3 translate="COMMENTS_LEAVE"></h3>
+    <div layout="row">
+        <div flex="50">
+            <md-input-container>
+                <label translate="USERS_NAME"></label>
+                <input ng-model="current.name" disabled />
+            </md-input-container>
+        </div>
+        <div flex="50">
+            <md-input-container>
+                <label translate="COMMENTS_SUBJECT"></label>
+                <input ng-model="comment.title" />
+            </md-input-container>
+        </div>
+    </div>
+
+    <md-input-container class="md-block">
+        <label translate="COMMENTS_BODY"></label>
+        <textarea ng-model="comment.body" columns="1" md-maxlength="450" rows="7"></textarea>
+    </md-input-container>
+
+    <md-button ng-click="send(comment)" ng-disabled="loading" class="md-raised md-primary">
+        {{'COMMENT_SEND'|translate}}
+    </md-button>
+</form>

@@ -1,0 +1,64 @@
+.auth-full{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 99;
+    background-color: #F0F3F4;
+    overflow: auto;
+}
+.auth-container{
+    width:360px;
+    margin:0 auto;
+
+    h1{
+        padding: 0 20px;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 50px;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    p{
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: #58666e;
+        line-height: 20px;
+    }
+
+    .form-container{
+        padding: 20px;
+        margin: 10px 0 20px 0;
+    }
+
+    .md-btn-large{
+        display:block;
+        width:100%;
+    }
+
+    .forgot-password{
+        margin-top: 20px;
+        a{
+            color: #363f44;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: normal;
+        }
+    }
+
+    .signup-buttons{
+        margin: 25px 0 10px 0;
+
+        small{
+            display: block;
+            font-size: 13px;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    }
+}

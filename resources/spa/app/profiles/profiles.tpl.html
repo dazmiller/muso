@@ -1,0 +1,71 @@
+<div flex layout="row"class="profiles">
+    <div flex="25" class="profiles-sidebar" hide-sm hide-xs>
+        <img ng-src="{{profiles.user.image}}" class="avatar" id="user-image" />
+
+        <h3 translate="PROFILE_ABOUT_ME"></h3>
+        <p>{{profiles.user.about || ('PROFILE_DEFAULT_ABOUT' | translate)}}</p>
+    </div>
+
+    <div flex="75" flex-xs="100" class="profiles-content">
+        <img ng-src="{{profiles.user.image}}" class="avatar" hide-gt-xs />
+        <h2 ng-bind="profiles.user.name"></h2>
+        <div class="profile-icons">
+            <p><i class="flaticon-pin71"></i> {{profiles.user.country || ('PROFILE_DEFAULT_LOCATION' | translate)}}</p>
+            <p><i class="flaticon-suitcase57"></i> {{profiles.user.occupation || ('PROFILE_DEFAULT_OCCUPATION' | translate)}}</p>
+            <p><i class="social-flaticon-social-1"></i> <strong ng-bind="profiles.totalFollowers"></strong> {{'PROFILE_MY_FOLLOWERS'|translate}} <span class="profile-space"></span> <strong ng-bind="profiles.totalFollowings"></strong> {{'PROFILE_MY_FOLLOWING'|translate}}</p>
+        </div>
+
+        <div class="profile-action-buttons" hide-xs>
+            <md-button ng-if="app.user.id != profiles.user.id && profiles.amIFollowing" ng-click="profiles.unfollow(profiles.user)" ng-disabled="app.isLoading" class="md-raised md-primary"> <i class="flaticon-star129"></i> {{'PROFILE_UNFOLLOW' | translate}}</md-button>
+            <md-button ng-if="app.user.id != profiles.user.id && !profiles.amIFollowing" ng-click="profiles.follow(profiles.user)" ng-disabled="app.isLoading" class="md-raised md-primary"> <i class="flaticon-star129"></i> {{'PROFILE_FOLLOW_ME' | translate}}</md-button>
+            <md-button ng-if="app.user.id != profiles.user.id" ng-click="profiles.contact(profiles.user)" class="md-raised"><i class="flaticon-black218"></i> {{'PROFILE_SEND_MESSAGE' | translate}}</md-button>
+
+            <md-button ng-if="app.user.id == profiles.user.id" class="md-raised md-primary file-button"> <i class="flaticon-photo134"></i> {{'PROFILE_CHANGE_IMAGE' | translate}}
+              <input type="file" accept="image/*" file-model="profiles.user.image">
+            </md-button>
+        </div>
+        
+        <md-tabs md-selected="profiles.selected" md-dynamic-height md-border-bottom>
+            <md-tab>
+                <md-tab-label>{{'PROFILE_ACTIVITY'|translate}}</md-tab-label>
+                <md-tab-body>
+                  <div ng-include="'profiles/profiles.activities.tpl.html'" class="profile-activity"></div>
+                </md-tab-body>
+             </md-tab>
+
+            <md-tab ng-if="profiles.user.author && profiles.songs.length > 0">
+                <md-tab-label>{{'PROFILE_MY_SONGS'| translate}}</md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'profiles/profiles.songs.tpl.html'" class="profile-songs"></div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab>
+                <md-tab-label>{{'PROFILE_MY_FOLLOWERS'|translate}}</md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'profiles/profiles.followers.tpl.html'" class="profile-songs"></div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab>
+                <md-tab-label>{{'PROFILE_MY_FOLLOWING'|translate}}</md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'profiles/profiles.followings.tpl.html'" class="profile-songs"></div>
+                </md-tab-body>
+            </md-tab>
+             <!--md-tab>
+                <md-tab-label>{{'PROFILE_MY_PLAYLISTS'|translate}}</md-tab-label>
+                <md-tab-body>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                </md-tab-body>
+             </md-tab-->
+
+             <md-tab ng-if="app.user.id == profiles.user.id">
+                <md-tab-label>{{'PROFILE_SETTINGS'|translate}}</md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'profiles/profiles.settings.tpl.html'" class="profile-settings"></div>
+                </md-tab-body>
+             </md-tab>
+
+        </md-tabs>
+    </div>
+
+</div>

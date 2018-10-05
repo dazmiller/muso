@@ -1,0 +1,125 @@
+@import '../../common/styles/colors.scss';
+@import '~chartist/dist/chartist.min.css';
+
+.admin-dashboard {
+  .dashboard-overview {
+    padding: 0 10px;
+
+    stat-panel {
+      margin: 0 10px;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .dashboard-line-chart {
+    position: relative;
+
+    .tooltip {
+      position: absolute;
+      background: rgba(0,0,0,0.4);
+      border-radius: 3px;
+      color: #fff;
+      padding: 3px 10px;
+      text-transform: capitalize;
+    }
+  }
+
+  .dashboard-statistics,
+  .dashboard-popular {
+    margin-top: 40px;
+
+    h4 {
+      margin-bottom: 0;
+    }
+    p {
+      margin-top: 0;
+    }
+
+    .ct-chart {
+      display: block;
+      height: 400px;
+    }
+
+    .dashboard-stats-labels {
+      .md-avatar {
+        margin-top: 0;
+        padding-top: 40px;
+      }
+    }
+
+    .dashboard-stat-label {
+      border: 2px solid $primary-color;
+      border-radius: 2px;
+
+      span {
+        background-color: $primary-color;
+        border-radius: 5px;
+        display: block;
+        height: 10px;
+        margin-top: -5px;
+        margin-left: 14px;
+        position: absolute;
+        width: 10px;
+      }
+    }
+
+    .admin-panel{
+      overflow: hidden;
+    }
+  }
+
+  .ct-series-a .ct-bar,
+  .ct-series-a .ct-line,
+  .ct-series-a .ct-point,
+  .ct-series-a .ct-slice-donut {
+    stroke: $primary-color;
+  }
+  
+  .ct-series-b .ct-bar,
+  .ct-series-b .ct-line,
+  .ct-series-b .ct-point,
+  .ct-series-b .ct-slice-donut {
+    stroke: $action-color;
+  }
+
+  .dashboard-stat-label.dashboard-stat-likes {
+    border: 2px solid $action-color;
+    span {
+    background-color: $action-color;
+    }
+  }
+  
+  .ct-series-c .ct-bar,
+  .ct-series-c .ct-line,
+  .ct-series-c .ct-point,
+  .ct-series-c .ct-slice-donut {
+    stroke: $contrast-color;
+  }
+
+  .dashboard-stat-label.dashboard-stat-unlikes {
+    border: 2px solid $contrast-color;
+    span {
+      background-color: $contrast-color;
+    }
+  }
+
+  .ct-series-d .ct-bar,
+  .ct-series-d .ct-line,
+  .ct-series-d .ct-point,
+  .ct-series-d .ct-slice-donut {
+    stroke: $cool-color;
+  }
+
+  .dashboard-stat-label.dashboard-stat-downloads {
+    border: 2px solid $cool-color;
+    span {
+      background-color: $cool-color;
+    }
+  }
+}

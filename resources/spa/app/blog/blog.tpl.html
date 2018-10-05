@@ -1,0 +1,25 @@
+<div layout-fill class="blog" infinite-scroll="blogCtr.nextPage($page)">
+    <h2 translate="LATEST_POSTS"></h2>
+    
+    <div ng-if="blogCtr.posts.length == 0" class="admin-content">
+        <div class="admin-panel comments-empty-message">
+            <div class="admin-empty-data">
+                <i class="flaticon-books71"></i>
+                <p translate="POSTS_EMPTY_PUBLISHED"></p>
+            </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-wrap>
+        <div ng-repeat="post in blogCtr.posts" class="blog-post white-panel">
+            <img class="blog-post-image" style="background-image: url({{post.asset.url}})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+            <div class="blog-post-body">
+                <h3 ui-sref="public.blog.show({id: post.id})" ng-bind="post.title" class="blog-post-header"></h3>
+                <p ng-bind="post.content | removeHtml | ellipsis:true:100"></p>
+            </div>
+            <md-button ui-sref="public.blog.show({id: post.id})" class="md-primary md-raised blog-read-more">
+                {{'READ_MORE' | translate}}
+            </md-button>
+        </div>
+    </div>
+</div>

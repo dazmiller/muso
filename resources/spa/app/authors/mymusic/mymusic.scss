@@ -1,0 +1,52 @@
+.my-music{
+
+    .album-tracks-header{
+        button{
+            margin-top: 20px;
+        }
+    }
+
+    .action-play{
+        margin-right:15px;
+
+        i {
+            cursor: pointer;
+        }
+    }
+
+    .admin-panel{
+        md-checkbox{
+            margin-left: 4px;
+        }
+    }
+
+    .admin-options {
+        .album-published {
+            margin-top: 20px;
+        }
+    }
+}
+
+.admin-upload-file{
+    margin:0 10px;
+    padding: 10px 0;
+
+    p{
+        margin:3px 0;
+    }
+}
+
+.admin-album-song {
+    .song-data {
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .admin-upload-file{
+        margin: 0 0 0 10px;
+        i:before{
+            font-size: 40px;
+        }
+    }
+}

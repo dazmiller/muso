@@ -1,0 +1,42 @@
+@import '../common/styles/colors.scss';
+
+.songs {
+    .album-details.song-details {
+        img.album-art {
+            cursor: auto;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+.album-song-list {
+    .action-play {
+        color: #999;
+
+        &:hover {
+            color: #000;
+
+            i:before {
+                border: 1px solid #000;
+            }
+        }
+
+        i:before {
+            box-sizing: border-box;
+            border: 1px solid #999;
+            border-radius: 50%;
+            display: block;
+            font-size: 20px;
+            height: 40px;
+            padding-top: 2px;
+            padding-left: 11px;
+            width: 40px;
+        }
+    }
+
+    .music-waves {
+        margin-top: 7px;
+    }
+}

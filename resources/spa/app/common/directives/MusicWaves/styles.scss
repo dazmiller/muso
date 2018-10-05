@@ -1,0 +1,47 @@
+@import '../../styles/colors.scss';
+
+.music-waves{  
+  position:relative;
+  width: 20px;
+  height: 20px;
+}  
+
+.music-waves span{  
+  width:5px;  
+  height: 5px;  
+  bottom:0px;
+  position:absolute;  
+  background: $button-primary-background-color;  
+  animation: bodong 0.5s infinite  ease;  
+}  
+
+.music-waves span:first-child{  
+  left:0px;  
+  animation-delay:.3s;  
+}  
+
+.music-waves span:nth-child(2){  
+  left:7px;  
+  animation-delay:.4s;  
+
+}  
+.music-waves span:nth-child(3){  
+  left:14px;  
+  animation-delay:.6s;  
+}  
+.music-waves span:nth-child(4){  
+  left:21px;  
+  animation-delay:.8s;  
+}  
+.music-waves span:nth-child(5){  
+  left:28px;  
+  animation-delay:1s;  
+}  
+
+@keyframes bodong{  
+  0%{height:5px; background:bule;}  
+  30%{height:15px; background:bule;}  
+  60%{height:20px; background:bule;}  
+  80%{height:15px; background:bule;}  
+  100%{height:5px; background:bule;}  
+}
